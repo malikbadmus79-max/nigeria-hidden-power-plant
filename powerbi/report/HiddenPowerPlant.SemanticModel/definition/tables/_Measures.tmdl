@@ -170,7 +170,7 @@ table _Measures
 	measure 'KPI P1 HH Sub' =
 			VAR _l = [Gen HH Low Now]
 			VAR _h = [Gen HH High Now]
-			RETURN "National median, central · range " & IF ( _l >= 1000000, "₦" & FORMAT ( _l / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _l, "#,0" ) ) & "–" & IF ( _h >= 1000000, "₦" & FORMAT ( _h / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _h, "#,0" ) )
+			RETURN "National median · range " & IF ( _l >= 1000000, "₦" & FORMAT ( _l / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _l, "#,0" ) ) & "–" & IF ( _h >= 1000000, "₦" & FORMAT ( _h / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _h, "#,0" ) )
 		displayFolder: 1 Fuel shock
 		lineageTag: 73877499-4a13-4a7a-959f-3904c533ed90
 
@@ -187,7 +187,7 @@ table _Measures
 	measure 'KPI P1 BZ Sub' =
 			VAR _l = [Gen BZ Low Now]
 			VAR _h = [Gen BZ High Now]
-			RETURN "National median, central · range " & IF ( _l >= 1000000, "₦" & FORMAT ( _l / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _l, "#,0" ) ) & "–" & IF ( _h >= 1000000, "₦" & FORMAT ( _h / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _h, "#,0" ) )
+			RETURN "National median · range " & IF ( _l >= 1000000, "₦" & FORMAT ( _l / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _l, "#,0" ) ) & "–" & IF ( _h >= 1000000, "₦" & FORMAT ( _h / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _h, "#,0" ) )
 		displayFolder: 1 Fuel shock
 		lineageTag: 63d8ed82-7641-4d91-803b-e911bc24da2e
 
@@ -234,7 +234,7 @@ table _Measures
 
 	measure 'Line P1 Note' =
 			VAR _v = [Gen HH High Max]
-			RETURN "Shaded band = low–high case, clipped at the top (high case reaches " & IF ( _v >= 1000000, "₦" & FORMAT ( _v / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _v, "#,0" ) ) & ")"
+			RETURN "Central estimate; shaded band = low–high case, clipped at the top (high case reaches " & IF ( _v >= 1000000, "₦" & FORMAT ( _v / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _v, "#,0" ) ) & ")"
 		displayFolder: 1 Fuel shock
 		lineageTag: 90fb75a3-4baa-4b03-adef-a962c6acc60f
 
@@ -417,7 +417,7 @@ table _Measures
 		lineageTag: 28cb1818-63c7-4ced-9051-cd4a5cabde1a
 
 	/// Page 3 takeaway.
-	measure 'Takeaway P3' = "Solar + battery now pays back in about " & FORMAT ( [Payback HH Now], "0" ) & " months for a typical household (median, " & [Latest Month Label] & "), down from " & FORMAT ( [Payback HH Peak 2024], "0" ) & " months at the " & [Payback HH Peak Label] & " peak (central estimates)."
+	measure 'Takeaway P3' = "Solar + battery now pays back in about " & FORMAT ( [Payback HH Now], "0" ) & " months for a typical household, down from " & FORMAT ( [Payback HH Peak 2024], "0" ) & " at the " & [Payback HH Peak Label] & " peak (median, central)."
 		displayFolder: 3 Payback
 		lineageTag: d42cfdf5-1d82-44f8-80bf-62c119d9e861
 
@@ -434,7 +434,7 @@ table _Measures
 			VAR _b = MAXX ( ALL ( dim_state[state] ), [Payback HH Now] )
 			VAR _l = MINX ( ALL ( dim_state[state] ), [Payback HH Low Now] )
 			VAR _h = MAXX ( ALL ( dim_state[state] ), [Payback HH High Now] )
-			RETURN "Median of states, central · states " & FORMAT ( _a, "0.0" ) & "–" & FORMAT ( _b, "0.0" ) & "; range " & FORMAT ( _l, "0.0" ) & "–" & FORMAT ( _h, "0.0" )
+			RETURN "States " & FORMAT ( _a, "0.0" ) & "–" & FORMAT ( _b, "0.0" ) & " · range " & FORMAT ( _l, "0.0" ) & "–" & FORMAT ( _h, "0.0" )
 		displayFolder: 3 Payback
 		lineageTag: a4b8bed5-ae90-4c17-900a-76dbe3376246
 
@@ -442,7 +442,7 @@ table _Measures
 		displayFolder: 3 Payback
 		lineageTag: e4366009-92b0-482d-8e68-34f332235572
 
-	measure 'KPI P3 Start Sub' = "Median of states, central · business " & FORMAT ( [Payback BZ Start], "0.0" ) & " months"
+	measure 'KPI P3 Start Sub' = "Median of states · business " & FORMAT ( [Payback BZ Start], "0.0" ) & " months"
 		displayFolder: 3 Payback
 		lineageTag: 2c6a7b07-57ed-49c7-b98d-fd11deac2bb4
 
@@ -523,7 +523,7 @@ table _Measures
 
 	measure 'Note P3 Afford' =
 			VAR _m = MEDIANX ( ALL ( dim_state[state] ), [Upfront HH Central Now] )
-			RETURN "12 least affordable · whiskers = low–high · all-state median " & FORMAT ( _m, "0.0" )
+			RETURN "12 least affordable · whiskers = low–high · median " & FORMAT ( _m, "0.0" )
 		displayFolder: 3 Payback
 		lineageTag: 177dbfe0-bc75-4f05-9016-afe69f9ee8a9
 
@@ -590,35 +590,35 @@ table _Measures
 		displayFolder: 4 Where to go next
 		lineageTag: a053227a-be2a-4820-866b-4cf9c9d7e51e
 
-	measure 'Card P4 Bars Title' = "Market priority index — top 15 states (" & [Latest Month Label] & ", equal weights)"
+	measure 'Card P4 Bars Title' = "Market priority index — top 15 (" & [Latest Month Label] & ", equal weights)"
 		displayFolder: 4 Where to go next
 		lineageTag: f9f5a844-eaa2-4780-81d0-fd5437da1ab6
 
-	measure 'Card P4 Table Title' = "Top 10 at a glance — household, " & [Latest Month Label] & " (central; payback range low–high)"
+	measure 'Card P4 Table Title' = "Top 10 at a glance — household, " & [Latest Month Label]
 		displayFolder: 4 Where to go next
 		lineageTag: 8e981ad6-48fb-4bb7-a1b9-5178700b460d
 
 	/// Gen kWh HH Now for the state on the current page-2 chart row. 0 on the separator row (kept so the '· · ·' row shows; the format string prints zero as empty).
 	measure 'P2 Gen HH Row' = VAR _s = SELECTEDVALUE ( 'P2 Rows HH'[state] ) RETURN IF ( _s = "", 0, CALCULATE ( [Gen kWh HH Now], dim_state[state] = _s ) )
-		formatString: #,0;-#,0;
+		formatString: ₦#,0;-₦#,0;
 		displayFolder: 2 Generator vs grid vs solar
 		lineageTag: 526f237a-85c0-4f64-85b1-3e18cb8d9dd8
 
 	/// Solar kWh HH Now for the state on the current page-2 chart row. 0 on the separator row (kept so the '· · ·' row shows; the format string prints zero as empty).
 	measure 'P2 Solar HH Row' = VAR _s = SELECTEDVALUE ( 'P2 Rows HH'[state] ) RETURN IF ( _s = "", 0, CALCULATE ( [Solar kWh HH Now], dim_state[state] = _s ) )
-		formatString: #,0;-#,0;
+		formatString: ₦#,0;-₦#,0;
 		displayFolder: 2 Generator vs grid vs solar
 		lineageTag: e3afa17c-9069-43d1-adfc-1a1709a0b5d1
 
 	/// Gen kWh BZ Now for the state on the current page-2 chart row. 0 on the separator row (kept so the '· · ·' row shows; the format string prints zero as empty).
 	measure 'P2 Gen BZ Row' = VAR _s = SELECTEDVALUE ( 'P2 Rows BZ'[state] ) RETURN IF ( _s = "", 0, CALCULATE ( [Gen kWh BZ Now], dim_state[state] = _s ) )
-		formatString: #,0;-#,0;
+		formatString: ₦#,0;-₦#,0;
 		displayFolder: 2 Generator vs grid vs solar
 		lineageTag: 9a8f9507-697f-41de-8b04-9d046f20e021
 
 	/// Solar kWh BZ Now for the state on the current page-2 chart row. 0 on the separator row (kept so the '· · ·' row shows; the format string prints zero as empty).
 	measure 'P2 Solar BZ Row' = VAR _s = SELECTEDVALUE ( 'P2 Rows BZ'[state] ) RETURN IF ( _s = "", 0, CALCULATE ( [Solar kWh BZ Now], dim_state[state] = _s ) )
-		formatString: #,0;-#,0;
+		formatString: ₦#,0;-₦#,0;
 		displayFolder: 2 Generator vs grid vs solar
 		lineageTag: 313dfada-8954-4f0f-8ffd-02f56e3c36e6
 
@@ -639,6 +639,230 @@ table _Measures
 			RETURN "States differ by only about " & FORMAT ( ( _hi / _lo - 1 ) * 100, "0" ) & "%; the colour scale is"
 		displayFolder: 3 Payback
 		lineageTag: be36d07e-54d0-4fa2-be9a-14eff527e1a8
+
+	/// Median over states of 1 - solar NGN/kWh / generator NGN/kWh (household, central, latest month).
+	measure 'Gap kWh HH Median' = MEDIANX ( ALL ( dim_state[state] ), 1 - DIVIDE ( [Solar kWh HH Now], [Gen kWh HH Now] ) )
+		formatString: 0.0%
+		displayFolder: 0 Overview
+		lineageTag: baf5ef76-c4fa-4a09-b419-0ac41b346437
+
+	/// Smallest state value of 1 - solar / generator NGN/kWh (household, central, latest month).
+	measure 'Gap kWh HH Min' = MINX ( ALL ( dim_state[state] ), 1 - DIVIDE ( [Solar kWh HH Now], [Gen kWh HH Now] ) )
+		formatString: 0.0%
+		displayFolder: 0 Overview
+		lineageTag: 7b618d20-7b51-4457-bc5f-6b59e72294c0
+
+	/// Overview headline.
+	measure 'Takeaway P0' = "Solar + battery now costs about " & FORMAT ( [Gap kWh HH Median] * 100, "0" ) & "% less per kWh than a small petrol generator — at least " & INT ( [Gap kWh HH Min] * 100 ) & "% less in every state — and pays back in about " & FORMAT ( [Payback HH Now], "0" ) & " months."
+		displayFolder: 0 Overview
+		lineageTag: ecfe1b91-89a8-456a-b8e9-1d9e91951b1c
+
+	measure 'Label P0 Insight' =
+			VAR _s = UPPER ( "Key insight · " & [Latest Month Label] )
+			RETURN CONCATENATEX ( GENERATESERIES ( 1, LEN ( _s ) ), MID ( _s, [Value], 1 ), UNICHAR ( 8202 ), [Value], ASC )
+		displayFolder: 0 Overview
+		lineageTag: 3d83c31a-d384-4771-a6bf-c3a894a1f0e0
+
+	measure 'Label P0 Map' =
+			VAR _s = UPPER ( "Payback map · " & [Latest Month Label] )
+			RETURN CONCATENATEX ( GENERATESERIES ( 1, LEN ( _s ) ), MID ( _s, [Value], 1 ), UNICHAR ( 8202 ), [Value], ASC )
+		displayFolder: 0 Overview
+		lineageTag: f569ed2d-e726-4645-926a-06831cb74bdd
+
+	measure 'Label P1 Map' =
+			VAR _s = UPPER ( "Map · " & [Latest Month Label] & ", central" )
+			RETURN CONCATENATEX ( GENERATESERIES ( 1, LEN ( _s ) ), MID ( _s, [Value], 1 ), UNICHAR ( 8202 ), [Value], ASC )
+		displayFolder: 5 Design v2
+		lineageTag: bb2d5c81-bdf9-4bf9-bc59-b21bf4224824
+
+	measure 'Label P2 Cost' =
+			VAR _s = UPPER ( "Cost per kWh · " & [Latest Month Label] & ", central" )
+			RETURN CONCATENATEX ( GENERATESERIES ( 1, LEN ( _s ) ), MID ( _s, [Value], 1 ), UNICHAR ( 8202 ), [Value], ASC )
+		displayFolder: 5 Design v2
+		lineageTag: a1488f65-908d-4d3a-b342-5dadbec6173d
+
+	measure 'Label P3 Map' =
+			VAR _s = UPPER ( "Map · " & [Latest Month Label] )
+			RETURN CONCATENATEX ( GENERATESERIES ( 1, LEN ( _s ) ), MID ( _s, [Value], 1 ), UNICHAR ( 8202 ), [Value], ASC )
+		displayFolder: 5 Design v2
+		lineageTag: 21572070-3ea2-4d2d-9ec5-ca86fa3d2ca2
+
+	/// Median household solar + battery NGN/kWh across states, latest month.
+	measure 'KPI P0 Solar Value' =
+			VAR _v = MEDIANX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )
+			RETURN IF ( _v >= 1000000, "₦" & FORMAT ( _v / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _v, "#,0" ) )
+		displayFolder: 0 Overview
+		lineageTag: d123521c-0cfb-426d-98c9-489a5cab514d
+
+	measure 'KPI P0 Solar Pill' = "−" & FORMAT ( [Gap kWh HH Median] * 100, "0" ) & "%"
+		displayFolder: 0 Overview
+		lineageTag: cc5434a1-41b2-4897-b293-31a9db08b355
+
+	measure 'KPI P0 Solar Sub' =
+			VAR _v = MEDIANX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )
+			RETURN "vs generator " & IF ( _v >= 1000000, "₦" & FORMAT ( _v / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _v, "#,0" ) )
+		displayFolder: 0 Overview
+		lineageTag: 21ddd2e6-13cc-408d-b117-4ce8a15d858a
+
+	measure 'KPI P0 Payback Value' = FORMAT ( [Payback HH Now], "0.0" ) & " mo"
+		displayFolder: 0 Overview
+		lineageTag: 997d3502-1b10-4ca2-8365-e2bfb032e7e5
+
+	measure 'KPI P0 Payback Pill' = "−" & FORMAT ( [Payback HH Peak 2024] - [Payback HH Now], "0.0" ) & " mo"
+		displayFolder: 0 Overview
+		lineageTag: 5cb4123b-454d-4ffc-be6c-a06fd0529939
+
+	measure 'KPI P0 Payback Sub' = "vs " & [Payback HH Peak Label] & " peak"
+		displayFolder: 0 Overview
+		lineageTag: 3f612c3b-8d6b-46ca-a78b-ba0380ae66b7
+
+	/// State ranked 1 in the base priority variant.
+	measure 'Top Priority State' = MAXX ( TOPN ( 1, ALL ( dim_state[state] ), [Priority Rank], ASC ), dim_state[state] )
+		displayFolder: 0 Overview
+		lineageTag: 04656175-3979-4051-9077-8a56faeb4f79
+
+	measure 'KPI P0 Top Pill' =
+			VAR _s = [Top Priority State]
+			VAR _n = CALCULATE ( [Variants In Top 10], dim_state[state] = _s )
+			RETURN IF ( _n = [Variants Total], "Top 10 in all " & [Variants Total], "Top 10 in " & _n & " of " & [Variants Total] )
+		displayFolder: 0 Overview
+		lineageTag: 6bc3778a-bf77-4644-92fa-674c7df80b8f
+
+	measure 'KPI P0 Top Sub' =
+			VAR _s = [Top Priority State]
+			RETURN "index " & FORMAT ( CALCULATE ( [Priority Index], dim_state[state] = _s ), "0.00" )
+		displayFolder: 0 Overview
+		lineageTag: bea58a37-0e96-4932-89ec-fe4084e0f8a6
+
+	measure 'Finding 1' =
+			VAR _v = [Gen HH Central Now]
+			RETURN "Running a small household generator cost a median " & IF ( _v >= 1000000, "₦" & FORMAT ( _v / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _v, "#,0" ) ) & " a month in " & [Latest Month Label] & ", " & FORMAT ( [Gen HH Change] * 100, "0" ) & "% more than in January 2023, after the June 2023 petrol subsidy removal."
+		displayFolder: 0 Overview
+		lineageTag: cb633f8b-de15-433d-8bbd-041246e78482
+
+	measure 'Finding 2' =
+			VAR _g1 = MINX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )
+			VAR _g2 = MAXX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )
+			VAR _s1 = MINX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )
+			VAR _s2 = MAXX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )
+			RETURN "Solar + battery costs " & IF ( _s1 >= 1000000, "₦" & FORMAT ( _s1 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _s1, "#,0" ) ) & "–" & IF ( _s2 >= 1000000, "₦" & FORMAT ( _s2 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _s2, "#,0" ) ) & " per kWh against " & IF ( _g1 >= 1000000, "₦" & FORMAT ( _g1 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _g1, "#,0" ) ) & "–" & IF ( _g2 >= 1000000, "₦" & FORMAT ( _g2 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _g2, "#,0" ) ) & " for a small petrol generator — cheaper in all 37 states."
+		displayFolder: 0 Overview
+		lineageTag: dfc3aa5b-28eb-43d9-bd9e-84fdf3975e87
+
+	measure 'Finding 3' =
+			VAR _t = ADDCOLUMNS ( TOPN ( 3, ALL ( dim_state[state] ), [Priority Rank], ASC ), "@r", [Priority Rank] )
+			VAR _n1 = MAXX ( FILTER ( _t, [@r] = 1 ), dim_state[state] )
+			VAR _n2 = MAXX ( FILTER ( _t, [@r] = 2 ), dim_state[state] )
+			VAR _n3 = MAXX ( FILTER ( _t, [@r] = 3 ), dim_state[state] )
+			RETURN "Payback fell from " & FORMAT ( [Payback HH Peak 2024], "0" ) & " months at the " & [Payback HH Peak Label] & " peak to about " & FORMAT ( [Payback HH Now], "0" ) & " months. " & _n1 & ", " & _n2 & " and " & _n3 & " rank highest for market priority."
+		displayFolder: 0 Overview
+		lineageTag: 86873141-4d47-478d-a034-0d50fe156aca
+
+	measure 'KPI P1 BZ Change Value' = "+" & FORMAT ( [Gen BZ Change] * 100, "0" ) & "%"
+		displayFolder: 5 Design v2
+		lineageTag: 57ea0024-8a16-46db-ae89-fdcfb3b737ae
+
+	measure 'KPI P3 Now Pill' = "−" & FORMAT ( [Payback HH Peak 2024] - [Payback HH Now], "0.0" ) & " mo vs peak"
+		displayFolder: 5 Design v2
+		lineageTag: e380cf5a-0e28-475a-a136-b73ef0da6bb3
+
+	measure 'KPI P3 Peak Pill' = "+" & FORMAT ( [Payback HH Peak 2024] - [Payback HH Start], "0.0" ) & " mo"
+		displayFolder: 5 Design v2
+		lineageTag: c9f1381e-4298-4e87-aad6-750d957cc5c6
+
+	measure 'Label P3 Peak 1' = [Payback HH Peak Label] & ": naira devaluation"
+		displayFolder: 5 Design v2
+		lineageTag: 40876c5a-adb4-4d35-b630-d12ab0eeb82b
+
+	measure 'Label P3 Peak 2' = "peak " & FORMAT ( [Payback HH Peak 2024], "0.0" ) & " months"
+		displayFolder: 5 Design v2
+		lineageTag: 1efdfc4a-d341-42b4-821d-0fb1115fb811
+
+	/// Overview headline, line 1.
+	measure 'Headline P0 1' = "Solar + battery now costs about " & FORMAT ( [Gap kWh HH Median] * 100, "0" ) & "% less per kWh than a small petrol generator — at"
+		displayFolder: 6 Text lines
+		lineageTag: 5b7a97cc-29e1-4c78-b879-e16479fcb708
+
+	/// Overview headline, line 2.
+	measure 'Headline P0 2' = "least " & INT ( [Gap kWh HH Min] * 100 ) & "% less in every state — and pays back in about " & FORMAT ( [Payback HH Now], "0" ) & " months."
+		displayFolder: 6 Text lines
+		lineageTag: abf6de18-a7a4-456c-b94f-f9ecfff53de4
+
+	/// 
+	measure 'Finding 1 L1' =
+			VAR _v = [Gen HH Central Now]
+			RETURN "Running a small household generator cost a median " & IF ( _v >= 1000000, "₦" & FORMAT ( _v / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _v, "#,0" ) ) & " a month in"
+		displayFolder: 6 Text lines
+		lineageTag: 1502884f-2969-46a7-97e1-6a3590ea4225
+
+	/// 
+	measure 'Finding 1 L2' = [Latest Month Label] & ", " & FORMAT ( [Gen HH Change] * 100, "0" ) & "% more than in January 2023, after the June 2023 petrol"
+		displayFolder: 6 Text lines
+		lineageTag: 3166191a-6db0-4454-9a98-8ea3b41f4ddd
+
+	/// 
+	measure 'Finding 1 L3' = "subsidy removal."
+		displayFolder: 6 Text lines
+		lineageTag: b0f71520-b951-4964-9f2b-76f15da01ef8
+
+	/// 
+	measure 'Finding 2 L1' =
+			VAR _g1 = MINX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )
+			VAR _g2 = MAXX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )
+			VAR _s1 = MINX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )
+			VAR _s2 = MAXX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )
+			RETURN "Solar + battery costs " & IF ( _s1 >= 1000000, "₦" & FORMAT ( _s1 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _s1, "#,0" ) ) & "–" & IF ( _s2 >= 1000000, "₦" & FORMAT ( _s2 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _s2, "#,0" ) ) & " per kWh against " & IF ( _g1 >= 1000000, "₦" & FORMAT ( _g1 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _g1, "#,0" ) ) & "–" & IF ( _g2 >= 1000000, "₦" & FORMAT ( _g2 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _g2, "#,0" ) ) & " for a"
+		displayFolder: 6 Text lines
+		lineageTag: c0abf49e-d7b2-42bb-88af-4649715437ca
+
+	/// 
+	measure 'Finding 2 L2' = "small petrol generator — cheaper in all 37 states."
+		displayFolder: 6 Text lines
+		lineageTag: 1ea7f364-c788-4658-bdb8-643f14b3d5a3
+
+	/// 
+	measure 'Finding 3 L1' = "Payback fell from " & FORMAT ( [Payback HH Peak 2024], "0" ) & " months at the " & [Payback HH Peak Label] & " peak to about " & FORMAT ( [Payback HH Now], "0" ) & " months."
+		displayFolder: 6 Text lines
+		lineageTag: fb6d6c84-66da-4bd3-ad26-1a4344f63748
+
+	/// 
+	measure 'Finding 3 L2' =
+			VAR _t = ADDCOLUMNS ( TOPN ( 3, ALL ( dim_state[state] ), [Priority Rank], ASC ), "@r", [Priority Rank] )
+			VAR _n1 = MAXX ( FILTER ( _t, [@r] = 1 ), dim_state[state] )
+			VAR _n2 = MAXX ( FILTER ( _t, [@r] = 2 ), dim_state[state] )
+			VAR _n3 = MAXX ( FILTER ( _t, [@r] = 3 ), dim_state[state] )
+			RETURN _n1 & ", " & _n2 & " and " & _n3 & " rank highest for market priority."
+		displayFolder: 6 Text lines
+		lineageTag: 6d463676-d56f-4c35-b4c1-db239ecbf5f2
+
+	/// 
+	measure 'Spread P1 L1' =
+			VAR _hi = MAXX ( ALL ( dim_state[state] ), [Gen HH Central Now] )
+			VAR _lo = MINX ( ALL ( dim_state[state] ), [Gen HH Central Now] )
+			RETURN "States differ by only about " & FORMAT ( ( _hi / _lo - 1 ) * 100, "0" ) & "%; the colour scale is stretched to"
+		displayFolder: 6 Text lines
+		lineageTag: 7c8770ca-2fcb-4156-9fdd-9369bc49d9fe
+
+	/// Payback map note, line 1 (wide map card).
+	measure 'Spread Payback L1' =
+			VAR _hi = MAXX ( ALL ( dim_state[state] ), [Payback HH Now] )
+			VAR _lo = MINX ( ALL ( dim_state[state] ), [Payback HH Now] )
+			RETURN "States differ by only about " & FORMAT ( ( _hi / _lo - 1 ) * 100, "0" ) & "%; the colour scale is stretched to"
+		displayFolder: 6 Text lines
+		lineageTag: 66f7c148-3095-4d1f-ab6b-7653f71944af
+
+	/// Payback map note, line 1 (narrow map card).
+	measure 'Spread Payback Narrow L1' =
+			VAR _hi = MAXX ( ALL ( dim_state[state] ), [Payback HH Now] )
+			VAR _lo = MINX ( ALL ( dim_state[state] ), [Payback HH Now] )
+			RETURN "States differ by only about " & FORMAT ( ( _hi / _lo - 1 ) * 100, "0" ) & "%; the colour scale"
+		displayFolder: 6 Text lines
+		lineageTag: d3f113a9-deb4-49d2-aa1c-419d3967ab5f
+
+	/// 
+	measure 'Sidebar Data To' = "Data to " & [Latest Month Label]
+		displayFolder: 6 Text lines
+		lineageTag: c280d372-28e1-438b-b65e-1c50ef65d874
 
 	column _
 		isHidden

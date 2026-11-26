@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "lblHHEnd",
   "position": {
-    "x": 722.0,
-    "y": 500.8,
-    "z": 321,
+    "x": 803.0,
+    "y": 497.0,
+    "z": 660,
     "height": 27,
     "width": 96,
-    "tabOrder": 321
+    "tabOrder": 660
   },
   "visual": {
     "visualType": "multiRowCard",

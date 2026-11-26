@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "p2_gen_grid_solar",
-  "displayName": "2  Generator vs Grid vs Solar",
+  "displayName": "Generator vs Grid vs Solar",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280,

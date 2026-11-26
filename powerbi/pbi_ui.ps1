@@ -52,6 +52,12 @@ if ($Type) {
 }
 Start-Sleep -Milliseconds $WaitMs
 if ($Out) {
+    for ($i = 0; $i -lt 5 -and -not (Test-Fg); $i++) {   # another window came to the front: bring Power BI back
+        [U]::keybd_event(0x12, 0, 0, [IntPtr]::Zero); [U]::keybd_event(0x12, 0, 2, [IntPtr]::Zero)
+        [void][U]::ShowWindow($p.MainWindowHandle, 3); [void][U]::SetForegroundWindow($p.MainWindowHandle)
+        Start-Sleep -Milliseconds 2500
+    }
+    if (-not (Test-Fg)) { "Power BI is not the foreground window; no screenshot"; exit 1 }
     $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
     $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
     $g = [System.Drawing.Graphics]::FromImage($bmp)

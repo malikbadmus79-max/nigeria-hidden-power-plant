@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "lineNote",
   "position": {
-    "x": 522,
-    "y": 264,
-    "z": 302,
+    "x": 646,
+    "y": 280,
+    "z": 630,
     "height": 27,
-    "width": 714,
-    "tabOrder": 302
+    "width": 594,
+    "tabOrder": 630
   },
   "visual": {
     "visualType": "multiRowCard",

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "pageTitle",
   "position": {
-    "x": 20,
-    "y": 18,
-    "z": 10,
-    "height": 46,
-    "width": 640,
-    "tabOrder": 10
+    "x": 230,
+    "y": 16,
+    "z": 240,
+    "height": 43,
+    "width": 708,
+    "tabOrder": 240
   },
   "visual": {
     "visualType": "textbox",
@@ -22,7 +22,7 @@
                     "value": "Where to Go Next",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
-                      "fontSize": "22.0pt",
+                      "fontSize": "20.0pt",
                       "color": "#0F1B2D"
                     }
                   }

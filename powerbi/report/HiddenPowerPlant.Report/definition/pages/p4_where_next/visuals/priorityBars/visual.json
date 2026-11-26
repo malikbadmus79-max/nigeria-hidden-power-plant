@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "priorityBars",
   "position": {
-    "x": 40,
-    "y": 144,
-    "z": 120,
-    "height": 458,
-    "width": 528,
-    "tabOrder": 120
+    "x": 254,
+    "y": 158,
+    "z": 290,
+    "height": 422,
+    "width": 380,
+    "tabOrder": 290
   },
   "visual": {
     "visualType": "clusteredBarChart",

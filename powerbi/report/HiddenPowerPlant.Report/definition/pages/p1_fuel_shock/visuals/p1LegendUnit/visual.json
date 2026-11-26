@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "p1LegendUnit",
   "position": {
-    "x": 179.0,
-    "y": 622,
-    "z": 222,
+    "x": 344.0,
+    "y": 608,
+    "z": 560,
     "height": 23,
     "width": 160,
-    "tabOrder": 222
+    "tabOrder": 560
   },
   "visual": {
     "visualType": "textbox",

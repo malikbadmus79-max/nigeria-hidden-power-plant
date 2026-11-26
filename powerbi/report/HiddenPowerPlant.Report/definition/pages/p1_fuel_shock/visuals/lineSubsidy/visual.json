@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "lineSubsidy",
   "position": {
-    "x": 662,
-    "y": 296,
-    "z": 320,
+    "x": 784.2,
+    "y": 316,
+    "z": 650,
     "height": 25,
-    "width": 260,
-    "tabOrder": 320
+    "width": 268,
+    "tabOrder": 650
   },
   "visual": {
     "visualType": "textbox",

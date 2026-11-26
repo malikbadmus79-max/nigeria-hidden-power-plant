@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "top10Table",
   "position": {
-    "x": 616,
-    "y": 144,
-    "z": 220,
-    "height": 470,
-    "width": 624,
-    "tabOrder": 220
+    "x": 730,
+    "y": 160,
+    "z": 370,
+    "height": 474,
+    "width": 506,
+    "tabOrder": 370
   },
   "visual": {
     "visualType": "tableEx",
@@ -17,17 +17,17 @@
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "_Measures"
+                      "Entity": "dim_state"
                     }
                   },
-                  "Property": "Priority Rank"
+                  "Property": "priority_rank"
                 }
               },
-              "queryRef": "_Measures.Priority Rank",
-              "nativeQueryRef": "Priority Rank",
+              "queryRef": "dim_state.priority_rank",
+              "nativeQueryRef": "priority_rank",
               "displayName": "Rank"
             },
             {
@@ -103,28 +103,10 @@
               },
               "queryRef": "_Measures.Upfront HH Now Text",
               "nativeQueryRef": "Upfront HH Now Text",
-              "displayName": "Upfront ÷ monthly spending"
+              "displayName": "Upfront ÷ spending"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Measure": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "_Measures"
-                  }
-                },
-                "Property": "Priority Rank"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ],
-        "isDefaultSort": false
       }
     },
     "objects": {
@@ -156,7 +138,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.0D"
+                  "Value": "9.5D"
                 }
               }
             },
@@ -311,7 +293,7 @@
             "rowPadding": {
               "expr": {
                 "Literal": {
-                  "Value": "9.0D"
+                  "Value": "11.0D"
                 }
               }
             },
@@ -355,13 +337,13 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "44.0D"
+                  "Value": "40.0D"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "_Measures.Priority Rank"
+            "metadata": "dim_state.priority_rank"
           }
         },
         {
@@ -369,7 +351,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "96.0D"
+                  "Value": "100.0D"
                 }
               }
             }
@@ -383,7 +365,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "22.0D"
+                  "Value": "20.0D"
                 }
               }
             }
@@ -397,7 +379,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "112.0D"
+                  "Value": "108.0D"
                 }
               }
             }
@@ -411,7 +393,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "140.0D"
+                  "Value": "112.0D"
                 }
               }
             }
@@ -425,7 +407,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "190.0D"
+                  "Value": "124.0D"
                 }
               }
             }
@@ -447,7 +429,7 @@
             }
           },
           "selector": {
-            "metadata": "_Measures.Priority Rank"
+            "metadata": "dim_state.priority_rank"
           }
         },
         {

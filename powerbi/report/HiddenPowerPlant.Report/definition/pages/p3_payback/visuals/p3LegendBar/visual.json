@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "p3LegendBar",
   "position": {
-    "x": 70,
+    "x": 278,
     "y": 598,
-    "z": 220,
+    "z": 540,
     "height": 8,
-    "width": 268,
-    "tabOrder": 220
+    "width": 212,
+    "tabOrder": 540
   },
   "visual": {
     "visualType": "image",

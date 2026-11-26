@@ -293,7 +293,7 @@ CALC_TABLE_COLUMNS = [
 CALC_TABLE_SORT = {(f"P2 Rows {uc}", "row_label"): "pos" for uc in ("HH", "BZ")}
 for uc in ("HH", "BZ"):
     for kind, base in (("Gen", "Gen kWh"), ("Solar", "Solar kWh")):
-        add(f"P2 {kind} {uc} Row", P2, "#,0;-#,0;",
+        add(f"P2 {kind} {uc} Row", P2, "₦#,0;-₦#,0;",
             f"{base} {uc} Now for the state on the current page-2 chart row. 0 on the separator row (kept so "
             f"the '· · ·' row shows; the format string prints zero as empty).",
             f"VAR _s = SELECTEDVALUE ( 'P2 Rows {uc}'[state] ) "
@@ -309,4 +309,154 @@ add("Map P3 Spread Note 1", "3 Payback", None, "First line of the page-3 map not
     "VAR _hi = MAXX ( ALL ( dim_state[state] ), [Payback HH Now] )\n"
     "VAR _lo = MINX ( ALL ( dim_state[state] ), [Payback HH Now] )\n"
     'RETURN "States differ by only about " & FORMAT ( ( _hi / _lo - 1 ) * 100, "0" ) & "%; the colour scale is"')
+MEASURES = M
+
+
+# =====================================================================================
+# Design v2 (figures/mockups_v2): Overview page, pills, section labels, updated wording
+# =====================================================================================
+P0 = "0 Overview"
+V2 = "5 Design v2"
+
+
+def redef(name, dax, desc=None):
+    """Replace an existing measure's DAX (v2 wording); folder and format are kept."""
+    for i, m_ in enumerate(M):
+        if m_[0] == name:
+            M[i] = (name, m_[1], m_[2], desc or m_[3], dax.strip())
+            return
+    raise KeyError(name)
+
+
+def spaced_dax(expr):
+    """UPPER(expr) with a hair space between characters (letter-spaced section label)."""
+    return (f"VAR _s = UPPER ( {expr} )\n"
+            "RETURN CONCATENATEX ( GENERATESERIES ( 1, LEN ( _s ) ), MID ( _s, [Value], 1 ), UNICHAR ( 8202 ), "
+            "[Value], ASC )")
+
+
+MINUS = "−"  # as in the mockups
+add("Gap kWh HH Median", P0, "0.0%",
+    "Median over states of 1 - solar NGN/kWh / generator NGN/kWh (household, central, latest month).",
+    "MEDIANX ( ALL ( dim_state[state] ), 1 - DIVIDE ( [Solar kWh HH Now], [Gen kWh HH Now] ) )")
+add("Gap kWh HH Min", P0, "0.0%",
+    "Smallest state value of 1 - solar / generator NGN/kWh (household, central, latest month).",
+    "MINX ( ALL ( dim_state[state] ), 1 - DIVIDE ( [Solar kWh HH Now], [Gen kWh HH Now] ) )")
+add("Takeaway P0", P0, TXT, "Overview headline.",
+    '"Solar + battery now costs about " & FORMAT ( [Gap kWh HH Median] * 100, "0" ) & '
+    '"% less per kWh than a small petrol generator — at least " & INT ( [Gap kWh HH Min] * 100 ) & '
+    '"% less in every state — and pays back in about " & FORMAT ( [Payback HH Now], "0" ) & " months."')
+add("Label P0 Insight", P0, TXT, "", spaced_dax('"Key insight · " & [Latest Month Label]'))
+add("Label P0 Map", P0, TXT, "", spaced_dax('"Payback map · " & [Latest Month Label]'))
+add("Label P1 Map", V2, TXT, "", spaced_dax('"Map · " & [Latest Month Label] & ", central"'))
+add("Label P2 Cost", V2, TXT, "", spaced_dax('"Cost per kWh · " & [Latest Month Label] & ", central"'))
+add("Label P3 Map", V2, TXT, "", spaced_dax('"Map · " & [Latest Month Label]'))
+add("KPI P0 Solar Value", P0, TXT, "Median household solar + battery NGN/kWh across states, latest month.",
+    f"VAR _v = MEDIANX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )\nRETURN {naira('_v')}")
+add("KPI P0 Solar Pill", P0, TXT, "", f'"{MINUS}" & FORMAT ( [Gap kWh HH Median] * 100, "0" ) & "%"')
+add("KPI P0 Solar Sub", P0, TXT, "",
+    f"VAR _v = MEDIANX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )\nRETURN \"vs generator \" & {naira('_v')}")
+add("KPI P0 Payback Value", P0, TXT, "", f'{one("[Payback HH Now]")} & " mo"')
+add("KPI P0 Payback Pill", P0, TXT, "", f'"{MINUS}" & {one("[Payback HH Peak 2024] - [Payback HH Now]")} & " mo"')
+add("KPI P0 Payback Sub", P0, TXT, "", '"vs " & [Payback HH Peak Label] & " peak"')
+add("Top Priority State", P0, TXT, "State ranked 1 in the base priority variant.",
+    "MAXX ( TOPN ( 1, ALL ( dim_state[state] ), [Priority Rank], ASC ), dim_state[state] )")
+add("KPI P0 Top Pill", P0, TXT, "",
+    "VAR _s = [Top Priority State]\n"
+    "VAR _n = CALCULATE ( [Variants In Top 10], dim_state[state] = _s )\n"
+    'RETURN IF ( _n = [Variants Total], "Top 10 in all " & [Variants Total], '
+    '"Top 10 in " & _n & " of " & [Variants Total] )')
+add("KPI P0 Top Sub", P0, TXT, "",
+    "VAR _s = [Top Priority State]\n"
+    'RETURN "index " & FORMAT ( CALCULATE ( [Priority Index], dim_state[state] = _s ), "0.00" )')
+add("Finding 1", P0, TXT, "",
+    f'VAR _v = [Gen HH Central Now]\nRETURN "Running a small household generator cost a median " & {naira("_v")} & '
+    '" a month in " & [Latest Month Label] & ", " & FORMAT ( [Gen HH Change] * 100, "0" ) & '
+    '"% more than in January 2023, after the June 2023 petrol subsidy removal."')
+add("Finding 2", P0, TXT, "",
+    "VAR _g1 = MINX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )\n"
+    "VAR _g2 = MAXX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )\n"
+    "VAR _s1 = MINX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )\n"
+    "VAR _s2 = MAXX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )\n"
+    f'RETURN "Solar + battery costs " & {naira("_s1")} & "–" & {naira("_s2")} & " per kWh against " & '
+    f'{naira("_g1")} & "–" & {naira("_g2")} & " for a small petrol generator — cheaper in all 37 states."')
+add("Finding 3", P0, TXT, "",
+    "VAR _t = ADDCOLUMNS ( TOPN ( 3, ALL ( dim_state[state] ), [Priority Rank], ASC ), \"@r\", [Priority Rank] )\n"
+    "VAR _n1 = MAXX ( FILTER ( _t, [@r] = 1 ), dim_state[state] )\n"
+    "VAR _n2 = MAXX ( FILTER ( _t, [@r] = 2 ), dim_state[state] )\n"
+    "VAR _n3 = MAXX ( FILTER ( _t, [@r] = 3 ), dim_state[state] )\n"
+    'RETURN "Payback fell from " & FORMAT ( [Payback HH Peak 2024], "0" ) & " months at the " & '
+    '[Payback HH Peak Label] & " peak to about " & FORMAT ( [Payback HH Now], "0" ) & " months. " & '
+    '_n1 & ", " & _n2 & " and " & _n3 & " rank highest for market priority."')
+add("KPI P1 BZ Change Value", V2, TXT, "", '"+" & FORMAT ( [Gen BZ Change] * 100, "0" ) & "%"')
+add("KPI P3 Now Pill", V2, TXT, "", f'"{MINUS}" & {one("[Payback HH Peak 2024] - [Payback HH Now]")} & " mo vs peak"')
+add("KPI P3 Peak Pill", V2, TXT, "", f'"+" & {one("[Payback HH Peak 2024] - [Payback HH Start]")} & " mo"')
+add("Label P3 Peak 1", V2, TXT, "", '[Payback HH Peak Label] & ": naira devaluation"')
+add("Label P3 Peak 2", V2, TXT, "", f'"peak " & {one("[Payback HH Peak 2024]")} & " months"')
+
+redef("KPI P1 HH Sub", "VAR _l = [Gen HH Low Now]\nVAR _h = [Gen HH High Now]\n"
+      f'RETURN "National median · range " & {naira("_l")} & "–" & {naira("_h")}')
+redef("KPI P1 BZ Sub", "VAR _l = [Gen BZ Low Now]\nVAR _h = [Gen BZ High Now]\n"
+      f'RETURN "National median · range " & {naira("_l")} & "–" & {naira("_h")}')
+redef("Line P1 Note", 'VAR _v = [Gen HH High Max]\nRETURN "Central estimate; shaded band = low–high case, clipped at '
+      f'the top (high case reaches " & {naira("_v")} & ")"')
+redef("Takeaway P3", '"Solar + battery now pays back in about " & FORMAT ( [Payback HH Now], "0" ) & '
+      '" months for a typical household, down from " & FORMAT ( [Payback HH Peak 2024], "0" ) & " at the " & '
+      '[Payback HH Peak Label] & " peak (median, central)."')
+redef("KPI P3 Now Sub", "VAR _a = MINX ( ALL ( dim_state[state] ), [Payback HH Now] )\n"
+      "VAR _b = MAXX ( ALL ( dim_state[state] ), [Payback HH Now] )\n"
+      "VAR _l = MINX ( ALL ( dim_state[state] ), [Payback HH Low Now] )\n"
+      "VAR _h = MAXX ( ALL ( dim_state[state] ), [Payback HH High Now] )\n"
+      f'RETURN "States " & {one("_a")} & "–" & {one("_b")} & " · range " & {one("_l")} & "–" & '
+      f'{one("_h")}')
+redef("KPI P3 Start Sub", f'"Median of states · business " & {one("[Payback BZ Start]")} & " months"')
+redef("Note P3 Afford", "VAR _m = MEDIANX ( ALL ( dim_state[state] ), [Upfront HH Central Now] )\n"
+      f'RETURN "12 least affordable · whiskers = low–high · median " & {one("_m")}')
+redef("Card P4 Bars Title", '"Market priority index — top 15 (" & [Latest Month Label] & ", equal weights)"')
+redef("Card P4 Table Title", '"Top 10 at a glance — household, " & [Latest Month Label]')
+MEASURES = M
+
+
+# ---- v2: one measure per text line where the mockup wraps dynamic text (multi-row cards do not wrap)
+LINES = "6 Text lines"
+_gen_now = f'VAR _v = [Gen HH Central Now]\n'
+_kwh = ("VAR _g1 = MINX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )\n"
+        "VAR _g2 = MAXX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )\n"
+        "VAR _s1 = MINX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )\n"
+        "VAR _s2 = MAXX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )\n")
+_top3 = ("VAR _t = ADDCOLUMNS ( TOPN ( 3, ALL ( dim_state[state] ), [Priority Rank], ASC ), \"@r\", [Priority Rank] )\n"
+         "VAR _n1 = MAXX ( FILTER ( _t, [@r] = 1 ), dim_state[state] )\n"
+         "VAR _n2 = MAXX ( FILTER ( _t, [@r] = 2 ), dim_state[state] )\n"
+         "VAR _n3 = MAXX ( FILTER ( _t, [@r] = 3 ), dim_state[state] )\n")
+add("Headline P0 1", LINES, TXT, "Overview headline, line 1.",
+    '"Solar + battery now costs about " & FORMAT ( [Gap kWh HH Median] * 100, "0" ) & '
+    '"% less per kWh than a small petrol generator — at"')
+add("Headline P0 2", LINES, TXT, "Overview headline, line 2.",
+    '"least " & INT ( [Gap kWh HH Min] * 100 ) & "% less in every state — and pays back in about " & '
+    'FORMAT ( [Payback HH Now], "0" ) & " months."')
+add("Finding 1 L1", LINES, TXT, "", _gen_now +
+    f'RETURN "Running a small household generator cost a median " & {naira("_v")} & " a month in"')
+add("Finding 1 L2", LINES, TXT, "",
+    '[Latest Month Label] & ", " & FORMAT ( [Gen HH Change] * 100, "0" ) & '
+    '"% more than in January 2023, after the June 2023 petrol"')
+add("Finding 1 L3", LINES, TXT, "", '"subsidy removal."')
+add("Finding 2 L1", LINES, TXT, "", _kwh +
+    f'RETURN "Solar + battery costs " & {naira("_s1")} & "–" & {naira("_s2")} & " per kWh against " & '
+    f'{naira("_g1")} & "–" & {naira("_g2")} & " for a"')
+add("Finding 2 L2", LINES, TXT, "", '"small petrol generator — cheaper in all 37 states."')
+add("Finding 3 L1", LINES, TXT, "",
+    '"Payback fell from " & FORMAT ( [Payback HH Peak 2024], "0" ) & " months at the " & [Payback HH Peak Label] & '
+    '" peak to about " & FORMAT ( [Payback HH Now], "0" ) & " months."')
+add("Finding 3 L2", LINES, TXT, "", _top3 + 'RETURN _n1 & ", " & _n2 & " and " & _n3 & " rank highest for market priority."')
+_spread = lambda m: (f"VAR _hi = MAXX ( ALL ( dim_state[state] ), [{m}] )\n"  # noqa: E731
+                     f"VAR _lo = MINX ( ALL ( dim_state[state] ), [{m}] )\n")
+add("Spread P1 L1", LINES, TXT, "", _spread("Gen HH Central Now") +
+    'RETURN "States differ by only about " & FORMAT ( ( _hi / _lo - 1 ) * 100, "0" ) & '
+    '"%; the colour scale is stretched to"')
+add("Spread Payback L1", LINES, TXT, "Payback map note, line 1 (wide map card).", _spread("Payback HH Now") +
+    'RETURN "States differ by only about " & FORMAT ( ( _hi / _lo - 1 ) * 100, "0" ) & '
+    '"%; the colour scale is stretched to"')
+add("Spread Payback Narrow L1", LINES, TXT, "Payback map note, line 1 (narrow map card).", _spread("Payback HH Now") +
+    'RETURN "States differ by only about " & FORMAT ( ( _hi / _lo - 1 ) * 100, "0" ) & "%; the colour scale"')
+add("Sidebar Data To", LINES, TXT, "", '"Data to " & [Latest Month Label]')
 MEASURES = M

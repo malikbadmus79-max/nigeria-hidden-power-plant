@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "indexNote",
   "position": {
-    "x": 36,
-    "y": 612,
-    "z": 140,
-    "height": 50,
-    "width": 544,
-    "tabOrder": 140
+    "x": 250,
+    "y": 592,
+    "z": 330,
+    "height": 70,
+    "width": 428,
+    "tabOrder": 330
   },
   "visual": {
     "visualType": "textbox",
@@ -19,36 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "How the index is built: geometric mean of percentile ranks of generator reliance (NLSS 2018/19),",
+                    "value": "How the index is built: geometric mean of percentile ranks of generator reliance (NLSS 2018/19), monthly ₦ saving from switching, and ability to pay (1 − MPI 2022). Shown as ranks, not precise scores. All 12 = top 10 under all 3 weightings × 2 users × 2 reliance measures.",
                     "textStyle": {
                       "fontFamily": "'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
-                      "fontSize": "9.0pt",
-                      "color": "#4B5563"
-                    }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "monthly ₦ saving from switching, and ability to pay (1 − MPI 2022). Shown as ranks, not precise scores.",
-                    "textStyle": {
-                      "fontFamily": "'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
-                      "fontSize": "9.0pt",
-                      "color": "#4B5563"
-                    }
-                  }
-                ],
-                "horizontalTextAlignment": "left"
-              },
-              {
-                "textRuns": [
-                  {
-                    "value": "All 12 = in the top 10 under all 3 weightings × 2 users × 2 reliance measures.",
-                    "textStyle": {
-                      "fontFamily": "'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
-                      "fontSize": "9.0pt",
+                      "fontSize": "8.5pt",
                       "color": "#4B5563"
                     }
                   }

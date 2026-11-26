@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "rangeHH",
   "position": {
-    "x": 36.0,
-    "y": 640,
-    "z": 104,
-    "height": 29,
-    "width": 576.0,
-    "tabOrder": 104
+    "x": 250.0,
+    "y": 635,
+    "z": 350,
+    "height": 28,
+    "width": 471.0,
+    "tabOrder": 350
   },
   "visual": {
     "visualType": "multiRowCard",
@@ -51,7 +51,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.0D"
+                  "Value": "9.5D"
                 }
               }
             },
@@ -82,7 +82,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "10.0D"
+                  "Value": "9.5D"
                 }
               }
             },

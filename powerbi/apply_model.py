@@ -102,7 +102,7 @@ def expected() -> dict[str, tuple[str, str | None]]:
                (pri.reliance_measure == "primary_source")].sort_values("rank")
     hh_chg = hh("central") / hh("central", "2023-01") - 1
     bz_chg = bz("central") / bz("central", "2023-01") - 1
-    return {
+    e = {
         "Latest Month": (L, "2026-05"),
         "KPI P1 HH Value": (naira(hh("central")), "₦85,404"),
         "KPI P1 HH Sub": (f"National median, central · range {naira(hh('low'))}–{naira(hh('high'))}",
@@ -167,6 +167,67 @@ def expected() -> dict[str, tuple[str, str | None]]:
                         "Edo, Delta and Abia rank highest; Abia, Edo, FCT stay in the top 10 under all 12 "
                         "index variants."),
     }
+    # ---- design v2: changed wording and new Overview / pill measures
+    MI = "\u2212"
+    gk_s = gk("household").values
+    gap = 1 - sl[sl.user == "household"].set_index("state").lcoe_ngn_per_kwh / \
+        gl[gl.user == "household"].set_index("state").running_ngn_per_kwh
+    pb_now, pb_peak, pb_start = pc[("household", L)], p24.max(), pc[("household", "2023-06")]
+    peak_lab = pd.Period(p24.idxmax(), "M").strftime("%b %Y")
+    sp = lambda t: "\u200a".join(t.upper())  # noqa: E731
+    top = base.iloc[0]
+    e.update({
+        "KPI P1 HH Sub": (f"National median \u00b7 range {naira(hh('low'))}\u2013{naira(hh('high'))}",
+                          "National median \u00b7 range \u20a613,740\u2013\u20a6407,309"),
+        "KPI P1 BZ Sub": (f"National median \u00b7 range {naira(bz('low'))}\u2013{naira(bz('high'))}",
+                          "National median \u00b7 range \u20a6813,051\u2013\u20a65.3m"),
+        "Line P1 Note": (f"Central estimate; shaded band = low\u2013high case, clipped at the top (high case reaches "
+                         f"{naira(nat['household']['high'].max())})", None),
+        "KPI P1 BZ Change Value": (f"+{bz_chg * 100:.0f}%", "+294%"),
+        "KPI P3 Now Sub": (f"States {pl['central'].min():.1f}\u2013{pl['central'].max():.1f} \u00b7 range "
+                           f"{pl['low'].min():.1f}\u2013{pl['high'].max():.1f}",
+                           "States 9.6\u201311.6 \u00b7 range 2.1\u201339.4"),
+        "KPI P3 Start Sub": (f"Median of states \u00b7 business {pc[('business', '2023-06')]:.1f} months",
+                             "Median of states \u00b7 business 16.5 months"),
+        "KPI P3 Now Pill": (f"{MI}{pb_peak - pb_now:.1f} mo vs peak", f"{MI}17.5 mo vs peak"),
+        "KPI P3 Peak Pill": (f"+{pb_peak - pb_start:.1f} mo", "+14.2 mo"),
+        "Label P3 Peak 1": (f"{peak_lab}: naira devaluation", "Feb 2024: naira devaluation"),
+        "Label P3 Peak 2": (f"peak {pb_peak:.1f} months", "peak 28.3 months"),
+        "Note P3 Afford": (f"12 least affordable \u00b7 whiskers = low\u2013high \u00b7 median "
+                           f"{up.upfront_months_of_consumption.median():.1f}",
+                           "12 least affordable \u00b7 whiskers = low\u2013high \u00b7 median 2.4"),
+        "Takeaway P3": (f"Solar + battery now pays back in about {pb_now:.0f} months for a typical household, down "
+                        f"from {pb_peak:.0f} at the {peak_lab} peak (median, central).",
+                        "Solar + battery now pays back in about 11 months for a typical household, down from 28 at "
+                        "the Feb 2024 peak (median, central)."),
+        "Takeaway P0": (f"Solar + battery now costs about {gap.median() * 100:.0f}% less per kWh than a small petrol "
+                        f"generator \u2014 at least {int(gap.min() * 100)}% less in every state \u2014 and pays back "
+                        f"in about {pb_now:.0f} months.",
+                        "Solar + battery now costs about 86% less per kWh than a small petrol generator \u2014 at "
+                        "least 85% less in every state \u2014 and pays back in about 11 months."),
+        "Label P0 Insight": (sp(f"Key insight \u00b7 {pd.Period(L, 'M').strftime('%b %Y')}"),
+                             sp("Key insight \u00b7 May 2026")),
+        "KPI P0 Solar Value": (naira(sk("household").median()), "\u20a6325"),
+        "KPI P0 Solar Pill": (f"{MI}{gap.median() * 100:.0f}%", f"{MI}86%"),
+        "KPI P0 Solar Sub": (f"vs generator {naira(gk('household').median())}", "vs generator \u20a62,426"),
+        "KPI P0 Payback Value": (f"{pb_now:.1f} mo", "10.8 mo"),
+        "KPI P0 Payback Pill": (f"{MI}{pb_peak - pb_now:.1f} mo", f"{MI}17.5 mo"),
+        "KPI P0 Payback Sub": (f"vs {peak_lab} peak", "vs Feb 2024 peak"),
+        "Top Priority State": (top.state, "Edo"),
+        "KPI P0 Top Pill": ("Top 10 in all 12", "Top 10 in all 12"),
+        "KPI P0 Top Sub": (f"index {top['index']:.2f}", "index 0.93"),
+        "Finding 1": (f"Running a small household generator cost a median {naira(hh('central'))} a month in May "
+                      f"2026, {hh_chg * 100:.0f}% more than in January 2023, after the June 2023 petrol subsidy "
+                      "removal.", None),
+        "Finding 2": (f"Solar + battery costs {naira(sk('household').min())}\u2013{naira(sk('household').max())} per "
+                      f"kWh against {naira(gk('household').min())}\u2013{naira(gk('household').max())} for a small "
+                      "petrol generator \u2014 cheaper in all 37 states.", None),
+        "Finding 3": (f"Payback fell from {pb_peak:.0f} months at the {peak_lab} peak to about {pb_now:.0f} months. "
+                      f"{base.state.iloc[0]}, {base.state.iloc[1]} and {base.state.iloc[2]} rank highest for market "
+                      "priority.", None),
+    })
+    del gk_s
+    return e
 
 
 TOP10 = ["Edo", "Delta", "Abia", "Ondo", "Imo", "Akwa Ibom", "FCT", "Oyo", "Ekiti", "Rivers"]

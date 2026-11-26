@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "badge2",
   "position": {
-    "x": 419.0,
-    "y": 323.1,
-    "z": 132,
+    "x": 552.7,
+    "y": 331.9,
+    "z": 320,
     "height": 18,
     "width": 40,
-    "tabOrder": 132
+    "tabOrder": 320
   },
   "visual": {
     "visualType": "multiRowCard",

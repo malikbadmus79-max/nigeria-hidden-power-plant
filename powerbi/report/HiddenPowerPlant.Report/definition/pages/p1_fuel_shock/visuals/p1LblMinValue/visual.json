@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "p1LblMinValue",
   "position": {
-    "x": 359.0,
-    "y": 423.3,
-    "z": 241,
+    "x": 503.2,
+    "y": 424.3,
+    "z": 530,
     "height": 16,
     "width": 49.8,
-    "tabOrder": 241
+    "tabOrder": 530
   },
   "visual": {
     "visualType": "multiRowCard",

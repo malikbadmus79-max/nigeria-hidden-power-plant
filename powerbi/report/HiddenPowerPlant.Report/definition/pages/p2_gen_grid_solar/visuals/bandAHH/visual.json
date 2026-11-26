@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "bandAHH",
   "position": {
-    "x": 146.8,
-    "y": 202,
-    "z": 105,
-    "height": 27,
+    "x": 353.1,
+    "y": 208,
+    "z": 330,
+    "height": 26,
     "width": 110,
-    "tabOrder": 105
+    "tabOrder": 330
   },
   "visual": {
     "visualType": "multiRowCard",
@@ -51,7 +51,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9.0D"
+                  "Value": "8.5D"
                 }
               }
             },
@@ -82,7 +82,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "9.0D"
+                  "Value": "8.5D"
                 }
               }
             },

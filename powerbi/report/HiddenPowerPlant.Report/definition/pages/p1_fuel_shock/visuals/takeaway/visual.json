@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "takeaway",
   "position": {
-    "x": 20,
-    "y": 57,
-    "z": 11,
-    "height": 34,
-    "width": 1240,
-    "tabOrder": 11
+    "x": 230,
+    "y": 48,
+    "z": 250,
+    "height": 31,
+    "width": 1030,
+    "tabOrder": 250
   },
   "visual": {
     "visualType": "multiRowCard",
@@ -51,7 +51,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "13.0D"
+                  "Value": "11.5D"
                 }
               }
             },
@@ -82,7 +82,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "13.0D"
+                  "Value": "11.5D"
                 }
               }
             },

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "p3LblMinState",
   "position": {
-    "x": 214.7,
-    "y": 360.1,
-    "z": 240,
+    "x": 387.9,
+    "y": 377.9,
+    "z": 520,
     "height": 16,
     "width": 43.8,
-    "tabOrder": 240
+    "tabOrder": 520
   },
   "visual": {
     "visualType": "multiRowCard",

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "p1LblMaxState",
   "position": {
-    "x": 137.0,
-    "y": 503.2,
-    "z": 240,
+    "x": 318.2,
+    "y": 488.3,
+    "z": 500,
     "height": 16,
     "width": 49.8,
-    "tabOrder": 240
+    "tabOrder": 500
   },
   "visual": {
     "visualType": "multiRowCard",

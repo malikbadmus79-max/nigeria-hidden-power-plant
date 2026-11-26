@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "affordBars",
   "position": {
-    "x": 852,
-    "y": 270,
-    "z": 410,
-    "height": 364,
-    "width": 388,
-    "tabOrder": 410
+    "x": 946,
+    "y": 290,
+    "z": 710,
+    "height": 342,
+    "width": 290,
+    "tabOrder": 710
   },
   "visual": {
     "visualType": "clusteredBarChart",

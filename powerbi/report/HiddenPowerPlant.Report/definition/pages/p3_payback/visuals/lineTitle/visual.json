@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "lineTitle",
   "position": {
-    "x": 412,
-    "y": 240,
-    "z": 301,
-    "height": 28,
-    "width": 408,
-    "tabOrder": 301
+    "x": 566,
+    "y": 260,
+    "z": 620,
+    "height": 27,
+    "width": 328,
+    "tabOrder": 620
   },
   "visual": {
     "visualType": "textbox",
@@ -19,10 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "Payback over time, months (median of states, central)",
+                    "value": "Payback over time, months",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
-                      "fontSize": "12.0pt",
+                      "fontSize": "11.5pt",
                       "color": "#0F1B2D"
                     }
                   }

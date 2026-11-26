@@ -1,10 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
   "pageOrder": [
+    "p0_overview",
     "p1_fuel_shock",
     "p2_gen_grid_solar",
     "p3_payback",
     "p4_where_next"
   ],
-  "activePageName": "p1_fuel_shock"
+  "activePageName": "p0_overview"
 }

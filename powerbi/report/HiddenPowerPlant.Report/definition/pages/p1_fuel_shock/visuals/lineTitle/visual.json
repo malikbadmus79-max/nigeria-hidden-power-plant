@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "lineTitle",
   "position": {
-    "x": 522,
-    "y": 240,
-    "z": 301,
-    "height": 28,
-    "width": 714,
-    "tabOrder": 301
+    "x": 646,
+    "y": 260,
+    "z": 620,
+    "height": 27,
+    "width": 594,
+    "tabOrder": 620
   },
   "visual": {
     "visualType": "textbox",
@@ -19,10 +19,10 @@
               {
                 "textRuns": [
                   {
-                    "value": "National median household generator cost, ₦/month (central and low–high band)",
+                    "value": "National median household generator cost, ₦/month",
                     "textStyle": {
                       "fontFamily": "'Segoe UI Semibold', wf_segoe-ui_semibold, helvetica, arial, sans-serif",
-                      "fontSize": "12.0pt",
+                      "fontSize": "11.5pt",
                       "color": "#0F1B2D"
                     }
                   }

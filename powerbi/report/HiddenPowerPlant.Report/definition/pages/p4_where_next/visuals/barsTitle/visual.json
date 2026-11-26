@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "barsTitle",
   "position": {
-    "x": 36,
-    "y": 114,
-    "z": 101,
-    "height": 32,
-    "width": 528,
-    "tabOrder": 101
+    "x": 250,
+    "y": 128,
+    "z": 280,
+    "height": 31,
+    "width": 428,
+    "tabOrder": 280
   },
   "visual": {
     "visualType": "multiRowCard",
@@ -51,7 +51,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12.0D"
+                  "Value": "11.5D"
                 }
               }
             },
@@ -82,7 +82,7 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "12.0D"
+                  "Value": "11.5D"
                 }
               }
             },

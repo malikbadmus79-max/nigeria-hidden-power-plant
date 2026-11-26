@@ -50,6 +50,91 @@
           "name": "legend_amber_seq.png",
           "path": "legend_amber_seq.png",
           "type": "Image"
+        },
+        {
+          "name": "icon_overview_white.svg",
+          "path": "icon_overview_white.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_overview_nav.svg",
+          "path": "icon_overview_nav.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_fuel_white.svg",
+          "path": "icon_fuel_white.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_fuel_nav.svg",
+          "path": "icon_fuel_nav.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_bars_white.svg",
+          "path": "icon_bars_white.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_bars_nav.svg",
+          "path": "icon_bars_nav.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_clock_white.svg",
+          "path": "icon_clock_white.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_clock_nav.svg",
+          "path": "icon_clock_nav.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_pin_white.svg",
+          "path": "icon_pin_white.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_pin_nav.svg",
+          "path": "icon_pin_nav.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_fuel_kpi.svg",
+          "path": "icon_fuel_kpi.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_sun_kpi.svg",
+          "path": "icon_sun_kpi.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_clock_kpi.svg",
+          "path": "icon_clock_kpi.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_pin_kpi.svg",
+          "path": "icon_pin_kpi.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_trend_kpi.svg",
+          "path": "icon_trend_kpi.svg",
+          "type": "Image"
+        },
+        {
+          "name": "icon_factory_kpi.svg",
+          "path": "icon_factory_kpi.svg",
+          "type": "Image"
+        },
+        {
+          "name": "logo_sun.svg",
+          "path": "logo_sun.svg",
+          "type": "Image"
         }
       ]
     }

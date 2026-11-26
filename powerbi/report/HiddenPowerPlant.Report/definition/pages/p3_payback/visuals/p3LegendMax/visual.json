@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "p3LegendMax",
   "position": {
-    "x": 310.6,
+    "x": 462.6,
     "y": 608,
-    "z": 223,
+    "z": 570,
     "height": 27,
     "width": 41.4,
-    "tabOrder": 223
+    "tabOrder": 570
   },
   "visual": {
     "visualType": "multiRowCard",

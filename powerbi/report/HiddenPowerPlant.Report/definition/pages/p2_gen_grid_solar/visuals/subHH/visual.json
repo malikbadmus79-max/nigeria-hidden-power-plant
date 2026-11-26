@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "subHH",
   "position": {
-    "x": 36.0,
-    "y": 140,
-    "z": 102,
-    "height": 25,
-    "width": 576.0,
-    "tabOrder": 102
+    "x": 250.0,
+    "y": 148,
+    "z": 290,
+    "height": 24,
+    "width": 471.0,
+    "tabOrder": 290
   },
   "visual": {
     "visualType": "textbox",
@@ -22,7 +22,7 @@
                     "value": "5 states with the costliest and 5 with the cheapest generator power",
                     "textStyle": {
                       "fontFamily": "'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
-                      "fontSize": "10.0pt",
+                      "fontSize": "9.5pt",
                       "color": "#4B5563"
                     }
                   }
