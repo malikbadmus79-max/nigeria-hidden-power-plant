@@ -78,10 +78,11 @@ estimate, which is conservative for solar. All sources are retail or installer p
      (2.1–39.4 months).
    - **Small businesses (20 kVA diesel, about 51 kWh/day):** **7.9–10.6 months** (2.6–22.2 months).
 2. **Payback over time** (national median of state values, central):
-   - Households: 14 months in June 2023, a peak of about 24 months in mid-2024 (solar costs
-     rose with the naira's fall before petrol prices caught up), 17 months in January 2026,
-     11 months in May 2026.
-   - Businesses: 17 → 26 (Aug 2024) → 9 months.
+   - Households: 14 months in June 2023, a peak of **28.3 months in February 2024** (solar
+     costs rose with the naira's fall before petrol prices caught up), 17 months in January
+     2026, 11 months in May 2026. *(Corrected 2026-11-27; see Erratum.)*
+   - Businesses: 16.5 months in June 2023 → peak **26.5 months in February 2024** → 9.1 months
+     in May 2026. *(Corrected 2026-11-27; see Erratum.)*
 3. **Upfront cost and affordability:** a household system costs about ₦0.9 m (central),
    equal to **1.2–6.6 months of average household consumption** depending on the state
    (median 2.4). It is least affordable in Ebonyi (6.6), Sokoto (5.6), Taraba (5.1),
@@ -169,3 +170,13 @@ reverse. Affordability ranges combine the upfront-cost case with household size 
   constant 2026 ₦ generator price.
 - **Solar resource** is a long-term average (1994–2018), not weather in the specific month.
 - **National generator fuel use and CO2** are not published.
+
+## Erratum (2026-11-27)
+
+The first version of section 5, item 2, gave the household payback peak as "about 24 months
+in mid-2024" and the business peak as "26 (Aug 2024)". Those were values for selected months
+(June and August 2024), not the series maxima. The maxima of the monthly median (central) are
+**28.3 months (household)** and **26.5 months (business)**, both in **February 2024**. The
+February 2024 peak coincides with the naira's fall early in 2024, while petrol prices were
+still about ₦700/L. No other figure in this audit is affected. The error was found while
+building the Phase 5 dashboard mockups.
