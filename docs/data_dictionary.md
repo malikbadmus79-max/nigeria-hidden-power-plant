@@ -113,3 +113,22 @@ Credit: © The World Bank, Source: Global Solar Atlas 2.0, Solar resource data: 
 | `annual_mean_kwh_per_kwp_day` | Mean of the 12 monthly values |
 | `worst_month_kwh_per_kwp_day`, `worst_month` | Lowest monthly value (used for sizing, plan 5.4) and its month |
 | `source` | Credit line |
+
+## Phase 3 model outputs — `src/model.py`
+`data/processed/model/` holds the full model outputs. `data/processed/powerbi/` holds the same results arranged as dimension and fact tables for Power BI.
+All money values are nominal ₦. `case` is `low` / `central` / `high` (plan 5.9: generator
+and solar each at their low-cost / central / high-cost ends). `user` is `household` (2.5 kVA
+petrol) or `business` (20 kVA diesel).
+
+| File | Key | Main columns |
+|---|---|---|
+| `model/generator_cost.csv` = `powerbi/fact_generator_cost.csv` | state, month, user, case | `price_ngn_per_litre`, `fuel_price_filled`, `running_ngn_per_kwh`, `full_ngn_per_kwh` (business: not computed, no price source), `running_ngn_per_day`, `full_ngn_per_day`, `running_ngn_per_month`, `full_ngn_per_month`, `fuel_l_per_month` |
+| `model/solar_cost.csv` = `powerbi/fact_solar_cost.csv` | state, month, user, case | `lcoe_ngn_per_kwh`, `ngn_per_day`, `ngn_per_month`, `pv_kwp`, `battery_kwh`, `capex_ngn`, `pvout_worst_month`, `fx_ratio_to_benchmark` (A4) |
+| `powerbi/fact_grid_tariff.csv` | state, month, band | Copy of `grid_tariff_state_monthly.csv` (A1 placeholders flagged in `tariff_status`) |
+| `model/crossover.csv` = `powerbi/fact_crossover.csv` | state, user, basis (running / full) | `crossover_month` (central generator > central solar for 3 consecutive months), `robust_crossover_month` (generator low > solar high), `crossover_at_series_start`, `robust_at_series_start`, `solar_cheaper_latest_central` / `_robust`, `gap_latest_central_pct` |
+| `model/crossover_sensitivity_solar_2026_naira.csv` | as above | Same, with solar held at 2026 ₦ prices (no A4 FX scaling) |
+| `model/priority_index.csv` = `powerbi/fact_priority_index.csv` | state, weighting, gap_user, reliance_measure | `R_value`, `G_value`, `A_value`, their percentile ranks, `index`, `rank`, `group` (quintile), `reliance_flag` |
+| `model/rq5_national_range.csv` | case | Households with generators, petrol bn L/month, CO2 Mt/yr, share of NMDPRA petrol, `consistent_with_national_supply`, `range_publishable` |
+| `model/sensitivity_tornado.csv` | zone, parameter | One-at-a-time low/high ₦/kWh for one state per zone, latest month, household |
+| `powerbi/dim_state.csv` | state | Zone, DisCos, regulator note, centroid, PVOUT, MPI headcount, NLSS generator shares |
+| `powerbi/dim_month.csv` | month | Date, year, month number, label |

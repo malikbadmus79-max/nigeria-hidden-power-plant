@@ -1,0 +1,4 @@
+case,month,households_with_generator_m,petrol_bn_litres_per_month,co2_mt_per_year,share_of_nmdpra_pms,consistent_with_national_supply,note,range_publishable
+low,2025-10,3.3730415241391767,0.026360319511147663,0.7234777006264923,0.01498648021600945,True,within plausible share of national petrol,False
+central,2025-10,6.298839401652225,0.29266927395836895,8.03251619457351,0.16638957210500013,True,within plausible share of national petrol,False
+high,2025-10,9.874814585279285,2.0131586998717172,55.252571068551404,1.1445294892786093,False,NOT CONSISTENT with NMDPRA national petrol volume,False

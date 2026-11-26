@@ -33,3 +33,15 @@ def canonical_state(name) -> str | None:
         if s == st.lower():
             return st
     return None
+
+# Geopolitical zones. Checked 2026-11-26 against the zone grouping in the NBS AGO
+# Price Watch table for September 2023 (all 37 states match).
+ZONES = {
+    "North Central": ["Benue", "FCT", "Kogi", "Kwara", "Nasarawa", "Niger", "Plateau"],
+    "North East": ["Adamawa", "Bauchi", "Borno", "Gombe", "Taraba", "Yobe"],
+    "North West": ["Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Sokoto", "Zamfara"],
+    "South East": ["Abia", "Anambra", "Ebonyi", "Enugu", "Imo"],
+    "South South": ["Akwa Ibom", "Bayelsa", "Cross River", "Delta", "Edo", "Rivers"],
+    "South West": ["Ekiti", "Lagos", "Ogun", "Ondo", "Osun", "Oyo"],
+}
+ZONE_OF = {s: z for z, ss in ZONES.items() for s in ss}

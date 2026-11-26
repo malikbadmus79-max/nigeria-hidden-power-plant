@@ -113,3 +113,14 @@ Items 1–3 were adopted by Amendment A3 (2026-11-26); item 4 remains a judgemen
 4. **Inverter + balance of system + installation:** a judgement share. Should be replaced by itemised quotes before Phase 3.
 
 Values marked "source pending" or "gap" must be filled, or confirmed as judgement, before Phase 3.
+
+## 5. Values added in Phase 3 (judgement; stated before results were reviewed)
+
+| Parameter | Low | Central | High | Source | Quality |
+|---|---|---|---|---|---|
+| Persons per household (RQ5) | 5.5 | 5.0 | 4.5 | No source collected; fewer persons means more households (high case) | J |
+| Population by state (RQ5) | – | MPI 2022: poor people ÷ headcount ratio | – | NBS MPI 2022 Appendix D (derived) | A (derived) |
+| National petrol volume (RQ5 check) | – | 56.74 million L/day (Oct 2025) | – | NMDPRA Fact Sheet Oct 2025, p.4 | A |
+| Plausible maximum share of national petrol used by household generators (plan 5.10) | – | 35% | – | Not stated in Phase 2 as the plan required; set now as judgement (vehicles take most petrol) | J |
+| Generator purchase price over time | – | 2026 ₦ price held constant | – | A4 covers solar only; generator prices are not FX-scaled (flagged) | J |
+| Benchmark month for A4 conversion | – | Oct 2026 (CBN mean ₦1,338.49/US$) | – | Month the 2026 ₦ solar price pages were checked | J |
