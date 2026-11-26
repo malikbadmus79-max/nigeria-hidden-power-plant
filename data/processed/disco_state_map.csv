@@ -1,0 +1,44 @@
+state,disco,coverage,regulator_from,regulator,source,note,in_nerc_ytts_jun2026
+Abia,EEDC,part,,NERC,EEDC June 2026 order para 15 (YTTS: Abia Anambra Ebonyi),Most of Abia; Aba ring-fenced area served by APLE,True
+Abia,APLE,part (Aba ring-fence),,NERC,APLE February 2025 order,Aba Power Limited Electric; not used in state mean (tariff only for Jan-Feb 2025),True
+Adamawa,YEDC,whole,,NERC,YEDC June 2026 order para 15,,True
+Akwa Ibom,PHED,whole,2026-08,AKSERC,PHED June 2026 order para 15; Transfer-Order-of-Regulatory-Oversight-AKSERC (2026-08),Transfer after the analysis window,False
+Anambra,EEDC,whole,2025-10,Anambra State regulator,EEDC June 2026 order para 15; Anambra-State-Transfer-Order (2025-10),Still listed under NERC (YTTS) in June 2026,True
+Bauchi,JED,whole,,NERC,JED June 2026 order para 15,,True
+Bayelsa,PHED,whole,2025-08,Bayelsa State regulator,PHED June 2026 order para 15; ORDER-ON-TRANSITION-TO-BAYELSA-STATE-ELECTRICITY-REGULATORY-AGENCY (2025-08),Still listed under NERC (YTTS) in June 2026,True
+Benue,JED,whole,,NERC,JED June 2026 order para 15,,True
+Borno,YEDC,whole,,NERC,YEDC June 2026 order para 15,,True
+Cross River,PHED,whole,,NERC,PHED June 2026 order para 15,,True
+Delta,BEDC,whole,,NERC,BEDC June 2026 order para 15,,True
+Ebonyi,EEDC,whole,,NERC,EEDC June 2026 order para 15,,True
+Edo,BEDC,whole,,NERC,BEDC June 2026 order para 15,,True
+Ekiti,BEDC,part,2024-08,ESERC (Ekiti),ORDER-ON-TRANSFER-OF-REGULATORY-OVERSIGHT-TO-ESERC (2024-08); Ekiti bureau orders for BEDC and IBEDC (2024-12),Not in BEDC YTTS list June 2026,False
+Ekiti,IBEDC,part,2024-08,ESERC (Ekiti),Order-Ekiti-State-Regulatory-Bureau-IBEDC (2024-12),Not in IBEDC YTTS list June 2026,False
+Enugu,EEDC,whole,2024-04,EERC (Enugu),Order-on-the-Transfer-of-Regulatory-Oversight ... Enugu State ... to EERC (2024-04),Not in EEDC YTTS list June 2026,False
+FCT,AEDC,whole,,NERC,AEDC June 2026 order para 15,,True
+Gombe,JED,whole,2026-01,GOSERC (Gombe),JED June 2026 order para 15; Order-Transferring-Regulatory-Oversight-to-Gombe ... GOSERC (2026-01),Still listed under NERC (YTTS) in June 2026,True
+Imo,EEDC,whole,2024-06,Imo State regulator,IMO-ORDER-OF-TRANSFER-OF-REGULATORY-OVERSIGHT (2024-06),Not in EEDC YTTS list June 2026,False
+Jigawa,KEDCO,whole,,NERC,KEDCO June 2026 order para 15,,True
+Kaduna,KAEDC,whole,,NERC,KAEDC June 2026 order para 15,,True
+Kano,KEDCO,whole,,NERC,KEDCO June 2026 order para 15,,True
+Katsina,KEDCO,whole,,NERC,KEDCO June 2026 order para 15,,True
+Kebbi,KAEDC,whole,,NERC,KAEDC June 2026 order para 15,,True
+Kogi,AEDC,whole,2024-09,Kogi State regulator,Kogi-Order (2024-09),Not in AEDC YTTS list June 2026; Phase 0 noted parts of Kogi served by IBEDC (unverified; not mapped),False
+Kwara,IBEDC,whole,,NERC,IBEDC June 2026 order para 15,,True
+Lagos,EKEDP,part,2024-12,LASERC (Lagos),Lagos-Transition-Order-for-EKEDP (2024-12),Not in EKEDP YTTS list June 2026 (only Ogun listed),False
+Lagos,IE,part,2024-12,LASERC (Lagos),Transition-Order-for-Ikeja-Electric (2024-12),Not in IE YTTS list June 2026 (only Ogun listed),False
+Nasarawa,AEDC,whole,2025-08,NSERC (Nasarawa),AEDC June 2026 order para 15; TRANSFER-ORDER-TO-NASARAWA-STATE-ELECTRICITY-REGULATORY-COMMISSION (2025-08),Still listed under NERC (YTTS) in June 2026,True
+Niger,AEDC,part,2025-01,NSERC (Niger),Transfer-Order ... to NSERC-AEDC (2025-01),Not in AEDC YTTS list June 2026,False
+Niger,IBEDC,part,2025-01,NSERC (Niger),Transfer-Order ... to NSERC-IBEDC (2025-01),Not in IBEDC YTTS list June 2026,False
+Ogun,IBEDC,part,2024-12,Ogun State regulator,IBEDC/EKEDP/IE June 2026 orders para 15; Order-Ogun-State-Electricity-Regulatory-Commission (2024-12),Still listed under NERC (YTTS) in June 2026,True
+Ogun,EKEDP,part,2024-12,Ogun State regulator,EKEDP June 2026 order para 15,Still listed under NERC (YTTS) in June 2026,True
+Ogun,IE,part,2024-12,Ogun State regulator,IE June 2026 order para 15,Still listed under NERC (YTTS) in June 2026,True
+Ondo,BEDC,whole,unknown,Ondo State regulator,Not in BEDC YTTS list June 2026; no transfer order found on nerc.gov.ng,Transfer date unknown,False
+Osun,IBEDC,whole,,NERC,IBEDC June 2026 order para 15,,True
+Oyo,IBEDC,whole,2024-08,Oyo State regulator,IBEDC June 2026 order para 15; OYO-STATE-TRANSFER-OF-REGULATORY-OVERSIGHT (2024-08),Still listed under NERC (YTTS) in June 2026,True
+Plateau,JED,whole,2025-03,PSERC (Plateau),JED June 2026 order para 15; Transfer-Order-PSERC (2025-03),Still listed under NERC (YTTS) in June 2026,True
+Rivers,PHED,whole,,NERC,PHED June 2026 order para 15,,True
+Sokoto,KAEDC,whole,,NERC,KAEDC June 2026 order para 15,,True
+Taraba,YEDC,whole,,NERC,YEDC June 2026 order para 15,,True
+Yobe,YEDC,whole,,NERC,YEDC June 2026 order para 15,,True
+Zamfara,KAEDC,whole,,NERC,KAEDC June 2026 order para 15,,True

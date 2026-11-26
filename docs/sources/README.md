@@ -14,7 +14,19 @@ redistributed. robots.txt was checked for each host before downloading.
 | `docs/sources/DHS_Nigeria_2023-24_KIR_PR157.pdf` | Nigeria DHS 2023-24 Key Indicators Report (PR157) | NPC / ICF (DHS Program) | https://dhsprogram.com/pubs/pdf/PR157/PR157.pdf | 2026-11-26 |
 | `docs/sources/DHS_Nigeria_2024_FinalReport_FR395.pdf` | Nigeria DHS 2024 Final Report (FR395; fieldwork Dec 2023–May 2024) | NPC / ICF (DHS Program) | https://dhsprogram.com/pubs/pdf/FR395/FR395.pdf | 2026-11-26 |
 | `docs/sources/NMDPRA_FactSheet_2025-10.pdf` | State of the Midstream and Downstream Sector: NMDPRA Fact Sheet (October 2025) | NMDPRA | https://alps.blob.core.windows.net/nmdprawebsite/Statistics/Upload-80c82709-7f84-4cea-959e-668d6e6d030e.pdf | 2026-11-26 |
-| `data/raw/nbs_prices/PMS_Report_MARCH_2026.zip` (extracted to `PMS_2026-03/`) | PMS (petrol) price watch, March 2026: report PDF + state table (xlsx) | NBS | https://microdata.nigerianstat.gov.ng/index.php/catalog/157/download/1398 | 2026-11-26 |
+| `data/raw/nbs_prices/PMS/`, `data/raw/nbs_prices/AGO/` (80 files; list with URLs in `data/raw/nbs_prices/download_index.csv`) | NBS PMS and AGO Price Watch state tables, Jan 2023 – May 2026 (the Phase 0 March 2026 sample was replaced by these) | NBS | e-library `https://nigerianstat.gov.ng/resource/*.xlsx` (Jan 2023 – Oct 2024); microdata catalogs 157/158 (Nov 2024 onward) | 2026-11-26 |
+| `docs/sources/NBS_NLSS_2018-19_Report.pdf` | Nigeria Living Standards Survey 2018/2019 report (Tables 7.10, 7.12, 7.18) | NBS | https://nigerianstat.gov.ng/download/1123 | 2026-11-26 |
+| `data/raw/nerc_tariffs/index_all_orders.csv` | Index of 551 PDFs linked from NERC's "myto" and "orders" categories | NERC | https://nerc.gov.ng/resource-category/myto/ , https://nerc.gov.ng/resource-category/orders/ | 2026-11-26 |
+| `data/raw/nerc_tariffs/pdf/April-2024-Supplementary-Order-to-MYTO-*.pdf` (11) | April 2024 Supplementary Orders to MYTO 2024, per DisCo | NERC | https://nerc.gov.ng/wp-content/uploads/2024/04/ | 2026-11-26 |
+| `data/raw/nerc_tariffs/pdf/*_MYTO_JUNE_2026.pdf` (11) | June 2026 Supplementary Orders, per DisCo | NERC | https://nerc.gov.ng/wp-content/uploads/2026/07/ | 2026-11-26 |
+| `data/raw/nerc_tariffs/pdf/APLE-MYTO_-FEB-2025_014.pdf` | Aba Power Limited Electric, February 2025 order | NERC | https://nerc.gov.ng/wp-content/uploads/2025/02/APLE-MYTO_-FEB-2025_014.pdf | 2026-11-26 |
+| `data/raw/nerc_tariffs/pdf/EEDCMYTO2024-1.pdf` | MYTO 2024 order for EEDC (January 2024; tariff-freeze wording, p.9) | NERC | https://nerc.gov.ng/wp-content/uploads/2024/01/EEDCMYTO2024-1.pdf | 2026-11-26 |
+| `data/raw/cbn/GetAllExchangeRates.json` | CBN official exchange rates, daily, all currencies | CBN | https://www.cbn.gov.ng/api/GetAllExchangeRates (behind https://www.cbn.gov.ng/rates/ExchRateByCurrency.html) | 2026-11-26 |
+| `data/raw/geoboundaries/geoBoundaries-NGA-ADM1.geojson` | Nigeria ADM1 boundaries (NGA-ADM1-27671186; GRID3 2022; CC BY 4.0) | geoBoundaries | https://www.geoboundaries.org/api/current/gbOpen/NGA/ADM1/ | 2026-11-26 |
+
+Not usable: the MICS 2021 Survey Findings Report link on Amazon S3 returned "Access
+Denied" (file deleted). PVGIS (`re.jrc.ec.europa.eu`) disallows all crawling in
+robots.txt, and the Global Solar Atlas API refuses automated access, so neither was used.
 
 ## Reused from another project (not re-downloaded)
 
