@@ -4,6 +4,7 @@ The canvas is found as the bounding box of the page background (#F6F7F9) and the
 left of the panes. --check-title exits with code 2 if the page title area is still blank (page not rendered yet).
 Usage: python powerbi/compare.py <screenshot.png> <page 0-4> <out.png> [--canvas-only out_canvas.png]
        [--mockups figures/mockups_v2] [--check-title]
+       python powerbi/compare.py --same <a.png> <b.png>   (exit 0 if the canvas did not change, else 3)
 """
 from __future__ import annotations
 
@@ -39,7 +40,20 @@ def title_visible(canvas: Image.Image) -> bool:
     return int(((a.sum(axis=2) < 250)).sum()) > 60
 
 
+def same_canvas(a_path: str, b_path: str) -> bool:
+    """True if two screenshots show the same canvas (page finished rendering: nothing changed between them)."""
+    a, b = Image.open(a_path).convert("RGB"), Image.open(b_path).convert("RGB")
+    ca = np.asarray(a.crop(canvas_box(a)).resize((640, 360))).astype(int)
+    cb = np.asarray(b.crop(canvas_box(b)).resize((640, 360))).astype(int)
+    if ca.shape != cb.shape:
+        return False
+    changed = (np.abs(ca - cb).sum(axis=2) > 24).mean()
+    return changed < 0.0005
+
+
 def main(argv) -> int:
+    if argv and argv[0] == "--same":
+        return 0 if same_canvas(argv[1], argv[2]) else 3
     shot, page, out = argv[0], int(argv[1]), argv[2]
     mock_dir = ROOT / (argv[argv.index("--mockups") + 1] if "--mockups" in argv else "figures/mockups_v2")
     img = Image.open(shot)

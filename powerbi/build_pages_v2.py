@@ -493,7 +493,7 @@ def page4():
     return v + footer()
 
 
-P4_PLOT = (X0 + P + 100.0, X0 + P + 100.0 + 280.0, 98 + 60 + 20.0, 98 + 60 + 20.0 + 380.0)
+P4_PLOT = (351.0, 351.0 + 239.0 * 1.15, 181.0, 531.0)   # x of value 0 and of 1.15; y of the first and last bar centre (measured)
 BUILDERS = [page0, page1, page2, page3, page4]
 
 

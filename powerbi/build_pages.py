@@ -716,7 +716,7 @@ def badge(i, st):
         "visualContainerObjects": {**chrome(panel=True, bg=CARD, border=True, border_color=GRID, radius=4.0,
                                             pad=(0, 0, 3, 0))},
     }
-    return container(f"badge{i}", xv + 36, yc - 9, 40, 18, 130 + i, visual,
+    return container(f"badge{i}", xv + 35, yc - 6, 40, 18, 130 + i, visual,
                      filter_config=state_filter(f"fBadge{i}", st))
 
 

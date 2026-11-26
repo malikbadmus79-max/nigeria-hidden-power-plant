@@ -2,8 +2,8 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
   "name": "badge0",
   "position": {
-    "x": 615.6,
-    "y": 169.0,
+    "x": 607.4,
+    "y": 175.0,
     "z": 300,
     "height": 18,
     "width": 40,

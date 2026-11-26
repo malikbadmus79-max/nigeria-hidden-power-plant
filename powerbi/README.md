@@ -22,7 +22,7 @@ folder (with a trailing backslash). On another machine, change only this value
 | 3 | `apply_model.py` | Measures, calculated columns/tables from `model_spec.py` via the Power BI Modeling MCP (`mcp_client.py`); prints the check table (`check_table.txt`, 62/62 OK) |
 | 4 | `build_pages_v2.py` | The 5 v2 report pages (PBIR JSON; reuses components from `build_pages.py`, the v1 builder), validated with `pbir_validate.py` before they are copied in |
 | – | `tmdl_add_measures.py` | Adds missing measures to `_Measures.tmdl` while Power BI Desktop is closed |
-| – | `compare.py`, `shoot.ps1`, `pbi_*.ps1` | Screenshots (taken only once the page title is visible), side-by-side checks, safe save/close and UI steps in Power BI Desktop |
+| – | `compare.py`, `shoot.ps1`, `pbi_*.ps1` | Screenshots (saved only when the page title is visible and two captures 5 s apart are identical, max 90 s), side-by-side checks, safe save/close and UI steps in Power BI Desktop |
 
 Every number on the dashboard is a DAX measure (no typed numbers). Each series colour has its own
 measure; there are no field-value colour rules. Low–high ranges use Power BI error bars (a shaded
