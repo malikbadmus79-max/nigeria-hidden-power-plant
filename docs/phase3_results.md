@@ -1,6 +1,8 @@
 # Phase 3 results: cost model, crossover and priority index
 
-**DRAFT — not reviewed; all figures are estimates until the Phase 4 audit.**
+**SUPERSEDED (2026-11-27) by `docs/phase4_audit.md`.** This is the Phase 3 record. Amendments
+A5–A8 (payback, saving-based index, June 2023 start, explicit inverter cost) changed several figures
+below; use `docs/phase4_audit.md` for current numbers. All figures are estimates.
 Model: `src/model.py`, following `docs/analysis_plan.md` (v1.0 + amendments A1–A4) and
 `docs/parameters.md`. Months: Jan 2023 – May 2026 (latest NBS price month). Money is
 nominal ₦. Each figure has a low/central/high range; "central" is quoted unless stated.
@@ -18,8 +20,9 @@ All 38 tests pass (`tests/test_data.py`, `tests/test_model.py`).
    - **Household (2.5 kVA petrol, about 0.4 kW for 4 h a day):** the generator costs about
      **₦2,230–2,620 per kWh** (state range, central; ₦2,426 median). Solar plus battery
      costs about **₦246–273 per kWh**. That is about 89% cheaper in every state.
-   - **Typical monthly cost:** about ₦85,000 a month on fuel and maintenance, against
-     about ₦9,000 a month for the same energy from solar (spread over 10 years).
+   - **Typical monthly cost (central estimate, May 2026):** about ₦85,000 a month on fuel and
+     maintenance, against about ₦9,000 a month for the same energy from solar (spread over
+     10 years; before A8 added the inverter cost).
    - **Small business (20 kVA diesel at 40% load, 8 h a day):** about ₦1,210–1,630 per kWh
      for the generator against about ₦136–162 for solar.
 3. **Robust test (the generator's cheapest case still costs more than solar's dearest case):**
@@ -30,8 +33,10 @@ All 38 tests pass (`tests/test_data.py`, `tests/test_model.py`).
    - **By May 2026:** solar is cheaper in all 37 states, even in the robust test.
 4. **The timing of the robust result depends on the exchange-rate assumption (A4).** A4
    converts 2026 naira solar prices to US$ and back at each month's CBN official rate.
-   Before June 2023 the official rate (about ₦455/US$) was far below what importers paid,
-   so A4 probably makes early solar look too cheap.
+   Before June 2023 the CBN official rate was about ₦455–461/US$. It jumped to about ₦770/US$
+   within June 2023 when the exchange-rate windows were unified (CBN data), which suggests the
+   earlier official rate understated import costs. A4 therefore probably makes early solar
+   look too cheap (addressed by A7).
    - With solar held at **2026 naira prices** (the plan's original rule), the robust
      household crossover moves to **May–September 2024**: May 2024 in Benue and Jigawa,
      and August–September 2024 in 29 states, when petrol passed about ₦1,000/L.
@@ -74,16 +79,12 @@ in 2026. Results are not sensitive to the solar cost assumptions within the rang
 
 ## 3. RQ5: national household generator petrol and CO2 — not publishable
 
-| Case | Households with generator | Petrol, bn L/month (Oct 2025) | CO2, Mt/yr | Share of NMDPRA petrol |
-|---|---|---|---|---|
-| Low | 3.4 m | 0.03 | 0.7 | 1.5% |
-| Central | 6.3 m | 0.29 | 8.0 | 16.6% |
-| High | 9.9 m | 2.01 | 55 | **114%** |
+*Table removed in the Phase 4 audit (safe-claim rule 4): national totals are not shown,
+because the range failed the consistency check. The internal working file is
+`data/processed/model/rq5_national_range.csv` and is not for publication.*
 
-The high case exceeds total national petrol supply (NMDPRA: 56.74 m L/day, Oct 2025),
-which is impossible. Under plan 5.10 and the safe-claim rules, **no national total is
-published**. The range also spans two orders of magnitude, because low/high combine
-reliance, household size and usage. Only the central case falls within the 35%
+The high case exceeds total national petrol supply (NMDPRA, Oct 2025), which is impossible. Under plan 5.10 and the safe-claim rules, **no national total is
+published**. The range also spans two orders of magnitude. Only the central case falls within the 35%
 plausibility limit (a judgement threshold stated in this phase; see `docs/parameters.md` §5).
 
 ## 4. Surprising or inconsistent points to review in Phase 4

@@ -1,149 +1,149 @@
-state,user,basis,crossover_month,robust_crossover_month,crossover_at_series_start,robust_at_series_start,solar_cheaper_latest_central,solar_cheaper_latest_robust,latest_month,gap_latest_central_pct
-Abia,business,running,2023-01,2024-02,True,False,True,True,2026-05,89.0
-Abia,business,full,not computed,not computed,,,,,2026-05,
-Abia,household,running,2023-01,2024-08,True,False,True,True,2026-05,89.6
-Abia,household,full,2023-01,2024-05,True,False,True,True,2026-05,90.2
-Adamawa,business,running,2023-01,2024-03,True,False,True,True,2026-05,90.1
-Adamawa,business,full,not computed,not computed,,,,,2026-05,
-Adamawa,household,running,2023-01,2024-08,True,False,True,True,2026-05,88.9
-Adamawa,household,full,2023-01,2024-03,True,False,True,True,2026-05,89.5
-Akwa Ibom,business,running,2023-01,2024-02,True,False,True,True,2026-05,88.7
-Akwa Ibom,business,full,not computed,not computed,,,,,2026-05,
-Akwa Ibom,household,running,2023-01,2024-09,True,False,True,True,2026-05,89.2
-Akwa Ibom,household,full,2023-01,2024-09,True,False,True,True,2026-05,89.8
-Anambra,business,running,2023-01,2024-01,True,False,True,True,2026-05,89.7
-Anambra,business,full,not computed,not computed,,,,,2026-05,
-Anambra,household,running,2023-01,2024-08,True,False,True,True,2026-05,88.8
-Anambra,household,full,2023-01,2024-05,True,False,True,True,2026-05,89.4
-Bauchi,business,running,2023-01,2024-02,True,False,True,True,2026-05,90.0
-Bauchi,business,full,not computed,not computed,,,,,2026-05,
-Bauchi,household,running,2023-01,2024-07,True,False,True,True,2026-05,90.6
-Bauchi,household,full,2023-01,2024-06,True,False,True,True,2026-05,91.1
-Bayelsa,business,running,2023-01,2024-02,True,False,True,True,2026-05,88.3
-Bayelsa,business,full,not computed,not computed,,,,,2026-05,
-Bayelsa,household,running,2023-01,2024-09,True,False,True,True,2026-05,89.0
-Bayelsa,household,full,2023-01,2024-09,True,False,True,True,2026-05,89.5
-Benue,business,running,2023-01,2023-11,True,False,True,True,2026-05,88.5
-Benue,business,full,not computed,not computed,,,,,2026-05,
-Benue,household,running,2023-01,2024-05,True,False,True,True,2026-05,90.1
-Benue,household,full,2023-01,2024-05,True,False,True,True,2026-05,90.6
-Borno,business,running,2023-01,2024-02,True,False,True,True,2026-05,90.2
-Borno,business,full,not computed,not computed,,,,,2026-05,
-Borno,household,running,2023-01,2024-07,True,False,True,True,2026-05,89.7
-Borno,household,full,2023-01,2024-03,True,False,True,True,2026-05,90.2
-Cross River,business,running,2023-01,2024-02,True,False,True,True,2026-05,89.5
-Cross River,business,full,not computed,not computed,,,,,2026-05,
-Cross River,household,running,2023-01,2024-09,True,False,True,True,2026-05,88.9
-Cross River,household,full,2023-01,2024-09,True,False,True,True,2026-05,89.5
-Delta,business,running,2023-01,2024-02,True,False,True,True,2026-05,88.9
-Delta,business,full,not computed,not computed,,,,,2026-05,
-Delta,household,running,2023-01,2024-09,True,False,True,True,2026-05,89.7
-Delta,household,full,2023-01,2024-09,True,False,True,True,2026-05,90.2
-Ebonyi,business,running,2023-01,2024-02,True,False,True,True,2026-05,90.3
-Ebonyi,business,full,not computed,not computed,,,,,2026-05,
-Ebonyi,household,running,2023-01,2024-08,True,False,True,True,2026-05,89.6
-Ebonyi,household,full,2023-01,2024-05,True,False,True,True,2026-05,90.1
-Edo,business,running,2023-01,2023-12,True,False,True,True,2026-05,89.5
-Edo,business,full,not computed,not computed,,,,,2026-05,
-Edo,household,running,2023-01,2024-09,True,False,True,True,2026-05,90.1
-Edo,household,full,2023-01,2024-09,True,False,True,True,2026-05,90.6
-Ekiti,business,running,2023-01,2024-03,True,False,True,True,2026-05,89.0
-Ekiti,business,full,not computed,not computed,,,,,2026-05,
-Ekiti,household,running,2023-01,2024-09,True,False,True,True,2026-05,89.3
-Ekiti,household,full,2023-01,2024-05,True,False,True,True,2026-05,89.8
-Enugu,business,running,2023-01,2023-12,True,False,True,True,2026-05,88.9
-Enugu,business,full,not computed,not computed,,,,,2026-05,
-Enugu,household,running,2023-01,2024-08,True,False,True,True,2026-05,89.1
-Enugu,household,full,2023-01,2024-05,True,False,True,True,2026-05,89.7
-FCT,business,running,2023-01,2024-01,True,False,True,True,2026-05,89.6
-FCT,business,full,not computed,not computed,,,,,2026-05,
-FCT,household,running,2023-01,2024-09,True,False,True,True,2026-05,89.4
-FCT,household,full,2023-01,2024-09,True,False,True,True,2026-05,90.0
-Gombe,business,running,2023-01,2023-11,True,False,True,True,2026-05,90.0
-Gombe,business,full,not computed,not computed,,,,,2026-05,
-Gombe,household,running,2023-01,2024-07,True,False,True,True,2026-05,90.4
-Gombe,household,full,2023-01,2023-12,True,False,True,True,2026-05,90.9
-Imo,business,running,2023-01,2024-01,True,False,True,True,2026-05,89.0
-Imo,business,full,not computed,not computed,,,,,2026-05,
-Imo,household,running,2023-01,2024-08,True,False,True,True,2026-05,89.3
-Imo,household,full,2023-01,2024-05,True,False,True,True,2026-05,89.8
-Jigawa,business,running,2023-01,2023-11,True,False,True,True,2026-05,91.0
-Jigawa,business,full,not computed,not computed,,,,,2026-05,
-Jigawa,household,running,2023-01,2024-05,True,False,True,True,2026-05,90.4
-Jigawa,household,full,2023-01,2024-02,True,False,True,True,2026-05,90.9
-Kaduna,business,running,2023-01,2024-02,True,False,True,True,2026-05,90.6
-Kaduna,business,full,not computed,not computed,,,,,2026-05,
-Kaduna,household,running,2023-01,2024-08,True,False,True,True,2026-05,89.5
-Kaduna,household,full,2023-01,2024-07,True,False,True,True,2026-05,90.0
-Kano,business,running,2023-01,2024-02,True,False,True,True,2026-05,90.5
-Kano,business,full,not computed,not computed,,,,,2026-05,
-Kano,household,running,2023-01,2024-08,True,False,True,True,2026-05,90.1
-Kano,household,full,2023-01,2024-04,True,False,True,True,2026-05,90.6
-Katsina,business,running,2023-01,2023-10,True,False,True,True,2026-05,90.0
-Katsina,business,full,not computed,not computed,,,,,2026-05,
-Katsina,household,running,2023-01,2024-09,True,False,True,True,2026-05,89.1
-Katsina,household,full,2023-01,2024-03,True,False,True,True,2026-05,89.8
-Kebbi,business,running,2023-01,2023-12,True,False,True,True,2026-05,89.3
-Kebbi,business,full,not computed,not computed,,,,,2026-05,
-Kebbi,household,running,2023-01,2024-07,True,False,True,True,2026-05,89.6
-Kebbi,household,full,2023-01,2023-12,True,False,True,True,2026-05,90.1
-Kogi,business,running,2023-01,2024-01,True,False,True,True,2026-05,87.9
-Kogi,business,full,not computed,not computed,,,,,2026-05,
-Kogi,household,running,2023-01,2024-08,True,False,True,True,2026-05,89.1
-Kogi,household,full,2023-01,2024-06,True,False,True,True,2026-05,89.7
-Kwara,business,running,2023-01,2024-02,True,False,True,True,2026-05,89.1
-Kwara,business,full,not computed,not computed,,,,,2026-05,
-Kwara,household,running,2023-01,2024-09,True,False,True,True,2026-05,89.2
-Kwara,household,full,2023-01,2024-08,True,False,True,True,2026-05,89.8
-Lagos,business,running,2023-01,2024-03,True,False,True,True,2026-05,89.0
-Lagos,business,full,not computed,not computed,,,,,2026-05,
-Lagos,household,running,2023-01,2024-09,True,False,True,True,2026-05,89.1
-Lagos,household,full,2023-01,2024-08,True,False,True,True,2026-05,89.7
-Nasarawa,business,running,2023-01,2024-02,True,False,True,True,2026-05,91.0
-Nasarawa,business,full,not computed,not computed,,,,,2026-05,
-Nasarawa,household,running,2023-01,2024-08,True,False,True,True,2026-05,89.4
-Nasarawa,household,full,2023-01,2024-06,True,False,True,True,2026-05,89.9
-Niger,business,running,2023-01,2024-06,True,False,True,True,2026-05,89.3
-Niger,business,full,not computed,not computed,,,,,2026-05,
-Niger,household,running,2023-01,2024-09,True,False,True,True,2026-05,89.1
-Niger,household,full,2023-01,2024-07,True,False,True,True,2026-05,89.7
-Ogun,business,running,2023-01,2024-03,True,False,True,True,2026-05,89.0
-Ogun,business,full,not computed,not computed,,,,,2026-05,
-Ogun,household,running,2023-01,2024-08,True,False,True,True,2026-05,89.2
-Ogun,household,full,2023-01,2024-08,True,False,True,True,2026-05,89.7
-Ondo,business,running,2023-01,2024-03,True,False,True,True,2026-05,88.3
-Ondo,business,full,not computed,not computed,,,,,2026-05,
-Ondo,household,running,2023-01,2024-09,True,False,True,True,2026-05,89.2
-Ondo,household,full,2023-01,2024-05,True,False,True,True,2026-05,89.8
-Osun,business,running,2023-01,2024-03,True,False,True,True,2026-05,89.3
-Osun,business,full,not computed,not computed,,,,,2026-05,
-Osun,household,running,2023-01,2024-09,True,False,True,True,2026-05,88.6
-Osun,household,full,2023-01,2024-07,True,False,True,True,2026-05,89.2
-Oyo,business,running,2023-01,2024-03,True,False,True,True,2026-05,89.0
-Oyo,business,full,not computed,not computed,,,,,2026-05,
-Oyo,household,running,2023-01,2024-08,True,False,True,True,2026-05,89.4
-Oyo,household,full,2023-01,2024-07,True,False,True,True,2026-05,89.9
-Plateau,business,running,2023-01,2024-04,True,False,True,True,2026-05,90.8
-Plateau,business,full,not computed,not computed,,,,,2026-05,
-Plateau,household,running,2023-01,2024-08,True,False,True,True,2026-05,89.8
-Plateau,household,full,2023-01,2024-06,True,False,True,True,2026-05,90.4
-Rivers,business,running,2023-01,2024-02,True,False,True,True,2026-05,89.4
-Rivers,business,full,not computed,not computed,,,,,2026-05,
-Rivers,household,running,2023-01,2024-09,True,False,True,True,2026-05,89.0
-Rivers,household,full,2023-01,2024-09,True,False,True,True,2026-05,89.6
-Sokoto,business,running,2023-01,2023-11,True,False,True,True,2026-05,91.1
-Sokoto,business,full,not computed,not computed,,,,,2026-05,
-Sokoto,household,running,2023-01,2024-08,True,False,True,True,2026-05,89.3
-Sokoto,household,full,2023-01,2024-03,True,False,True,True,2026-05,89.9
-Taraba,business,running,2023-01,2024-02,True,False,True,True,2026-05,90.5
-Taraba,business,full,not computed,not computed,,,,,2026-05,
-Taraba,household,running,2023-01,2024-07,True,False,True,True,2026-05,89.9
-Taraba,household,full,2023-01,2024-03,True,False,True,True,2026-05,90.5
-Yobe,business,running,2023-01,2023-11,True,False,True,True,2026-05,90.8
-Yobe,business,full,not computed,not computed,,,,,2026-05,
-Yobe,household,running,2023-01,2024-07,True,False,True,True,2026-05,90.5
-Yobe,household,full,2023-01,2024-03,True,False,True,True,2026-05,90.9
-Zamfara,business,running,2023-01,2023-11,True,False,True,True,2026-05,90.2
-Zamfara,business,full,not computed,not computed,,,,,2026-05,
-Zamfara,household,running,2023-01,2024-08,True,False,True,True,2026-05,89.9
-Zamfara,household,full,2023-01,2024-01,True,False,True,True,2026-05,90.5
+state,user,basis,crossover_month,robust_crossover_month,crossover_at_series_start,robust_at_series_start,solar_cheaper_latest_central,solar_cheaper_latest_robust,first_month,latest_month,gap_latest_central_pct
+Abia,business,running,2023-06,2024-03,True,False,True,True,2023-06,2026-05,86.2
+Abia,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Abia,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,87.1
+Abia,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.8
+Adamawa,business,running,2023-06,2024-05,True,False,True,True,2023-06,2026-05,87.3
+Adamawa,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Adamawa,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,86.1
+Adamawa,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,86.9
+Akwa Ibom,business,running,2023-06,2024-04,True,False,True,True,2023-06,2026-05,85.9
+Akwa Ibom,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Akwa Ibom,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,86.7
+Akwa Ibom,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.4
+Anambra,business,running,2023-06,2024-03,True,False,True,True,2023-06,2026-05,87.0
+Anambra,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Anambra,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,86.1
+Anambra,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,86.9
+Bauchi,business,running,2023-06,2024-03,True,False,True,True,2023-06,2026-05,87.1
+Bauchi,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Bauchi,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,88.2
+Bauchi,household,full,2023-06,2024-08,True,False,True,True,2023-06,2026-05,88.8
+Bayelsa,business,running,2023-06,2024-04,True,False,True,True,2023-06,2026-05,85.4
+Bayelsa,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Bayelsa,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.4
+Bayelsa,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.1
+Benue,business,running,2023-06,2024-04,True,False,True,True,2023-06,2026-05,85.4
+Benue,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Benue,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,87.7
+Benue,household,full,2023-06,2024-08,True,False,True,True,2023-06,2026-05,88.3
+Borno,business,running,2023-06,2024-03,True,False,True,True,2023-06,2026-05,87.4
+Borno,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Borno,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.0
+Borno,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.7
+Cross River,business,running,2023-06,2024-02,True,False,True,True,2023-06,2026-05,86.8
+Cross River,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Cross River,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.2
+Cross River,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,86.9
+Delta,business,running,2023-06,2024-03,True,False,True,True,2023-06,2026-05,86.0
+Delta,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Delta,household,running,2023-06,2024-11,True,False,True,True,2023-06,2026-05,87.2
+Delta,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.8
+Ebonyi,business,running,2023-06,2025-03,True,False,True,True,2023-06,2026-05,87.8
+Ebonyi,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Ebonyi,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.1
+Ebonyi,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.7
+Edo,business,running,2023-06,2024-02,True,False,True,True,2023-06,2026-05,86.7
+Edo,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Edo,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.7
+Edo,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,88.3
+Ekiti,business,running,2023-06,2025-04,True,False,True,True,2023-06,2026-05,86.2
+Ekiti,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Ekiti,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.7
+Ekiti,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.4
+Enugu,business,running,2023-06,2024-03,True,False,True,True,2023-06,2026-05,86.0
+Enugu,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Enugu,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.5
+Enugu,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.2
+FCT,business,running,2023-06,2025-01,True,False,True,True,2023-06,2026-05,86.8
+FCT,business,full,not computed,not computed,,,,,2023-06,2026-05,
+FCT,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.9
+FCT,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.5
+Gombe,business,running,2023-06,2024-02,True,False,True,True,2023-06,2026-05,87.1
+Gombe,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Gombe,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,88.0
+Gombe,household,full,2023-06,2024-08,True,False,True,True,2023-06,2026-05,88.5
+Imo,business,running,2023-06,2024-03,True,False,True,True,2023-06,2026-05,86.1
+Imo,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Imo,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.7
+Imo,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.4
+Jigawa,business,running,2023-06,2024-02,True,False,True,True,2023-06,2026-05,88.4
+Jigawa,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Jigawa,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.9
+Jigawa,household,full,2023-06,2024-07,True,False,True,True,2023-06,2026-05,88.5
+Kaduna,business,running,2023-06,2024-03,True,False,True,True,2023-06,2026-05,88.0
+Kaduna,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Kaduna,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,86.9
+Kaduna,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.6
+Kano,business,running,2023-06,2024-08,True,False,True,True,2023-06,2026-05,87.8
+Kano,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Kano,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.5
+Kano,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,88.1
+Katsina,business,running,2023-06,2024-03,True,False,True,True,2023-06,2026-05,87.1
+Katsina,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Katsina,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,86.3
+Katsina,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.1
+Kebbi,business,running,2023-06,2024-01,True,False,True,True,2023-06,2026-05,86.3
+Kebbi,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Kebbi,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.9
+Kebbi,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.6
+Kogi,business,running,2023-06,2025-05,True,False,True,True,2023-06,2026-05,84.7
+Kogi,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Kogi,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,86.4
+Kogi,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.1
+Kwara,business,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,86.2
+Kwara,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Kwara,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,86.5
+Kwara,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.3
+Lagos,business,running,2023-06,2025-03,True,False,True,True,2023-06,2026-05,86.1
+Lagos,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Lagos,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.5
+Lagos,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.2
+Nasarawa,business,running,2023-06,2024-04,True,False,True,True,2023-06,2026-05,88.6
+Nasarawa,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Nasarawa,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.7
+Nasarawa,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.4
+Niger,business,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.5
+Niger,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Niger,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.5
+Niger,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.2
+Ogun,business,running,2023-06,2025-04,True,False,True,True,2023-06,2026-05,86.2
+Ogun,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Ogun,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.6
+Ogun,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.3
+Ondo,business,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,85.3
+Ondo,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Ondo,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.7
+Ondo,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.4
+Osun,business,running,2023-06,2025-03,True,False,True,True,2023-06,2026-05,86.6
+Osun,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Osun,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,85.9
+Osun,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,86.6
+Oyo,business,running,2023-06,2025-02,True,False,True,True,2023-06,2026-05,86.2
+Oyo,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Oyo,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,86.8
+Oyo,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.5
+Plateau,business,running,2023-06,2024-06,True,False,True,True,2023-06,2026-05,88.2
+Plateau,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Plateau,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.3
+Plateau,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,88.0
+Rivers,business,running,2023-06,2024-11,True,False,True,True,2023-06,2026-05,86.8
+Rivers,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Rivers,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.4
+Rivers,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.1
+Sokoto,business,running,2023-06,2024-04,True,False,True,True,2023-06,2026-05,88.5
+Sokoto,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Sokoto,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,86.5
+Sokoto,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.3
+Taraba,business,running,2023-06,2024-03,True,False,True,True,2023-06,2026-05,87.8
+Taraba,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Taraba,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.4
+Taraba,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,88.1
+Yobe,business,running,2023-06,2024-03,True,False,True,True,2023-06,2026-05,88.2
+Yobe,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Yobe,household,running,2023-06,2024-10,True,False,True,True,2023-06,2026-05,88.0
+Yobe,household,full,2023-06,2024-08,True,False,True,True,2023-06,2026-05,88.6
+Zamfara,business,running,2023-06,2024-03,True,False,True,True,2023-06,2026-05,87.4
+Zamfara,business,full,not computed,not computed,,,,,2023-06,2026-05,
+Zamfara,household,running,2023-06,2024-09,True,False,True,True,2023-06,2026-05,87.4
+Zamfara,household,full,2023-06,2024-09,True,False,True,True,2023-06,2026-05,88.0

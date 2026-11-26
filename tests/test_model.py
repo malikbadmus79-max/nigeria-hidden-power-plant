@@ -35,15 +35,19 @@ def sol():
     return load(M / "solar_cost.csv")
 
 
-def test_every_state_month_present(gen, sol):
-    months = sorted(gen.month.unique())
-    expected = len(STATES) * len(months) * 2 * 3
-    for df in (gen, sol):
-        assert len(df) == expected
+@pytest.fixture(scope="module")
+def pay():
+    return load(M / "payback.csv")
+
+
+def test_every_state_month_present(gen, sol, pay):
+    gen_months = sorted(gen.month.unique())
+    sol_months = [m for m in gen_months if m >= "2023-06"]  # A7
+    assert gen_months[0] == "2023-01" and sorted(sol.month.unique()) == sol_months
+    for df, months in ((gen, gen_months), (sol, sol_months), (pay, sol_months)):
+        assert len(df) == len(STATES) * len(months) * 2 * 3
         assert not df.duplicated(["state", "month", "user", "case"]).any()
-        counts = df.groupby(["month", "user", "case"]).state.nunique()
-        assert (counts == 37).all()
-    assert months[0] == "2023-01"
+        assert (df.groupby(["month", "user", "case"]).state.nunique() == 37).all()
 
 
 def _ordered(df, value):
@@ -58,16 +62,30 @@ def test_generator_low_le_central_le_high(gen, col):
     assert _ordered(gen, col)
 
 
-@pytest.mark.parametrize("col", ["lcoe_ngn_per_kwh", "ngn_per_day", "capex_ngn"])
+@pytest.mark.parametrize("col", ["lcoe_ngn_per_kwh", "ngn_per_day", "capex_ngn", "inverter_ngn"])
 def test_solar_low_le_central_le_high(sol, col):
     assert _ordered(sol, col)
+
+
+@pytest.mark.parametrize("col", ["payback_months", "upfront_ngn", "upfront_months_of_consumption"])
+def test_payback_low_le_central_le_high(pay, col):
+    assert _ordered(pay, col)
+
+
+def test_payback_consistent(pay):
+    assert (pay.saving_ngn_per_month > 0).all()
+    calc = pay.upfront_ngn / pay.saving_ngn_per_month
+    assert np.allclose(calc, pay.payback_months)
+    hh = pay[pay.user == "household"]
+    assert hh.upfront_months_of_consumption.notna().all()
+    assert pay[pay.user == "business"].upfront_months_of_consumption.isna().all()
 
 
 def test_no_negative_costs(gen, sol):
     for c in ["running_ngn_per_kwh", "running_ngn_per_day", "running_ngn_per_month", "fuel_l_per_month"]:
         assert (gen[c] >= 0).all()
     assert (gen.full_ngn_per_kwh.dropna() >= 0).all()
-    for c in ["lcoe_ngn_per_kwh", "ngn_per_day", "capex_ngn", "pv_kwp", "battery_kwh"]:
+    for c in ["lcoe_ngn_per_kwh", "ngn_per_day", "capex_ngn", "pv_kwp", "battery_kwh", "inverter_ngn"]:
         assert (sol[c] > 0).all()
 
 
@@ -87,7 +105,7 @@ def test_first_sustained_hand_example():
     assert model.first_sustained(months, [True] * 6) == "2024-01"
 
 
-def test_crossover_function_hand_example():
+def test_crossover_function_hand_example():  # noqa: D103
     months = ["2024-01", "2024-02", "2024-03", "2024-04", "2024-05"]
     gen_vals = {"low": [50, 80, 120, 130, 140], "central": [100, 200, 210, 220, 90],
                 "high": [150, 300, 320, 330, 340]}
@@ -111,6 +129,7 @@ def test_crossover_function_hand_example():
 def test_crossover_table_complete():
     c = load(M / "crossover.csv")
     assert len(c) == 37 * 2 * 2
+    assert (c.first_month == "2023-06").all()  # A7
     ok = c.crossover_month.str.match(r"^\d{4}-\d{2}$") | c.crossover_month.isin(["not yet", "not computed"])
     assert ok.all()
 
@@ -137,12 +156,13 @@ def test_borno_reliance_is_zone_average():
 
 def test_lcoe_formula_hand_check():
     # 1 kWh/day, night share 0.7 (central household), worst-month PVOUT 4.0, no FX change
-    r = model.solar_lcoe_ngn_per_kwh(4.0, 1.0, "household", "central")
+    r = model.solar_system(4.0, 1.0, "household", "central", e=1.0)
     batt = 0.7 / (0.8 * 0.9)
     pv = (0.3 + 0.7 / 0.9) / (4.0 * 0.9)
-    capex = (pv * 1000 * 260 + batt * 255_000) * 1.3
+    capex = (pv * 1000 * 260 + batt * 255_000) * 1.3 + 175_000  # A8 inverter
     pvf = sum(1 / 1.15 ** t for t in range(1, 11))
     expected = (capex + 0.01 * capex * pvf) / (365 * pvf)  # battery life 10 = horizon: no replacement
+    assert r["capex_ngn"] == pytest.approx(capex, rel=1e-9)
     assert r["lcoe_ngn_per_kwh"] == pytest.approx(expected, rel=1e-9)
 
 
@@ -152,6 +172,7 @@ def test_lcoe_formula_hand_check():
     ("fact_generator_cost", ["state", "month", "user", "case"]),
     ("fact_grid_tariff", ["state", "month", "band"]),
     ("fact_solar_cost", ["state", "month", "user", "case"]),
+    ("fact_payback", ["state", "month", "user", "case"]),
     ("fact_crossover", ["state", "user", "basis"]),
     ("fact_priority_index", ["state", "weighting", "gap_user", "reliance_measure"]),
 ])

@@ -132,3 +132,37 @@ petrol) or `business` (20 kVA diesel).
 | `model/sensitivity_tornado.csv` | zone, parameter | One-at-a-time low/high ₦/kWh for one state per zone, latest month, household |
 | `powerbi/dim_state.csv` | state | Zone, DisCos, regulator note, centroid, PVOUT, MPI headcount, NLSS generator shares |
 | `powerbi/dim_month.csv` | month | Date, year, month number, label |
+
+## household_consumption_state_monthly.csv — `src/build_consumption.py` (A5)
+Monthly household consumption by state, used only for affordability. Annual total household
+expenditure by state (NBS *Consumption Expenditure Pattern in Nigeria 2019*, Table 12, NLSS
+2018/19) ÷ households (MPI 2022 population ÷ household size) ÷ 12, × NBS all-items CPI
+(Nov 2009 base chained to the 2024 = 100 series over Jan–Dec 2023) ÷ mean CPI Sep 2018 – Oct 2019.
+
+| Column | Description |
+|---|---|
+| `state`, `month`, `case` | `case` low / central / high = household size 4.5 / 5.0 / 5.5 |
+| `consumption_2019_ngn_per_hh_year` | Annual consumption per household in 2018/19 ₦ |
+| `cpi_factor_vs_2018_19` | Chained CPI relative to the survey period |
+| `consumption_ngn_per_hh_month` | Monthly consumption per household in that month's ₦ |
+| `flag` | Borno: not in the NBS table; North-East zone average |
+
+## Payback (A5) — `model/payback.csv` = `powerbi/fact_payback.csv`
+Key: state, month (from Jun 2023, A7), user, case. `case` pairs the solar and generator cases
+(`pair` column): low = solar low-cost with generator high-cost (shortest payback); central =
+both central; high = solar high-cost with generator low-cost (longest payback).
+
+| Column | Description |
+|---|---|
+| `upfront_ngn` | Solar + battery + inverter + installation cost (A8) |
+| `generator_fuel_maint_ngn_per_month` | Generator fuel + maintenance for the central monthly energy |
+| `solar_om_ngn_per_month` | Solar O&M per month |
+| `saving_ngn_per_month` | Generator cost − solar O&M |
+| `payback_months` | Upfront ÷ saving (simple, undiscounted, no battery replacement) |
+| `hh_consumption_ngn_per_month`, `upfront_months_of_consumption` | Households only: affordability (upfront ÷ monthly consumption) |
+| `payback_note`, `pair` | |
+
+Changes in Phase 4: solar tables now start Jun 2023 (A7) and include `inverter_ngn` and
+`om_ngn_per_month` (A8). In the priority index, `G_value` is the monthly ₦ saving (A6). The
+crossover table is a supporting result (A5) and has `first_month` = 2023-06.
+`model/audit_recompute.csv` holds the Phase 4 independent recomputation (10 random rows × 3 cases × 6 measures).

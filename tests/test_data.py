@@ -151,3 +151,14 @@ def test_solar_pvout_state_monthly():
     assert s.pvout_kwh_per_kwp_day.between(2.0, 7.0).all()
     assert (s.worst_month_kwh_per_kwp_day <= s.pvout_kwh_per_kwp_day).all()
     assert s.source.str.contains("Global Solar Atlas").all()
+
+
+def test_household_consumption():
+    c = load("household_consumption_state_monthly.csv")
+    assert sorted(c.state.unique()) == sorted(STATES)
+    assert not c.duplicated(["state", "month", "case"]).any()
+    assert (c.consumption_ngn_per_hh_month > 0).all()
+    w = c.pivot_table(index=["state", "month"], columns="case", values="consumption_ngn_per_hh_month")
+    assert ((w["low"] <= w["central"]) & (w["central"] <= w["high"])).all()
+    assert set(c.loc[c.flag.fillna("") != "", "state"]) == {"Borno"}
+    assert set(MONTHS) <= set(c.month)

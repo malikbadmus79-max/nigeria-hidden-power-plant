@@ -29,10 +29,12 @@ generator. All outputs are estimates with low/central/high ranges.
 - **RQ2 — Comparison.** How does that cost compare with (a) grid tariffs by DisCo and band,
   mapped to states, and (b) the levelised cost of solar plus battery, adjusted for each
   state's solar resource?
-- **RQ3 — Crossover.** In which month, if any, did solar plus battery become cheaper than
-  the generator, for each state and user type?
+- **RQ3 — Payback and affordability.** *(A5)* For each state, month and user type, how many
+  months of fuel and maintenance savings repay the upfront cost of solar plus battery, and
+  how large is that upfront cost relative to monthly household consumption in the state?
+  (The earlier crossover-month result is kept as a supporting table.)
 - **RQ4 — Market priority.** Which states rank highest on a market priority index combining
-  generator reliance, the cost gap, and ability to pay?
+  generator reliance, the monthly saving from switching *(A6)*, and ability to pay?
 - **RQ5 (optional, range only).** What are the indicative national household generator
   fuel spend and CO2 emissions, checked top-down against NMDPRA national fuel volumes?
 
@@ -40,6 +42,8 @@ generator. All outputs are estimates with low/central/high ranges.
 
 **In scope**
 - 36 states + FCT, monthly, January 2023 to the latest NBS month (May 2026 at Phase 0).
+  *(A7)* Solar cost, payback, affordability and crossover start in June 2023; generator costs
+  and grid tariffs start in January 2023.
 - Two user archetypes: household on a small petrol generator, and small business on a
   small diesel generator.
 - Running cost and full cost (including the generator's purchase price) of the generator,
@@ -150,7 +154,9 @@ Each system is sized to deliver the same daily energy `E` as the generator arche
     Solar Atlas. This is a conservative sizing choice.
   - 0.9 is an extra derate for small-system losses and soiling.
 - **Capital cost** = PV kWp × ₦/kWp + battery kWh × ₦/kWh + inverter and installation, from
-  the 2026 benchmark range.
+  the 2026 benchmark range. *(A8)* The inverter is costed explicitly per system (household
+  1 kVA: ₦120k / 175k / 300k; business 20 kW: ₦2.8m / 3.5m / 4.2m). A balance-of-system
+  share of 20 / 30 / 40% of PV + battery covers cabling, mounting and installation.
   - *(A4)* The 2026 ₦ benchmarks are converted to US$ at the CBN average rate of the
     benchmark month (October 2026) and back to ₦ for each model month at that month's CBN
     rate (constant US$ equipment price assumption, flagged).
@@ -164,7 +170,26 @@ Each system is sized to deliver the same daily energy `E` as the generator arche
   ÷ present value of energy delivered over 10 years. It is reported in ₦/kWh and converted
   to ₦/day and ₦/month for the archetype.
 
-### 5.5 Crossover rule (RQ3)
+### 5.5 Payback and affordability (RQ3, A5)
+
+- **Upfront cost:** the solar + battery capital cost from 5.4 (PV, battery, inverter and
+  installation), sized for the archetype's daily energy.
+- **Monthly saving:** the generator's fuel + maintenance cost for the same monthly energy
+  (central usage: average load × hours × days), minus solar O&M per month.
+- **Payback (months)** = upfront cost ÷ monthly saving. It is simple (undiscounted) and
+  excludes battery replacement. "No payback" if the saving is ≤ 0.
+  - Low (shortest): solar low-cost upfront cost ÷ saving with the generator's high-cost case.
+  - Central: both central.
+  - High (longest): solar high-cost upfront cost ÷ saving with the generator's low-cost case.
+- **Affordability (households):** upfront cost ÷ monthly household consumption in the state.
+  Consumption = NBS *Consumption Expenditure Pattern in Nigeria 2019*, Table 12 (total
+  household expenditure by state) ÷ number of households (MPI 2022 population ÷ household
+  size), ÷ 12. It is brought to each month with the NBS all-items CPI (old base chained
+  to the 2024 = 100 series over their 2023–2024 overlap). Flagged as approximate. No
+  business equivalent exists.
+- **Supporting table:** the crossover rule below is kept, as a supporting result only.
+
+**Crossover (supporting table)**
 
 - **Comparison basis:** solar plus battery LCOE (central) against the generator's **running
   cost** (central). This is the switching decision for someone who already owns a generator,
@@ -184,7 +209,7 @@ Three components per state, each converted to a **percentile rank** across the 3
   generator ownership share (NLSS Table 7.18) is used as a sensitivity. Borno, not covered
   by NLSS, takes the North-East zone average (Adamawa, Bauchi, Gombe, Taraba, Yobe) and is
   flagged. The source is named in the output.
-- **G, cost gap:** (generator running cost − solar LCOE) ÷ generator running cost, for the
+- **G, saving:** *(A6)* the monthly ₦ saving from switching to solar + battery (5.5), for the
   latest month, household archetype, central case. Negative values are set to 0 before
   ranking.
 - **A, ability to pay:** 1 − MPI 2022 headcount ratio.

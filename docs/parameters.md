@@ -70,7 +70,9 @@ Plausibility check (no results computed): with the pre-A3 central `a` = 0.40, 1.
 |---|---|---|---|---|---|---|
 | PV modules, ₦/Wp (2026) | 190 | 260 | 350 | Solar Builders NG (checked Oct 2026): Tier-1 mono/bifacial ₦190–260/Wp; Nigeria Building Cost: ~₦350/W | C | new |
 | LFP battery, ₦/kWh (2026) | 160,000 | 255,000 | 300,000 | Skillnaija: 5 kWh ₦0.8–1.5m, 10 kWh ₦1.5–2.8m (₦160–300k/kWh); Solar Builders NG: 5.12 kWh LiFePO4 ≈ ₦1.31m (≈₦255k/kWh). Outlier excluded: Afrotools ₦70–120k/kWh | C | new |
-| Inverter + balance of system + installation | 20% | 30% | 40% of PV + battery cost | No itemised source; full-system quotes (Voltage Africa: 1 kWp ₦0.9–2m, 5 kWp ₦4.5–9m; Solar Builders NG: 5 kVA/10 kWh ₦4.65–8.5m) to be used to check the total | J/C | new ⚑ weak |
+| Balance of system + installation (excl. inverter, A8) | 20% | 30% | 40% of PV + battery cost | No itemised source; full-system quotes (Voltage Africa: 1 kWp ₦0.9–2m, 5 kWp ₦4.5–9m; Solar Builders NG: 5 kVA/10 kWh ₦4.65–8.5m) to be used to check the total | J/C | new ⚑ weak |
+| Inverter, household 1 kVA (₦, 2026) | 120,000 | 175,000 | 300,000 | *Amendment A8*. Nov 2026 price survey: new 1 kVA inverters ₦150k–205k (solarinverter.ng); other guides ₦120k–300k (solarinverterinstallation.com) | C | A8 |
+| Inverter, business 20 kW (₦, 2026) | 2,800,000 | 3,500,000 | 4,200,000 | *Amendment A8*. Deye 20 kW three-phase hybrid listed at ₦3,498,750 (retailer, Nov 2026); ±20% (J) | C/J | A8 |
 | Cost benchmarks before 2026 | – | Constant US$ price | – | *Amendment A4*: 2026 ₦ benchmarks converted to US$ at the CBN October 2026 average, then to ₦ for each month at that month's CBN rate | J | A4 |
 | Night share of energy (household) | 0.5 | 0.7 | 0.9 | A2EI/ZE-Gen: households use generators more in the evening (qualitative); NLSS Table 7.12: national generator use 2.7 h in 6pm–10pm out of 4.1 h/day (≈0.66) | A/B | = (central supported) |
 | Night share (business) | 0.1 | 0.3 | 0.5 | A2EI/ZE-Gen: businesses draw power mainly in daytime (qualitative) | B/J | = |
