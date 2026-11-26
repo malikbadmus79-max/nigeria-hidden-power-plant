@@ -49,9 +49,9 @@ Cross-check: Cummins 4BTAA3.3-G14 engine (≈61 kVA set) 4/8/11/15 L/h at 25/50/
 | Parameter | Low | Central | High | Source / derivation | Quality | vs plan |
 |---|---|---|---|---|---|---|
 | `F_rated`, L/h at ≈2.0 kW | 1.0 | 1.2 | 1.4 | Honda EU70is: 19.2 L tank / 6.5 h at 5.5 kW rated = 0.54 L/kWh → 1.07 L/h at 2.0 kW (inverter, efficient: low end) (A, derived). Retail claims for 2.5 kVA Sumec Firman: 0.8–1.0 L/h at 50% load → 1.1–1.4 L/h at rated if a = 0.4 (C) | C | new (plan said "set in Phase 2") |
-| `a`, no-load fuel fraction | 0.30 | 0.40 | 0.55 | Plan provisional values kept. Evidence: Honda EU70is with eco-throttle implies a ≈ 0.15 (25%-load run time 18 h vs 6.5 h rated) (A, derived); one calculator rule uses 0.13 (C); diesel spec sheets imply a ≈ 0.02–0.10 (A); anecdotal forum report of fuel use "flat-lining" below ~20% load on fixed-speed petrol sets (C) | C/J | ⚑ evidence points lower |
+| `a`, no-load fuel fraction | 0.15 | 0.30 | 0.45 | *Amendment A3* (was 0.30/0.40/0.55). Evidence: Honda EU70is with eco-throttle implies a ≈ 0.15 (25%-load run time 18 h vs 6.5 h rated) (A, derived); one calculator rule uses 0.13 (C); diesel spec sheets imply a ≈ 0.02–0.10 (A); anecdotal forum report of fuel use "flat-lining" below ~20% load on fixed-speed petrol sets (C) | C/J | A3 |
 
-Plausibility check (no results computed): central values give 1.2 × (0.40 + 0.60 × 0.20) = 0.62 L/h. Over 4 h/day × 22 days that is about 55 L/month. A2EI/ZE-Gen report a median monthly fuel spend of ₦30,000 when petrol cost ₦617–1,060/L in 2024 (≈ 28–49 L/month). The central case is therefore on the high side.
+Plausibility check (no results computed): with the pre-A3 central `a` = 0.40, 1.2 × (0.40 + 0.60 × 0.20) = 0.62 L/h, about 55 L/month at 4 h/day × 22 days. With A3 (`a` = 0.30): 1.2 × (0.30 + 0.70 × 0.20) = 0.53 L/h, about 47 L/month. A2EI/ZE-Gen report a median monthly fuel spend of ₦30,000 when petrol cost ₦617–1,060/L in 2024 (≈ 28–49 L/month). The central case is therefore on the high side.
 
 ### 1.3 Maintenance and purchase
 
@@ -60,7 +60,7 @@ Plausibility check (no results computed): central values give 1.2 × (0.40 + 0.6
 | Petrol maintenance, % of fuel cost | 10% | 15% | 25% | A2EI/ZE-Gen p.20: median repair ₦5,000 vs median fuel ₦30,000 per month (≈17%) | B | = |
 | Diesel maintenance, % of fuel cost | 5% | 10% | 15% | No source found | J | = (source pending) |
 | Petrol 2.5–3.5 kVA purchase price (2026) | ₦265,000 | ₦280,000 | ₦380,000 | Retail comparison (Oct 2026): Sumec Firman 3–3.5 kVA ₦265k–295k; Elepaq SV5800/EC5800CX ₦310k–380k | C | new |
-| Petrol generator life (years) | 2 | 3 | 5 | A2EI/ZE-Gen p.18: 50% of generators bought 4–10 years ago (suggests longer life) | B/J | ⚑ evidence points longer |
+| Petrol generator life (years) | 3 | 5 | 8 | *Amendment A3* (was 2/3/5). A2EI/ZE-Gen p.18: 50% of generators bought 4–10 years ago | B/J | A3 |
 | Diesel 20 kVA purchase price | – | – | – | Not found; needs dealer quotes (manual) | – | gap |
 | Diesel generator life (years) | 6 | 8 | 12 | No source found | J | = (source pending) |
 
@@ -71,7 +71,7 @@ Plausibility check (no results computed): central values give 1.2 × (0.40 + 0.6
 | PV modules, ₦/Wp (2026) | 190 | 260 | 350 | Solar Builders NG (checked Oct 2026): Tier-1 mono/bifacial ₦190–260/Wp; Nigeria Building Cost: ~₦350/W | C | new |
 | LFP battery, ₦/kWh (2026) | 160,000 | 255,000 | 300,000 | Skillnaija: 5 kWh ₦0.8–1.5m, 10 kWh ₦1.5–2.8m (₦160–300k/kWh); Solar Builders NG: 5.12 kWh LiFePO4 ≈ ₦1.31m (≈₦255k/kWh). Outlier excluded: Afrotools ₦70–120k/kWh | C | new |
 | Inverter + balance of system + installation | 20% | 30% | 40% of PV + battery cost | No itemised source; full-system quotes (Voltage Africa: 1 kWp ₦0.9–2m, 5 kWp ₦4.5–9m; Solar Builders NG: 5 kVA/10 kWh ₦4.65–8.5m) to be used to check the total | J/C | new ⚑ weak |
-| Cost benchmarks before 2026 | – | 2026 ₦ values held constant | – | Plan 5.4: only ₦ benchmarks were found, so 2026 values are held and flagged. This overstates solar cost in 2023–25 (the naira was stronger) and is conservative for solar | J | = |
+| Cost benchmarks before 2026 | – | Constant US$ price | – | *Amendment A4*: 2026 ₦ benchmarks converted to US$ at the CBN October 2026 average, then to ₦ for each month at that month's CBN rate | J | A4 |
 | Night share of energy (household) | 0.5 | 0.7 | 0.9 | A2EI/ZE-Gen: households use generators more in the evening (qualitative); NLSS Table 7.12: national generator use 2.7 h in 6pm–10pm out of 4.1 h/day (≈0.66) | A/B | = (central supported) |
 | Night share (business) | 0.1 | 0.3 | 0.5 | A2EI/ZE-Gen: businesses draw power mainly in daytime (qualitative) | B/J | = |
 | Battery depth of discharge (LFP) | – | 0.8 | – | Vendor cycle-life tables are rated at 80% DoD (Portlandia Electric; Anern) | C | = |
@@ -79,7 +79,7 @@ Plausibility check (no results computed): central values give 1.2 × (0.40 + 0.6
 | Extra PV derate (small systems, soiling) | – | 0.9 | – | Plan assumption | J | = |
 | PV output `PVOUT_min` by state | – | – | – | Global Solar Atlas monthly PVOUT, **not yet downloaded** (manual; see `docs/phase2_results.md`) | – | gap |
 | Analysis horizon | – | 10 years | – | Plan | J | = |
-| LFP battery life (years) | 6 | 8 | 10 | Vendor sources: daily-cycled LFP lasts about 8–15 years; ~6,000 cycles at 80% DoD ≈ 16 years at 1 cycle/day (Portlandia Electric); 5,000 cycles (Anern) | C | ⚑ evidence points longer |
+| LFP battery life (years) | 8 | 10 | 15 | *Amendment A3* (was 6/8/10). Vendor sources: daily-cycled LFP lasts about 8–15 years; ~6,000 cycles at 80% DoD ≈ 16 years at 1 cycle/day (Portlandia Electric); 5,000 cycles (Anern) | C | A3 |
 | Lead-acid battery life (separate case) | – | 3 years | – | Plan | J | = |
 | Real discount rate | 10% | 15% | 25% | Plan judgement; no source | J | = |
 | O&M, % of capital per year | 0.5% | 1% | 2% | Plan judgement | J | = |
@@ -100,7 +100,10 @@ From the 2006 IPCC Guidelines Vol. 2 (as recorded in `nigeria-emission-factors/d
 | Petrol | 0.720 | 0.745 | 0.775 | EN 228 specification range; Nigerian (SON/NMDPRA) specification **not checked** | C/J |
 | Diesel | 0.820 | 0.840 | 0.850 | EN 590 range 0.820–0.845; Cummins fuel-data basis 0.85 | A/C |
 
-## 4. Values that differ from the plan (not applied; amendment needed to adopt)
+## 4. Values that differ from the plan
+
+Items 1–3 were adopted by Amendment A3 (2026-11-26); item 4 remains a judgement value.
+
 
 1. **Petrol no-load fraction `a`:** evidence suggests lower values (about 0.15–0.30) than the plan's central 0.40.
    With the central `F_rated`, the plan values overstate household fuel use against the

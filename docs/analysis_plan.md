@@ -106,7 +106,7 @@ For state *s*, month *m* and user *u*:
 - **Fuel use per running hour:** `F(L/h) = f(load / rated)`.
   - **Diesel:** linear interpolation between the published 25/50/75/100% points.
   - **Petrol:** a straight-line fuel model `F = F_rated × (a + (1 − a) × load/rated)`, where
-    `a` is the no-load fuel fraction. Provisional values: low 0.30 / central 0.40 / high 0.55,
+    `a` is the no-load fuel fraction. *(A3)* Values: low 0.15 / central 0.30 / high 0.45,
     with `F_rated` set from published small-engine data in Phase 2.
 - **Daily fuel cost:** `C_fuel = F × hours × P_fuel(s, m)`, where `P_fuel` is the NBS state
   price (₦/L).
@@ -116,7 +116,8 @@ For state *s*, month *m* and user *u*:
   - Diesel: low 5% / central 10% / high 15%.
 - **Running cost per day** = `C_fuel × (1 + maintenance share)`.
 - **Full cost per day** = running cost + annualised purchase price ÷ 365. Purchase price and
-  life (petrol about 3 years, diesel about 8 years) are set in Phase 2 from cited market prices.
+  life are set in Phase 2 from cited market prices. *(A3)* Petrol generator life 3 / 5 / 8
+  years (low / central / high); diesel about 8 years.
 - **Cost per kWh** = daily cost ÷ (average load × hours).
 - **Monthly cost** = daily cost × running days.
 
@@ -130,6 +131,11 @@ For state *s*, month *m* and user *u*:
   state-level view.
 - The grid is shown as a **price reference** only. Supply hours are not modelled, so the
   comparison does not imply the grid is available when needed.
+- *(A1)* For the 7 states whose tariff oversight has passed to a state regulator (Lagos,
+  Enugu, Imo, Ekiti, Ondo, Niger, Kogi), the NERC DisCo tariff is used as a **flagged
+  placeholder** from the month the regulator took over (Ondo: from April 2024, transfer
+  date unknown). The state regulator's own tariff may differ. Aba Power (APLE) is kept
+  separate and not averaged into Abia.
 
 ### 5.4 Solar + battery LCOE (RQ2b)
 
@@ -145,12 +151,13 @@ Each system is sized to deliver the same daily energy `E` as the generator arche
   - 0.9 is an extra derate for small-system losses and soiling.
 - **Capital cost** = PV kWp × ₦/kWp + battery kWh × ₦/kWh + inverter and installation, from
   the 2026 benchmark range.
-  - Months before 2026 use US$ benchmarks converted at that month's CBN rate. If only ₦
-    benchmarks exist, the cost series is held at 2026 values and flagged.
+  - *(A4)* The 2026 ₦ benchmarks are converted to US$ at the CBN average rate of the
+    benchmark month (October 2026) and back to ₦ for each model month at that month's CBN
+    rate (constant US$ equipment price assumption, flagged).
 - **Analysis horizon:** 10 years. PV and inverter are assumed to last at least 10 years.
-- **Battery replacement:** LFP battery life low 10 years (no replacement) / central 8 years
-  (one replacement) / high 6 years (one replacement, earlier). A lead-acid battery
-  (replacement every 3 years) is a separate high-cost case.
+- **Battery replacement:** *(A3)* LFP battery life 15 years (low-cost case, no replacement) /
+  central 10 years (no replacement within the 10-year horizon) / 8 years (high-cost case, one
+  replacement). A lead-acid battery (replacement every 3 years) is a separate high-cost case.
 - **Real discount rate:** low 10% / central 15% / high 25%.
 - **O&M:** 1% of capital cost per year (range 0.5–2%).
 - **LCOE** = (capital cost + present value of battery replacement + present value of O&M)
@@ -172,9 +179,11 @@ Each system is sized to deliver the same daily energy `E` as the generator arche
 
 Three components per state, each converted to a **percentile rank** across the 37 states
 (1/37 to 1), so that no component becomes zero:
-- **R, generator reliance:** share of households using a generator as main lighting source
-  (NBS), or generator ownership share (MICS/DHS) where available. The source is named in the
-  output.
+- **R, generator reliance:** *(A2)* share of all households using a generator as their
+  primary electricity source (NBS NLSS 2018/19, Table 7.10: access × generator share). The
+  generator ownership share (NLSS Table 7.18) is used as a sensitivity. Borno, not covered
+  by NLSS, takes the North-East zone average (Adamawa, Bauchi, Gombe, Taraba, Yobe) and is
+  flagged. The source is named in the output.
 - **G, cost gap:** (generator running cost − solar LCOE) ÷ generator running cost, for the
   latest month, household archetype, central case. Negative values are set to 0 before
   ranking.
@@ -219,7 +228,8 @@ geopolitical zone.
 ### 5.10 RQ5 (optional): national household spend and CO2
 
 - **Spend** = Σ over states of households × generator reliance share × archetype monthly
-  running cost. It is reported only as a low–high range.
+  running cost. *(A2)* Reliance here uses the NLSS ownership share (high) and the
+  primary-source share (low). It is reported only as a low–high range.
 - **CO2** = litres × density × NCV × IPCC CO2 factor. CH4 and N2O are reported in a sensitivity
   using both the stationary and the off-road factors.
 - **Top-down check:** the implied household generator petrol volume is compared with NMDPRA

@@ -141,3 +141,13 @@ def test_state_centroids_inside_nigeria():
     c = load("state_centroids.csv")
     assert sorted(c.state) == sorted(STATES)
     assert c.lon.between(2.6, 14.7).all() and c.lat.between(4.2, 13.9).all()
+
+
+def test_solar_pvout_state_monthly():
+    s = load("solar_pvout_state_monthly.csv")
+    assert sorted(s.state.unique()) == sorted(STATES)
+    assert sorted(s.month_of_year.unique()) == list(range(1, 13))
+    assert not s.duplicated(["state", "month_of_year"]).any()
+    assert s.pvout_kwh_per_kwp_day.between(2.0, 7.0).all()
+    assert (s.worst_month_kwh_per_kwp_day <= s.pvout_kwh_per_kwp_day).all()
+    assert s.source.str.contains("Global Solar Atlas").all()

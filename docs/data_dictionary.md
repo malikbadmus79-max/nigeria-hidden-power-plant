@@ -98,3 +98,18 @@ unified in June 2023.
 ## state_centroids.csv — `src/fetch_boundaries.py`
 Area-weighted centroid (`lon`, `lat`) of each state from geoBoundaries NGA ADM1 (GRID3
 2022, CC BY 4.0). `source_name` is the name in the boundary file.
+
+## solar_pvout_state_monthly.csv — `src/build_solar.py`
+Global Solar Atlas 2.0 long-term (1994–2018) monthly average PV output per state.
+Mean of 30-arc-second cells whose centres fall inside each geoBoundaries ADM1 polygon.
+Credit: © The World Bank, Source: Global Solar Atlas 2.0, Solar resource data: Solargis
+(CC BY 4.0 with the GSA mandatory additions).
+
+| Column | Description |
+|---|---|
+| `state`, `month_of_year` | State; calendar month 1–12 (long-term average, not a specific year) |
+| `pvout_kwh_per_kwp_day` | Average daily PV output in that month, kWh per kWp |
+| `n_cells` | Raster cells averaged |
+| `annual_mean_kwh_per_kwp_day` | Mean of the 12 monthly values |
+| `worst_month_kwh_per_kwp_day`, `worst_month` | Lowest monthly value (used for sizing, plan 5.4) and its month |
+| `source` | Credit line |

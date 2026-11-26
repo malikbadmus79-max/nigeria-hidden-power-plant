@@ -23,6 +23,7 @@ redistributed. robots.txt was checked for each host before downloading.
 | `data/raw/nerc_tariffs/pdf/EEDCMYTO2024-1.pdf` | MYTO 2024 order for EEDC (January 2024; tariff-freeze wording, p.9) | NERC | https://nerc.gov.ng/wp-content/uploads/2024/01/EEDCMYTO2024-1.pdf | 2026-11-26 |
 | `data/raw/cbn/GetAllExchangeRates.json` | CBN official exchange rates, daily, all currencies | CBN | https://www.cbn.gov.ng/api/GetAllExchangeRates (behind https://www.cbn.gov.ng/rates/ExchRateByCurrency.html) | 2026-11-26 |
 | `data/raw/geoboundaries/geoBoundaries-NGA-ADM1.geojson` | Nigeria ADM1 boundaries (NGA-ADM1-27671186; GRID3 2022; CC BY 4.0) | geoBoundaries | https://www.geoboundaries.org/api/current/gbOpen/NGA/ADM1/ | 2026-11-26 |
+| `data/raw/gsa/Nigeria_GISdata_LTAym_AvgDailyTotals_GlobalSolarAtlas-v2_GEOTIFF.zip` (unzipped alongside) | Global Solar Atlas 2.0, Nigeria GIS data, long-term yearly and monthly average daily totals (PVOUT_01–12 used). Licence CC BY 4.0 + GSA mandatory additions (WIPO mediation/arbitration). Credit: © The World Bank, Source: Global Solar Atlas 2.0, Solar resource data: Solargis | World Bank / Solargis | https://globalsolaratlas.info/download/nigeria (downloaded by hand by the project owner) | 2026-11-26 |
 
 Not usable: the MICS 2021 Survey Findings Report link on Amazon S3 returned "Access
 Denied" (file deleted). PVGIS (`re.jrc.ec.europa.eu`) disallows all crawling in

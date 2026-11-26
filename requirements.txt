@@ -3,3 +3,4 @@ pdfplumber
 openpyxl
 matplotlib
 pytest
+rasterio
