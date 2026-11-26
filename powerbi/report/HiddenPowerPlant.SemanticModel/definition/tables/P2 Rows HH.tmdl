@@ -1,0 +1,32 @@
+/// Page 2 chart rows (household): top 5, separator, bottom 5 by generator ₦/kWh, latest month.
+table 'P2 Rows HH'
+	lineageTag: 83d87326-b2e4-4824-972c-45b8aa7b7710
+
+	column pos
+		lineageTag: 06fe50ec-85ee-486b-bf94-e134cd4a7a2c
+		isNameInferred
+		sourceColumn: [pos]
+
+	column state
+		lineageTag: 03f6c1e1-9b74-4a21-88aa-9b87dcb99cf3
+		isNameInferred
+		sourceColumn: [state]
+
+	column row_label =
+			VAR _s = 'P2 Rows HH'[state]
+			RETURN IF ( _s = "", "· · ·", LOOKUPVALUE ( dim_state[state_label_tariff], dim_state[state], _s ) )
+		lineageTag: 3b852318-dbf5-451a-944b-6ad744b90512
+		sortByColumn: pos
+
+	partition 'P2 Rows HH' = calculated
+		mode: import
+		source =
+				VAR _t = ADDCOLUMNS ( VALUES ( dim_state[state] ), "@g", [Gen kWh HH Now] )
+				VAR _top = TOPN ( 5, _t, [@g], DESC )
+				VAR _bot = TOPN ( 5, _t, [@g], ASC )
+				RETURN UNION (
+				    SELECTCOLUMNS ( _top, "pos", RANKX ( _top, [@g],, DESC ), "state", dim_state[state] ),
+				    ROW ( "pos", 6, "state", "" ),
+				    SELECTCOLUMNS ( _bot, "pos", 6 + RANKX ( _bot, [@g],, DESC ), "state", dim_state[state] )
+				)
+

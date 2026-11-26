@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "HiddenPowerPlant"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "57b6bd7c-9eaf-467b-9752-a68b83078318"
+  }
+}

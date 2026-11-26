@@ -1,0 +1,99 @@
+table fact_grid_tariff
+	lineageTag: faaae43d-c617-496a-b3c5-fa3f150dcdd2
+
+	column state
+		dataType: string
+		lineageTag: 85e4090d-2cdf-4042-85f8-cfcff0d87d64
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: string
+		lineageTag: f646d6a8-b476-44ee-a9ba-105b1e6dc3b6
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column band
+		dataType: string
+		lineageTag: 98d0f865-4e03-41d0-88ce-c32c6af6a0ee
+		summarizeBy: none
+		sourceColumn: band
+
+		annotation SummarizationSetBy = Automatic
+
+	column tariff_ngn_per_kwh
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: f6d35bf5-4db8-4c66-afb8-7a9c37acaae4
+		summarizeBy: none
+		sourceColumn: tariff_ngn_per_kwh
+
+		annotation SummarizationSetBy = Automatic
+
+	column tariff_min
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: ce4ebec4-7464-4b83-871e-11e910652133
+		summarizeBy: none
+		sourceColumn: tariff_min
+
+		annotation SummarizationSetBy = Automatic
+
+	column tariff_max
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 1609c607-bd3d-4387-8585-65375fa83be4
+		summarizeBy: none
+		sourceColumn: tariff_max
+
+		annotation SummarizationSetBy = Automatic
+
+	column discos
+		dataType: string
+		lineageTag: 2e16439f-38fd-4bf7-8268-987e8d69a369
+		summarizeBy: none
+		sourceColumn: discos
+
+		annotation SummarizationSetBy = Automatic
+
+	column n_discos
+		dataType: int64
+		formatString: 0
+		lineageTag: a1e29e84-64b2-4ae5-93a2-d2a2bc68552b
+		summarizeBy: none
+		sourceColumn: n_discos
+
+		annotation SummarizationSetBy = Automatic
+
+	column tariff_status
+		dataType: string
+		lineageTag: 5e94b8f9-fdf0-4c24-82e7-d78905a0b79f
+		summarizeBy: none
+		sourceColumn: tariff_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column basis
+		dataType: string
+		lineageTag: c6eec6d3-54d1-4426-997f-aee215815309
+		summarizeBy: none
+		sourceColumn: basis
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_grid_tariff = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_grid_tariff.csv"), [Delimiter=",", Columns=10, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"state", type text}, {"month", type text}, {"band", type text}, {"tariff_ngn_per_kwh", type number}, {"tariff_min", type number}, {"tariff_max", type number}, {"discos", type text}, {"n_discos", Int64.Type}, {"tariff_status", type text}, {"basis", type text}}, "en-US")
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

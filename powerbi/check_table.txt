@@ -1,0 +1,47 @@
+
+Measure              Result
+Latest Month         [OK] DAX: 2026-05
+KPI P1 HH Value      [OK] DAX: ₦85,404
+KPI P1 HH Sub        [OK] DAX: National median, central · range ₦13,740–₦407,309
+KPI P1 BZ Value      [OK] DAX: ₦1.9m
+KPI P1 BZ Sub        [OK] DAX: National median, central · range ₦813,051–₦5.3m
+KPI P1 Change Value  [OK] DAX: +521%
+KPI P1 Change Sub    [OK] DAX: Household (petrol) · business (diesel) +294%
+Map P1 Max State     [OK] DAX: Edo
+Map P1 Max Value     [OK] DAX: ₦92,061
+Map P1 Min State     [OK] DAX: Adamawa
+Map P1 Min Value     [OK] DAX: ₦78,538
+Map P1 Spread Note   [OK] DAX: States differ by only about 17%; the colour scale is stretched to show the differences
+Line P1 Note         [OK] DAX: Shaded band = low–high case, clipped at the top (high case reaches ₦407,309)
+Gen HH First         [OK] DAX: ₦13,752
+Range P2 HH          [OK] DAX: All 37 states: generator ₦2,231–₦2,615/kWh · solar ₦310–₦337/kWh (central)
+Range P2 BZ          [OK] DAX: All 37 states: generator ₦1,213–₦1,627/kWh · solar ₦176–₦202/kWh (central)
+Ref P2 Band A Label  [OK] DAX: Band A ₦209.50
+Ref P2 Band B Label  [OK] DAX: Band B ₦65
+KPI P3 Now Value     [OK] DAX: 10.8 months
+KPI P3 Now Sub       [OK] DAX: Median of states, central · states 9.6–11.6; range 2.1–39.4
+KPI P3 Start Value   [OK] DAX: 14.1 months
+KPI P3 Start Sub     [OK] DAX: Median of states, central · business 16.5 months
+KPI P3 Peak Title    [OK] DAX: 2024 peak (Feb 2024)
+KPI P3 Peak Value    [OK] DAX: 28.3 months
+Map P3 Max State     [OK] DAX: Osun
+Map P3 Min State     [OK] DAX: Bauchi
+Label P3 HH End      [OK] DAX: Household 10.8
+Label P3 BZ End      [OK] DAX: Business 9.1
+Note P3 Afford       [OK] DAX: 12 least affordable · whiskers = low–high · all-state median 2.4
+Takeaway P1          [OK] DAX: Running a small household generator cost a median ₦85,404 a month in May 2026, 521% more than in January 2023 (central estimate).
+Takeaway P2          [OK] DAX: In May 2026 a small petrol generator cost ₦2,231–₦2,615 per kWh; solar + battery ₦310–₦337; grid Band A ₦209.50 where supply exists.
+Takeaway P3          [OK] DAX: Solar + battery now pays back in about 11 months for a typical household (median, May 2026), down from 28 months at the Feb 2024 peak (central estimates).
+Takeaway P4          [OK] DAX: Edo, Delta and Abia rank highest; Abia, Edo, FCT stay in the top 10 under all 12 index variants.
+Top10 #1             [OK] DAX: Edo idx 0.93 | ₦91,298 | 10.0  (2.3–34.0) | 1.3 months | All 12
+Top10 #2             [OK] DAX: Delta idx 0.88 | ₦88,338 | 10.5  (2.4–35.6) | 1.2 months
+Top10 #3             [OK] DAX: Abia idx 0.82 | ₦87,606 | 10.5  (2.4–35.7) | 2.0 months | All 12
+Top10 #4             [OK] DAX: Ondo idx 0.79 | ₦84,654 | 10.9  (2.5–37.1) | 1.7 months
+Top10 #5             [OK] DAX: Imo idx 0.74 | ₦84,318 | 10.9  (2.4–37.1) | 1.4 months
+Top10 #6             [OK] DAX: Akwa Ibom idx 0.67 | ₦86,265 | 10.9  (2.5–36.9) | 2.3 months
+Top10 #7             [OK] DAX: FCT idx 0.67 | ₦84,874 | 10.8  (2.4–36.6) | 1.5 months | All 12
+Top10 #8             [OK] DAX: Oyo idx 0.66 | ₦86,849 | 10.8  (2.4–36.6) | 1.5 months
+Top10 #9             [OK] DAX: Ekiti idx 0.61 | ₦84,649 | 10.9  (2.4–37.0) | 2.2 months
+Top10 #10            [OK] DAX: Rivers idx 0.61 | ₦83,687 | 11.2  (2.5–37.9) | 1.6 months
+
+43/43 checks OK

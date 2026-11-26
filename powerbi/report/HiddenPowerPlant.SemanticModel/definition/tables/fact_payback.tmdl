@@ -1,0 +1,126 @@
+table fact_payback
+	lineageTag: 616c01bd-31d5-499e-bd68-75debe07c10b
+
+	column state
+		dataType: string
+		lineageTag: 46b60d28-3ae2-470c-96fb-d36c2398dfe6
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: string
+		lineageTag: eaf065e1-2059-442e-b2f8-760aa2e1cb41
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column user
+		dataType: string
+		lineageTag: 96f3bf4d-78f0-4e85-9b28-142ae75a994e
+		summarizeBy: none
+		sourceColumn: user
+
+		annotation SummarizationSetBy = Automatic
+
+	column case
+		dataType: string
+		lineageTag: f41a9a6f-90b6-4b74-856d-677816158557
+		summarizeBy: none
+		sourceColumn: case
+
+		annotation SummarizationSetBy = Automatic
+
+	column upfront_ngn
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 938eecae-6f40-4e58-a0a7-024a0d3055ca
+		summarizeBy: none
+		sourceColumn: upfront_ngn
+
+		annotation SummarizationSetBy = Automatic
+
+	column generator_fuel_maint_ngn_per_month
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 238493a7-1f7b-4dc8-b861-1072a2ca5528
+		summarizeBy: none
+		sourceColumn: generator_fuel_maint_ngn_per_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column solar_om_ngn_per_month
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 2076637b-dec0-4eb3-bc6a-c5eefb404c16
+		summarizeBy: none
+		sourceColumn: solar_om_ngn_per_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column saving_ngn_per_month
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 4314670a-d861-4bd0-99e9-649357eacc4a
+		summarizeBy: none
+		sourceColumn: saving_ngn_per_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column payback_months
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: cc4342d7-eddb-4a5c-a076-c8494bc0de46
+		summarizeBy: none
+		sourceColumn: payback_months
+
+		annotation SummarizationSetBy = Automatic
+
+	column payback_note
+		dataType: string
+		lineageTag: 481c0eea-5a4b-4661-97f2-a7ea0df5f290
+		summarizeBy: none
+		sourceColumn: payback_note
+
+		annotation SummarizationSetBy = Automatic
+
+	column hh_consumption_ngn_per_month
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: bf18b39d-2055-4bcf-8de2-af5ad7e9a77b
+		summarizeBy: none
+		sourceColumn: hh_consumption_ngn_per_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column upfront_months_of_consumption
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: e01b9479-0737-441b-9160-0f9b9b4c0ee9
+		summarizeBy: none
+		sourceColumn: upfront_months_of_consumption
+
+		annotation SummarizationSetBy = Automatic
+
+	column pair
+		dataType: string
+		lineageTag: 42b82df0-7966-4686-a426-4b22488fc5ad
+		summarizeBy: none
+		sourceColumn: pair
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_payback = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_payback.csv"), [Delimiter=",", Columns=13, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"state", type text}, {"month", type text}, {"user", type text}, {"case", type text}, {"upfront_ngn", type number}, {"generator_fuel_maint_ngn_per_month", type number}, {"solar_om_ngn_per_month", type number}, {"saving_ngn_per_month", type number}, {"payback_months", type number}, {"payback_note", type text}, {"hh_consumption_ngn_per_month", type number}, {"upfront_months_of_consumption", type number}, {"pair", type text}}, "en-US")
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

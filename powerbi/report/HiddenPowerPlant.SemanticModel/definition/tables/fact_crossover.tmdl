@@ -1,0 +1,112 @@
+table fact_crossover
+	lineageTag: 4b16fdc1-1142-4572-950b-f9b828e93a0e
+
+	column state
+		dataType: string
+		lineageTag: 72f3c2fe-67dc-4592-aae9-7849db59249a
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column user
+		dataType: string
+		lineageTag: 8b3dffbc-d86e-4eb6-901e-077cdfa579b4
+		summarizeBy: none
+		sourceColumn: user
+
+		annotation SummarizationSetBy = Automatic
+
+	column basis
+		dataType: string
+		lineageTag: 00232ca8-6098-4521-b57a-d0a9c0742ddc
+		summarizeBy: none
+		sourceColumn: basis
+
+		annotation SummarizationSetBy = Automatic
+
+	column crossover_month
+		dataType: string
+		lineageTag: 68ef5e6c-c6b6-4c99-b462-b4e60ad5313f
+		summarizeBy: none
+		sourceColumn: crossover_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column robust_crossover_month
+		dataType: string
+		lineageTag: 9e5b8b3c-1a48-4500-b48d-b4825eb9783c
+		summarizeBy: none
+		sourceColumn: robust_crossover_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column crossover_at_series_start
+		dataType: string
+		lineageTag: b63d025b-06fe-4d26-986d-fe921e09545a
+		summarizeBy: none
+		sourceColumn: crossover_at_series_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column robust_at_series_start
+		dataType: string
+		lineageTag: ebb32349-5f84-4513-874a-608c72d3a9bc
+		summarizeBy: none
+		sourceColumn: robust_at_series_start
+
+		annotation SummarizationSetBy = Automatic
+
+	column solar_cheaper_latest_central
+		dataType: string
+		lineageTag: ecc5156e-8330-4637-b496-c683b73f92f6
+		summarizeBy: none
+		sourceColumn: solar_cheaper_latest_central
+
+		annotation SummarizationSetBy = Automatic
+
+	column solar_cheaper_latest_robust
+		dataType: string
+		lineageTag: e27678d5-e731-4830-867a-cf72c48d2a48
+		summarizeBy: none
+		sourceColumn: solar_cheaper_latest_robust
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_month
+		dataType: string
+		lineageTag: 471803f3-7690-453b-9c1d-73322eb24661
+		summarizeBy: none
+		sourceColumn: first_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column latest_month
+		dataType: string
+		lineageTag: ad5c24f2-74f9-4b5c-a3c3-dab502e3e091
+		summarizeBy: none
+		sourceColumn: latest_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column gap_latest_central_pct
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 5321d7be-ed30-49f3-bac6-caa78a1833ff
+		summarizeBy: none
+		sourceColumn: gap_latest_central_pct
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_crossover = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_crossover.csv"), [Delimiter=",", Columns=12, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"state", type text}, {"user", type text}, {"basis", type text}, {"crossover_month", type text}, {"robust_crossover_month", type text}, {"crossover_at_series_start", type text}, {"robust_at_series_start", type text}, {"solar_cheaper_latest_central", type text}, {"solar_cheaper_latest_robust", type text}, {"first_month", type text}, {"latest_month", type text}, {"gap_latest_central_pct", type number}}, "en-US")
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

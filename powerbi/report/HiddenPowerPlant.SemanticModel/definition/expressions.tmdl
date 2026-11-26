@@ -1,0 +1,6 @@
+/// Absolute path of data/processed/powerbi/ (with trailing backslash). The only value to change on another machine.
+expression DataFolder = "C:\Users\badmu\Downloads\nigeria-hidden-power-plant\data\processed\powerbi\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: e5d8037a-9b94-4f02-b646-caeb254aa2db
+
+	annotation PBI_ResultType = Text
+

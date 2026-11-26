@@ -1,0 +1,144 @@
+table fact_generator_cost
+	lineageTag: bef250af-9c95-4465-b3c6-f3a930748289
+
+	column state
+		dataType: string
+		lineageTag: 7d4d8a68-9116-4e0c-9ca5-3214ad123d05
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: string
+		lineageTag: 108d0b3a-86a9-437b-8f60-49a026bafac7
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column user
+		dataType: string
+		lineageTag: 6bf894f1-c832-4cdd-b02b-4910ddf1fa1d
+		summarizeBy: none
+		sourceColumn: user
+
+		annotation SummarizationSetBy = Automatic
+
+	column case
+		dataType: string
+		lineageTag: f8772edf-286f-46a1-b70c-2bba2720ea69
+		summarizeBy: none
+		sourceColumn: case
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel
+		dataType: string
+		lineageTag: 0daabe3e-0bc0-41a3-b3e4-da7818351178
+		summarizeBy: none
+		sourceColumn: fuel
+
+		annotation SummarizationSetBy = Automatic
+
+	column price_ngn_per_litre
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: d62eb6cf-8a62-464e-8520-94b6076c87f9
+		summarizeBy: none
+		sourceColumn: price_ngn_per_litre
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_price_filled
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 992c25fd-5ed5-46e0-90fe-c8cc69b9012a
+		summarizeBy: none
+		sourceColumn: fuel_price_filled
+
+		annotation SummarizationSetBy = Automatic
+
+	column running_ngn_per_kwh
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 8660c77a-c30c-45e8-9d5b-f3ebd069168b
+		summarizeBy: none
+		sourceColumn: running_ngn_per_kwh
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_ngn_per_kwh
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: a356dfb8-2e60-4f18-b00d-7e6096ada246
+		summarizeBy: none
+		sourceColumn: full_ngn_per_kwh
+
+		annotation SummarizationSetBy = Automatic
+
+	column running_ngn_per_day
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 5eef5ad5-f625-41d9-8b2c-ad507d607acc
+		summarizeBy: none
+		sourceColumn: running_ngn_per_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_ngn_per_day
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 92d406b8-92a2-4ab0-93f3-ed7672dd7f4f
+		summarizeBy: none
+		sourceColumn: full_ngn_per_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column running_ngn_per_month
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: ca1ead85-53ef-4f02-a44f-1ffdd3536c5d
+		summarizeBy: none
+		sourceColumn: running_ngn_per_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_ngn_per_month
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 0bfde4b3-769f-4852-8125-a4ffb41a357b
+		summarizeBy: none
+		sourceColumn: full_ngn_per_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column fuel_l_per_month
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 0abb5fa8-1e31-43be-9823-aff6a71be2e7
+		summarizeBy: none
+		sourceColumn: fuel_l_per_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_cost_note
+		dataType: string
+		lineageTag: 1ea6d726-8130-4c45-a032-73e28a19720d
+		summarizeBy: none
+		sourceColumn: full_cost_note
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_generator_cost = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_generator_cost.csv"), [Delimiter=",", Columns=15, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"state", type text}, {"month", type text}, {"user", type text}, {"case", type text}, {"fuel", type text}, {"price_ngn_per_litre", type number}, {"fuel_price_filled", type logical}, {"running_ngn_per_kwh", type number}, {"full_ngn_per_kwh", type number}, {"running_ngn_per_day", type number}, {"full_ngn_per_day", type number}, {"running_ngn_per_month", type number}, {"full_ngn_per_month", type number}, {"fuel_l_per_month", type number}, {"full_cost_note", type text}}, "en-US")
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

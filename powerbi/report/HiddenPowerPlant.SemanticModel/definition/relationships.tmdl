@@ -1,0 +1,40 @@
+relationship 573ce0cf-44cc-41b3-a823-bc3abe472112
+	fromColumn: fact_generator_cost.state
+	toColumn: dim_state.state
+
+relationship fdd10674-40ee-4bdb-b1e5-653a0347313e
+	fromColumn: fact_grid_tariff.state
+	toColumn: dim_state.state
+
+relationship 35a1d909-790c-4be7-8b76-776ac61df30e
+	fromColumn: fact_solar_cost.state
+	toColumn: dim_state.state
+
+relationship 3a338663-6da1-4d1a-a6b0-adbe350e446b
+	fromColumn: fact_payback.state
+	toColumn: dim_state.state
+
+relationship 295ed271-7bd9-4312-91f6-5e0502ed7ff0
+	fromColumn: fact_crossover.state
+	toColumn: dim_state.state
+
+relationship 5cc38f05-58ad-4d12-882e-751934a03524
+	fromColumn: fact_priority_index.state
+	toColumn: dim_state.state
+
+relationship 034e02bb-a2c9-4c69-bb77-92fb3ff19ec2
+	fromColumn: fact_generator_cost.month
+	toColumn: dim_month.month
+
+relationship 28906902-0b33-44a9-ad8b-b54b30c8da71
+	fromColumn: fact_grid_tariff.month
+	toColumn: dim_month.month
+
+relationship bdf7949f-33ca-4a9c-adda-97ae21b48219
+	fromColumn: fact_solar_cost.month
+	toColumn: dim_month.month
+
+relationship e4a58494-911e-4d83-9677-8c63931a77e8
+	fromColumn: fact_payback.month
+	toColumn: dim_month.month
+

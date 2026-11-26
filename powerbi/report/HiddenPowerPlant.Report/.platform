@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "HiddenPowerPlant"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "ee6e62f1-aca8-46fe-be92-6515e864d0de"
+  }
+}

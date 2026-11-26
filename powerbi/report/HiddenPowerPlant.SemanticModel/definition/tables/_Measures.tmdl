@@ -1,0 +1,654 @@
+/// Holds the model's measures. No data.
+table _Measures
+	lineageTag: fd5fcbfc-a479-4601-81da-f77bf50311a7
+
+	/// Latest month with NBS fuel prices (yyyy-mm).
+	measure 'Latest Month' = CALCULATE ( MAX ( fact_generator_cost[month] ), REMOVEFILTERS () )
+		displayFolder: 0 Common
+		lineageTag: 26713f5a-9710-4dae-a50f-25562c73dcb5
+
+	/// Latest month as 'May 2026'.
+	measure 'Latest Month Label' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( MAX ( dim_month[label] ), REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		displayFolder: 0 Common
+		lineageTag: 399f6d4d-5e36-4ca0-bb93-6cbc4bf3da45
+
+	/// First month of the generator series (yyyy-mm).
+	measure 'First Month' = CALCULATE ( MIN ( fact_generator_cost[month] ), REMOVEFILTERS () )
+		displayFolder: 0 Common
+		lineageTag: c681a593-70c4-4b31-aa5a-0f9563d8b5d0
+
+	/// Footnote shown on every page.
+	measure Footnote = "Estimates with low–high ranges. Sources: NBS, NERC, CBN, Global Solar Atlas/Solargis (CC BY 4.0), geoBoundaries. Method and limits: docs/phase4_audit.md"
+		displayFolder: 0 Common
+		lineageTag: 1a8719a7-03b5-4af9-8054-96110a7d1b78
+
+	/// Generator running cost (fuel + maintenance), ₦/month, household, central case. Median of states in the current filter (one state: that state's value).
+	measure 'Gen HH Central' = CALCULATE ( MEDIAN ( fact_generator_cost[running_ngn_per_month] ), fact_generator_cost[user] = "household", fact_generator_cost[case] = "central" )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: 6fed895d-514b-46b0-869b-9aa547805161
+
+	/// Gen HH Central in the latest month.
+	measure 'Gen HH Central Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( [Gen HH Central], REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: 641f03a2-2644-4564-9d69-705e78fbb1a9
+
+	/// Generator running cost (fuel + maintenance), ₦/month, household, low case. Median of states in the current filter (one state: that state's value).
+	measure 'Gen HH Low' = CALCULATE ( MEDIAN ( fact_generator_cost[running_ngn_per_month] ), fact_generator_cost[user] = "household", fact_generator_cost[case] = "low" )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: b2ce25d7-5c9e-4404-8581-de31e95173c8
+
+	/// Gen HH Low in the latest month.
+	measure 'Gen HH Low Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( [Gen HH Low], REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: 87499496-c630-4a32-a120-75509b739992
+
+	/// Generator running cost (fuel + maintenance), ₦/month, household, high case. Median of states in the current filter (one state: that state's value).
+	measure 'Gen HH High' = CALCULATE ( MEDIAN ( fact_generator_cost[running_ngn_per_month] ), fact_generator_cost[user] = "household", fact_generator_cost[case] = "high" )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: fc61cc80-ee26-4315-87e9-8431260bae96
+
+	/// Gen HH High in the latest month.
+	measure 'Gen HH High Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( [Gen HH High], REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: f11e1113-3a95-480f-b3b5-2da65685efb6
+
+	/// Gen HH Central in the first month (January 2023).
+	measure 'Gen HH First' =
+			VAR _m = [First Month]
+			RETURN CALCULATE ( [Gen HH Central], REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: 807e33c8-4f89-4a88-ab61-de8fdaaaa03c
+
+	/// Change in Gen HH Central from January 2023 to the latest month.
+	measure 'Gen HH Change' = DIVIDE ( [Gen HH Central Now], [Gen HH First] ) - 1
+		formatString: +0%
+		displayFolder: 1 Fuel shock
+		lineageTag: 66c98291-0f33-449a-9f4e-52b8feb7e4c0
+
+	/// Generator running cost (fuel + maintenance), ₦/month, business, central case. Median of states in the current filter (one state: that state's value).
+	measure 'Gen BZ Central' = CALCULATE ( MEDIAN ( fact_generator_cost[running_ngn_per_month] ), fact_generator_cost[user] = "business", fact_generator_cost[case] = "central" )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: 2fb84d75-e95e-4b5e-a5a2-e78b0f14ae38
+
+	/// Gen BZ Central in the latest month.
+	measure 'Gen BZ Central Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( [Gen BZ Central], REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: 8a9245f6-0243-44c7-9fd7-9a5c532a1b1c
+
+	/// Generator running cost (fuel + maintenance), ₦/month, business, low case. Median of states in the current filter (one state: that state's value).
+	measure 'Gen BZ Low' = CALCULATE ( MEDIAN ( fact_generator_cost[running_ngn_per_month] ), fact_generator_cost[user] = "business", fact_generator_cost[case] = "low" )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: a7daf6fe-3b66-4c80-aa57-cd2617a4104f
+
+	/// Gen BZ Low in the latest month.
+	measure 'Gen BZ Low Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( [Gen BZ Low], REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: 865fbb72-2361-4e48-b336-df7920928d5f
+
+	/// Generator running cost (fuel + maintenance), ₦/month, business, high case. Median of states in the current filter (one state: that state's value).
+	measure 'Gen BZ High' = CALCULATE ( MEDIAN ( fact_generator_cost[running_ngn_per_month] ), fact_generator_cost[user] = "business", fact_generator_cost[case] = "high" )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: aa2da6ba-6e3a-4262-8e98-5c388341ef4d
+
+	/// Gen BZ High in the latest month.
+	measure 'Gen BZ High Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( [Gen BZ High], REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: 7336b51a-5b53-4f61-b6c7-39cb83ff0009
+
+	/// Gen BZ Central in the first month (January 2023).
+	measure 'Gen BZ First' =
+			VAR _m = [First Month]
+			RETURN CALCULATE ( [Gen BZ Central], REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: 54382454-2d49-4073-87da-4ad838fb546b
+
+	/// Change in Gen BZ Central from January 2023 to the latest month.
+	measure 'Gen BZ Change' = DIVIDE ( [Gen BZ Central Now], [Gen BZ First] ) - 1
+		formatString: +0%
+		displayFolder: 1 Fuel shock
+		lineageTag: b672bc9f-3279-4c62-bab8-d35666f6c05b
+
+	/// Gen HH Central only in the first and latest month (line end labels).
+	measure 'Gen HH Label Points' =
+			VAR _m = SELECTEDVALUE ( dim_month[month] )
+			RETURN IF ( _m = [First Month] || _m = [Latest Month], [Gen HH Central] )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: 3169d9c3-da09-4604-a9fc-3270c550de60
+
+	/// Highest monthly value of the household high case (national median).
+	measure 'Gen HH High Max' = CALCULATE ( MAXX ( VALUES ( dim_month[month] ), [Gen HH High] ), REMOVEFILTERS ( dim_month ) )
+		formatString: ₦#,0
+		displayFolder: 1 Fuel shock
+		lineageTag: be5400a5-f795-444b-9441-01aad6866105
+
+	/// Page 1 takeaway.
+	measure 'Takeaway P1' =
+			VAR _v = [Gen HH Central Now]
+			RETURN "Running a small household generator cost a median " & IF ( _v >= 1000000, "₦" & FORMAT ( _v / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _v, "#,0" ) ) & " a month in " & [Latest Month Label] & ", " & FORMAT ( [Gen HH Change] * 100, "0" ) & "% more than in January 2023 (central estimate)."
+		displayFolder: 1 Fuel shock
+		lineageTag: 9160bfd0-e786-493a-ae0c-40e997fa1002
+
+	measure 'KPI P1 HH Title' = "Household generator, ₦/month (" & [Latest Month Label] & ")"
+		displayFolder: 1 Fuel shock
+		lineageTag: 244d4b84-a41b-4652-82a8-a167e4014ef4
+
+	measure 'KPI P1 HH Value' =
+			VAR _v = [Gen HH Central Now]
+			RETURN IF ( _v >= 1000000, "₦" & FORMAT ( _v / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _v, "#,0" ) )
+		displayFolder: 1 Fuel shock
+		lineageTag: a625a025-0e20-49fb-b2a8-6183196ec61d
+
+	measure 'KPI P1 HH Sub' =
+			VAR _l = [Gen HH Low Now]
+			VAR _h = [Gen HH High Now]
+			RETURN "National median, central · range " & IF ( _l >= 1000000, "₦" & FORMAT ( _l / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _l, "#,0" ) ) & "–" & IF ( _h >= 1000000, "₦" & FORMAT ( _h / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _h, "#,0" ) )
+		displayFolder: 1 Fuel shock
+		lineageTag: 73877499-4a13-4a7a-959f-3904c533ed90
+
+	measure 'KPI P1 BZ Title' = "Small-business generator, ₦/month (" & [Latest Month Label] & ")"
+		displayFolder: 1 Fuel shock
+		lineageTag: cc829636-af94-4629-8771-5d4e76cbfeaa
+
+	measure 'KPI P1 BZ Value' =
+			VAR _v = [Gen BZ Central Now]
+			RETURN IF ( _v >= 1000000, "₦" & FORMAT ( _v / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _v, "#,0" ) )
+		displayFolder: 1 Fuel shock
+		lineageTag: e7ee805a-6567-45bd-8c47-290ea25e7abf
+
+	measure 'KPI P1 BZ Sub' =
+			VAR _l = [Gen BZ Low Now]
+			VAR _h = [Gen BZ High Now]
+			RETURN "National median, central · range " & IF ( _l >= 1000000, "₦" & FORMAT ( _l / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _l, "#,0" ) ) & "–" & IF ( _h >= 1000000, "₦" & FORMAT ( _h / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _h, "#,0" ) )
+		displayFolder: 1 Fuel shock
+		lineageTag: 63d8ed82-7641-4d91-803b-e911bc24da2e
+
+	measure 'KPI P1 Change Value' = "+" & FORMAT ( [Gen HH Change] * 100, "0" ) & "%"
+		displayFolder: 1 Fuel shock
+		lineageTag: 27fba715-9b7f-40f3-af41-57b352408bd5
+
+	measure 'KPI P1 Change Sub' = "Household (petrol) · business (diesel) +" & FORMAT ( [Gen BZ Change] * 100, "0" ) & "%"
+		displayFolder: 1 Fuel shock
+		lineageTag: 797f6e3f-99bf-4471-8fbf-e0b4b031a529
+
+	measure 'Map P1 Title' = "Household generator cost by state (" & [Latest Month Label] & ", central)"
+		displayFolder: 1 Fuel shock
+		lineageTag: 5209a482-f0c6-4961-8627-a2d5de3d9cb0
+
+	/// State with the max household generator cost, latest month.
+	measure 'Map P1 Max State' = MAXX ( TOPN ( 1, ALL ( dim_state[state] ), [Gen HH Central Now], DESC ), dim_state[state] )
+		displayFolder: 1 Fuel shock
+		lineageTag: 7dea0821-e48d-4ea6-b8b1-a8854cf15727
+
+	measure 'Map P1 Max Value' =
+			VAR _v = MAXX ( ALL ( dim_state[state] ), [Gen HH Central Now] )
+			RETURN IF ( _v >= 1000000, "₦" & FORMAT ( _v / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _v, "#,0" ) )
+		displayFolder: 1 Fuel shock
+		lineageTag: 65668a19-2250-4d64-990a-3cc7176e359d
+
+	/// State with the min household generator cost, latest month.
+	measure 'Map P1 Min State' = MAXX ( TOPN ( 1, ALL ( dim_state[state] ), [Gen HH Central Now], ASC ), dim_state[state] )
+		displayFolder: 1 Fuel shock
+		lineageTag: 09ca09ac-2cff-4f24-b9b1-9bc15e128259
+
+	measure 'Map P1 Min Value' =
+			VAR _v = MINX ( ALL ( dim_state[state] ), [Gen HH Central Now] )
+			RETURN IF ( _v >= 1000000, "₦" & FORMAT ( _v / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _v, "#,0" ) )
+		displayFolder: 1 Fuel shock
+		lineageTag: 6012183c-c8b0-48eb-beaf-f0b74ee16dbd
+
+	measure 'Map P1 Spread Note' =
+			VAR _hi = MAXX ( ALL ( dim_state[state] ), [Gen HH Central Now] )
+			VAR _lo = MINX ( ALL ( dim_state[state] ), [Gen HH Central Now] )
+			RETURN "States differ by only about " & FORMAT ( ( _hi / _lo - 1 ) * 100, "0" ) & "%; the colour scale is stretched to show the differences"
+		displayFolder: 1 Fuel shock
+		lineageTag: 71b8004b-263c-4bc6-aadd-b48786a3f143
+
+	measure 'Line P1 Note' =
+			VAR _v = [Gen HH High Max]
+			RETURN "Shaded band = low–high case, clipped at the top (high case reaches " & IF ( _v >= 1000000, "₦" & FORMAT ( _v / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _v, "#,0" ) ) & ")"
+		displayFolder: 1 Fuel shock
+		lineageTag: 90fb75a3-4baa-4b03-adef-a962c6acc60f
+
+	/// Generator running cost, ₦/kWh, household, central, latest month.
+	measure 'Gen kWh HH Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( MEDIAN ( fact_generator_cost[running_ngn_per_kwh] ), fact_generator_cost[user] = "household", fact_generator_cost[case] = "central", REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: ₦#,0
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: fc9bc338-3cbd-4eb8-868e-7a1424069934
+
+	/// Solar + battery cost (LCOE), ₦/kWh, household, central, latest month.
+	measure 'Solar kWh HH Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( MEDIAN ( fact_solar_cost[lcoe_ngn_per_kwh] ), fact_solar_cost[user] = "household", fact_solar_cost[case] = "central", REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: ₦#,0
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: 44d81bb0-1aa0-417d-a48c-cc0a441c1fee
+
+	/// All-state range line under each chart.
+	measure 'Range P2 HH' =
+			VAR _g1 = MINX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )
+			VAR _g2 = MAXX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )
+			VAR _s1 = MINX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )
+			VAR _s2 = MAXX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )
+			RETURN "All 37 states: generator " & IF ( _g1 >= 1000000, "₦" & FORMAT ( _g1 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _g1, "#,0" ) ) & "–" & IF ( _g2 >= 1000000, "₦" & FORMAT ( _g2 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _g2, "#,0" ) ) & "/kWh · solar " & IF ( _s1 >= 1000000, "₦" & FORMAT ( _s1 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _s1, "#,0" ) ) & "–" & IF ( _s2 >= 1000000, "₦" & FORMAT ( _s2 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _s2, "#,0" ) ) & "/kWh (central)"
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: 4ef1f7c6-978d-41d8-94be-aeebd4079f8b
+
+	/// Generator running cost, ₦/kWh, business, central, latest month.
+	measure 'Gen kWh BZ Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( MEDIAN ( fact_generator_cost[running_ngn_per_kwh] ), fact_generator_cost[user] = "business", fact_generator_cost[case] = "central", REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: ₦#,0
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: 8d9cddf1-2181-4f4c-9ed5-3f6620818dac
+
+	/// Solar + battery cost (LCOE), ₦/kWh, business, central, latest month.
+	measure 'Solar kWh BZ Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( MEDIAN ( fact_solar_cost[lcoe_ngn_per_kwh] ), fact_solar_cost[user] = "business", fact_solar_cost[case] = "central", REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: ₦#,0
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: e3e31d8f-2233-496d-ad13-52da59ea1f86
+
+	/// All-state range line under each chart.
+	measure 'Range P2 BZ' =
+			VAR _g1 = MINX ( ALL ( dim_state[state] ), [Gen kWh BZ Now] )
+			VAR _g2 = MAXX ( ALL ( dim_state[state] ), [Gen kWh BZ Now] )
+			VAR _s1 = MINX ( ALL ( dim_state[state] ), [Solar kWh BZ Now] )
+			VAR _s2 = MAXX ( ALL ( dim_state[state] ), [Solar kWh BZ Now] )
+			RETURN "All 37 states: generator " & IF ( _g1 >= 1000000, "₦" & FORMAT ( _g1 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _g1, "#,0" ) ) & "–" & IF ( _g2 >= 1000000, "₦" & FORMAT ( _g2 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _g2, "#,0" ) ) & "/kWh · solar " & IF ( _s1 >= 1000000, "₦" & FORMAT ( _s1 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _s1, "#,0" ) ) & "–" & IF ( _s2 >= 1000000, "₦" & FORMAT ( _s2 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _s2, "#,0" ) ) & "/kWh (central)"
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: a92c0521-cd08-471f-8d2b-6bb27b3c76f0
+
+	/// Median Band A tariff across states, latest month (price reference).
+	measure 'Grid Band A Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( MEDIAN ( fact_grid_tariff[tariff_ngn_per_kwh] ), fact_grid_tariff[band] = "A", REMOVEFILTERS ( dim_month ), dim_month[month] = _m, REMOVEFILTERS ( dim_state ) )
+		formatString: ₦#,0.00
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: 95da41ac-aa6a-4e34-8478-361a49ef7ace
+
+	/// Median Band B tariff across states, latest month (price reference).
+	measure 'Grid Band B Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( MEDIAN ( fact_grid_tariff[tariff_ngn_per_kwh] ), fact_grid_tariff[band] = "B", REMOVEFILTERS ( dim_month ), dim_month[month] = _m, REMOVEFILTERS ( dim_state ) )
+		formatString: ₦#,0.00
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: f3df3883-9940-4983-bc66-3a84e1a5f7ee
+
+	/// Page 2 takeaway.
+	measure 'Takeaway P2' =
+			VAR _g1 = MINX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )
+			VAR _g2 = MAXX ( ALL ( dim_state[state] ), [Gen kWh HH Now] )
+			VAR _s1 = MINX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )
+			VAR _s2 = MAXX ( ALL ( dim_state[state] ), [Solar kWh HH Now] )
+			RETURN "In " & [Latest Month Label] & " a small petrol generator cost " & IF ( _g1 >= 1000000, "₦" & FORMAT ( _g1 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _g1, "#,0" ) ) & "–" & IF ( _g2 >= 1000000, "₦" & FORMAT ( _g2 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _g2, "#,0" ) ) & " per kWh; solar + battery " & IF ( _s1 >= 1000000, "₦" & FORMAT ( _s1 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _s1, "#,0" ) ) & "–" & IF ( _s2 >= 1000000, "₦" & FORMAT ( _s2 / 1000000, "0.0" ) & "m", "₦" & FORMAT ( _s2, "#,0" ) ) & "; grid Band A ₦" & FORMAT ( [Grid Band A Now], "#,0.00" ) & " where supply exists."
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: 383885aa-dfc9-4c0a-80a6-ee2aa1b7b5d2
+
+	measure 'Card P2 HH Title' = "Household · 2.5 kVA petrol — ₦ per kWh (" & [Latest Month Label] & ", central)"
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: 207acb6e-596f-4bab-a319-c39746d6cd64
+
+	measure 'Card P2 BZ Title' = "Small business · 20 kVA diesel — ₦ per kWh (" & [Latest Month Label] & ", central)"
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: 1456a1da-28c6-44b5-ba08-467b829528b6
+
+	measure 'Ref P2 Band A Label' = "Band A ₦" & FORMAT ( [Grid Band A Now], "#,0.00" )
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: fc2343e1-570c-4e6a-b582-8f5863d9c7d6
+
+	measure 'Ref P2 Band B Label' = "Band B ₦" & FORMAT ( [Grid Band B Now], "#,0" )
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: 7f297510-295a-440e-a7ed-a3db7a0ae9b3
+
+	/// Simple payback of solar + battery, months, household, central. Median of states in the current filter.
+	measure 'Payback HH Central' = CALCULATE ( MEDIAN ( fact_payback[payback_months] ), fact_payback[user] = "household", fact_payback[case] = "central" )
+		formatString: 0.0
+		displayFolder: 3 Payback
+		lineageTag: 9defddbd-a68d-4347-adf1-cab025be2f46
+
+	/// Payback HH Central in the latest month.
+	measure 'Payback HH Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( [Payback HH Central], REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: 0.0
+		displayFolder: 3 Payback
+		lineageTag: 6cc45e8d-6931-475b-8cdb-62cd29323691
+
+	/// Payback HH Central in the first solar month (June 2023, A7).
+	measure 'Payback HH Start' =
+			VAR _m = CALCULATE ( MIN ( fact_payback[month] ), REMOVEFILTERS () )
+			RETURN CALCULATE ( [Payback HH Central], REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: 0.0
+		displayFolder: 3 Payback
+		lineageTag: 888e6e86-7402-492c-99d4-6e897c9e67c3
+
+	/// Simple payback of solar + battery, months, business, central. Median of states in the current filter.
+	measure 'Payback BZ Central' = CALCULATE ( MEDIAN ( fact_payback[payback_months] ), fact_payback[user] = "business", fact_payback[case] = "central" )
+		formatString: 0.0
+		displayFolder: 3 Payback
+		lineageTag: 260980fc-81f0-4bd6-b432-57cfd4dd3de2
+
+	/// Payback BZ Central in the latest month.
+	measure 'Payback BZ Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( [Payback BZ Central], REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: 0.0
+		displayFolder: 3 Payback
+		lineageTag: f4db717f-b7a4-449f-90ce-40685d8ab896
+
+	/// Payback BZ Central in the first solar month (June 2023, A7).
+	measure 'Payback BZ Start' =
+			VAR _m = CALCULATE ( MIN ( fact_payback[month] ), REMOVEFILTERS () )
+			RETURN CALCULATE ( [Payback BZ Central], REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: 0.0
+		displayFolder: 3 Payback
+		lineageTag: 96b90bb5-9370-4283-b8d0-dfad7c0dab6e
+
+	/// Household payback, low case, latest month (per state).
+	measure 'Payback HH Low Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( MEDIAN ( fact_payback[payback_months] ), fact_payback[user] = "household", fact_payback[case] = "low", REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: 0.0
+		displayFolder: 3 Payback
+		lineageTag: 4b854960-88c1-4f1d-b566-88923860be1a
+
+	/// Household payback, high case, latest month (per state).
+	measure 'Payback HH High Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( MEDIAN ( fact_payback[payback_months] ), fact_payback[user] = "household", fact_payback[case] = "high", REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: 0.0
+		displayFolder: 3 Payback
+		lineageTag: 8dbdcae8-dc7b-4760-bb84-d4dbd4f96e9d
+
+	/// Highest monthly national median household payback in 2024.
+	measure 'Payback HH Peak 2024' = CALCULATE ( MAXX ( VALUES ( dim_month[month] ), [Payback HH Central] ), REMOVEFILTERS ( dim_month ), dim_month[year] = 2024 )
+		formatString: 0.0
+		displayFolder: 3 Payback
+		lineageTag: 3f036d35-f1fc-4553-8ed8-eaa73b432c7c
+
+	/// Month (yyyy-mm) of the 2024 household payback peak.
+	measure 'Payback HH Peak Month' = CALCULATE ( MAXX ( TOPN ( 1, VALUES ( dim_month[month] ), [Payback HH Central], DESC ), dim_month[month] ), REMOVEFILTERS ( dim_month ), dim_month[year] = 2024 )
+		displayFolder: 3 Payback
+		lineageTag: 36936490-6d38-44b7-ae33-283a8f6ef70b
+
+	/// Month of the 2024 peak as 'Feb 2024'.
+	measure 'Payback HH Peak Label' =
+			VAR _m = [Payback HH Peak Month]
+			RETURN CALCULATE ( MAX ( dim_month[label] ), REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		displayFolder: 3 Payback
+		lineageTag: 9f581c45-63a2-4fca-a3b7-34984832958e
+
+	/// Household payback only at the 2024 peak month (red marker).
+	measure 'Payback HH Peak Point' = IF ( SELECTEDVALUE ( dim_month[month] ) = [Payback HH Peak Month], [Payback HH Central] )
+		formatString: 0.0
+		displayFolder: 3 Payback
+		lineageTag: 28cb1818-63c7-4ced-9051-cd4a5cabde1a
+
+	/// Page 3 takeaway.
+	measure 'Takeaway P3' = "Solar + battery now pays back in about " & FORMAT ( [Payback HH Now], "0" ) & " months for a typical household (median, " & [Latest Month Label] & "), down from " & FORMAT ( [Payback HH Peak 2024], "0" ) & " months at the " & [Payback HH Peak Label] & " peak (central estimates)."
+		displayFolder: 3 Payback
+		lineageTag: d42cfdf5-1d82-44f8-80bf-62c119d9e861
+
+	measure 'KPI P3 Now Title' = "Household payback now (" & [Latest Month Label] & ")"
+		displayFolder: 3 Payback
+		lineageTag: fdcc3bd1-b065-464d-a880-0548a74f4779
+
+	measure 'KPI P3 Now Value' = FORMAT ( [Payback HH Now], "0.0" ) & " months"
+		displayFolder: 3 Payback
+		lineageTag: 2926b9d0-6a0b-4917-8797-f84ffbee493b
+
+	measure 'KPI P3 Now Sub' =
+			VAR _a = MINX ( ALL ( dim_state[state] ), [Payback HH Now] )
+			VAR _b = MAXX ( ALL ( dim_state[state] ), [Payback HH Now] )
+			VAR _l = MINX ( ALL ( dim_state[state] ), [Payback HH Low Now] )
+			VAR _h = MAXX ( ALL ( dim_state[state] ), [Payback HH High Now] )
+			RETURN "Median of states, central · states " & FORMAT ( _a, "0.0" ) & "–" & FORMAT ( _b, "0.0" ) & "; range " & FORMAT ( _l, "0.0" ) & "–" & FORMAT ( _h, "0.0" )
+		displayFolder: 3 Payback
+		lineageTag: a4b8bed5-ae90-4c17-900a-76dbe3376246
+
+	measure 'KPI P3 Start Value' = FORMAT ( [Payback HH Start], "0.0" ) & " months"
+		displayFolder: 3 Payback
+		lineageTag: e4366009-92b0-482d-8e68-34f332235572
+
+	measure 'KPI P3 Start Sub' = "Median of states, central · business " & FORMAT ( [Payback BZ Start], "0.0" ) & " months"
+		displayFolder: 3 Payback
+		lineageTag: 2c6a7b07-57ed-49c7-b98d-fd11deac2bb4
+
+	measure 'KPI P3 Peak Title' = "2024 peak (" & [Payback HH Peak Label] & ")"
+		displayFolder: 3 Payback
+		lineageTag: 5d307b5a-6b21-4109-b170-dcb5afd96d6c
+
+	measure 'KPI P3 Peak Value' = FORMAT ( [Payback HH Peak 2024], "0.0" ) & " months"
+		displayFolder: 3 Payback
+		lineageTag: c733850b-7570-483d-b561-ef3680a99658
+
+	measure 'Map P3 Title' = "Household payback by state (" & [Latest Month Label] & ")"
+		displayFolder: 3 Payback
+		lineageTag: a7076a24-05d8-484e-a717-569b011ddfe7
+
+	measure 'Map P3 Max State' = MAXX ( TOPN ( 1, ALL ( dim_state[state] ), [Payback HH Now], DESC ), dim_state[state] )
+		displayFolder: 3 Payback
+		lineageTag: efbf08d1-80ea-4854-aff4-46a55b3d9c3c
+
+	measure 'Map P3 Max Value' =
+			VAR _v = MAXX ( ALL ( dim_state[state] ), [Payback HH Now] )
+			RETURN FORMAT ( _v, "0.0" )
+		displayFolder: 3 Payback
+		lineageTag: e06e42db-5967-448f-8e5c-c6c7345aee78
+
+	measure 'Map P3 Min State' = MAXX ( TOPN ( 1, ALL ( dim_state[state] ), [Payback HH Now], ASC ), dim_state[state] )
+		displayFolder: 3 Payback
+		lineageTag: d6274fb6-c3cf-4723-948e-d12a368f992e
+
+	measure 'Map P3 Min Value' =
+			VAR _v = MINX ( ALL ( dim_state[state] ), [Payback HH Now] )
+			RETURN FORMAT ( _v, "0.0" )
+		displayFolder: 3 Payback
+		lineageTag: 2e853c9e-e7a4-4f26-96c5-7800309c3dd4
+
+	measure 'Map P3 Spread Note' =
+			VAR _hi = MAXX ( ALL ( dim_state[state] ), [Payback HH Now] )
+			VAR _lo = MINX ( ALL ( dim_state[state] ), [Payback HH Now] )
+			RETURN "States differ by only about " & FORMAT ( ( _hi / _lo - 1 ) * 100, "0" ) & "%; the colour scale is stretched to show the differences"
+		displayFolder: 3 Payback
+		lineageTag: 3518d7db-1c2e-4bdf-b55d-11f32f236fe9
+
+	measure 'Label P3 HH End' = "Household " & FORMAT ( [Payback HH Now], "0.0" )
+		displayFolder: 3 Payback
+		lineageTag: 0fabfd3d-0056-4be9-88fe-e91c5cdb5204
+
+	measure 'Label P3 BZ End' = "Business " & FORMAT ( [Payback BZ Now], "0.0" )
+		displayFolder: 3 Payback
+		lineageTag: a52a6499-7e10-4843-8075-68584b34449a
+
+	measure 'Label P3 Peak' = "Peak " & FORMAT ( [Payback HH Peak 2024], "0.0" ) & " mo"
+		displayFolder: 3 Payback
+		lineageTag: a99736b7-7774-4871-9956-251b30a95f12
+
+	/// Household solar upfront cost in months of household consumption, central case, latest month.
+	measure 'Upfront HH Central Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( MEDIAN ( fact_payback[upfront_months_of_consumption] ), fact_payback[user] = "household", fact_payback[case] = "central", REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: 0.0
+		displayFolder: 3 Payback
+		lineageTag: 5aa2d09f-2938-474b-a8b0-34509d28327a
+
+	/// Household solar upfront cost in months of household consumption, low case, latest month.
+	measure 'Upfront HH Low Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( MEDIAN ( fact_payback[upfront_months_of_consumption] ), fact_payback[user] = "household", fact_payback[case] = "low", REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: 0.0
+		displayFolder: 3 Payback
+		lineageTag: e06b966b-3a1e-4a5e-a240-0f3912c6e371
+
+	/// Household solar upfront cost in months of household consumption, high case, latest month.
+	measure 'Upfront HH High Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( MEDIAN ( fact_payback[upfront_months_of_consumption] ), fact_payback[user] = "household", fact_payback[case] = "high", REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: 0.0
+		displayFolder: 3 Payback
+		lineageTag: ab04abc9-7d35-4208-ba56-a0a2e5a324ff
+
+	measure 'Note P3 Afford' =
+			VAR _m = MEDIANX ( ALL ( dim_state[state] ), [Upfront HH Central Now] )
+			RETURN "12 least affordable · whiskers = low–high · all-state median " & FORMAT ( _m, "0.0" )
+		displayFolder: 3 Payback
+		lineageTag: 177dbfe0-bc75-4f05-9016-afe69f9ee8a9
+
+	/// Market priority index, base variant (equal weights, household saving, generator as primary source).
+	measure 'Priority Index' = CALCULATE ( MAX ( fact_priority_index[index] ), fact_priority_index[weighting] = "equal", fact_priority_index[gap_user] = "household", fact_priority_index[reliance_measure] = "primary_source" )
+		formatString: 0.00
+		displayFolder: 4 Where to go next
+		lineageTag: e408c06c-ee8c-4af8-834e-ad514e80ef9c
+
+	/// Rank in the base variant (1 = highest priority).
+	measure 'Priority Rank' = CALCULATE ( MAX ( fact_priority_index[rank] ), fact_priority_index[weighting] = "equal", fact_priority_index[gap_user] = "household", fact_priority_index[reliance_measure] = "primary_source" )
+		formatString: 0
+		displayFolder: 4 Where to go next
+		lineageTag: f1d3988c-da77-41e3-be30-e8b29f17e8de
+
+	/// Number of index variants (3 weightings × 2 users × 2 reliance measures).
+	measure 'Variants Total' = COUNTROWS ( SUMMARIZE ( ALL ( fact_priority_index ), fact_priority_index[weighting], fact_priority_index[gap_user], fact_priority_index[reliance_measure] ) )
+		formatString: 0
+		displayFolder: 4 Where to go next
+		lineageTag: 6d47a8d8-8c6a-4168-89f9-ff2371841643
+
+	/// Number of variants in which the state ranks in the top 10.
+	measure 'Variants In Top 10' = CALCULATE ( COUNTROWS ( fact_priority_index ), fact_priority_index[rank] <= 10 )
+		formatString: 0
+		displayFolder: 4 Where to go next
+		lineageTag: 9bdccc03-6967-4618-8ae0-6757f613d08b
+
+	/// 'All 12' if the state is in the top 10 under every variant.
+	measure 'All 12 Badge' = IF ( [Variants In Top 10] = [Variants Total], "All 12" )
+		displayFolder: 4 Where to go next
+		lineageTag: ff2c82da-f076-492e-b998-48a325530f2b
+
+	/// '●' if the state is in the top 10 under every variant.
+	measure 'All 12 Dot' = IF ( [Variants In Top 10] = [Variants Total], "●" )
+		displayFolder: 4 Where to go next
+		lineageTag: aa00b177-177d-4721-8460-5c6ec3c0de84
+
+	/// Household monthly ₦ saving from switching, central, latest month.
+	measure 'Saving HH Now' =
+			VAR _m = [Latest Month]
+			RETURN CALCULATE ( MEDIAN ( fact_payback[saving_ngn_per_month] ), fact_payback[user] = "household", fact_payback[case] = "central", REMOVEFILTERS ( dim_month ), dim_month[month] = _m )
+		formatString: ₦#,0
+		displayFolder: 4 Where to go next
+		lineageTag: 778e8442-1ff4-4c7e-8231-6784e36bf2b8
+
+	/// Household payback, central (low–high), latest month.
+	measure 'Payback HH Now Text' = IF ( NOT ISBLANK ( [Payback HH Now] ), FORMAT ( [Payback HH Now], "0.0" ) & "  (" & FORMAT ( [Payback HH Low Now], "0.0" ) & "–" & FORMAT ( [Payback HH High Now], "0.0" ) & ")" )
+		displayFolder: 4 Where to go next
+		lineageTag: ba79b6ac-44bd-4dce-9af1-9ca6ea3eb549
+
+	measure 'Upfront HH Now Text' = IF ( NOT ISBLANK ( [Upfront HH Central Now] ), FORMAT ( [Upfront HH Central Now], "0.0" ) & " months" )
+		displayFolder: 4 Where to go next
+		lineageTag: 0b12955e-f0e4-4892-9f3b-a3b3f46685e6
+
+	/// Page 4 takeaway.
+	measure 'Takeaway P4' =
+			VAR _t = TOPN ( 3, ALL ( dim_state[state] ), [Priority Rank], ASC )
+			VAR _r = ADDCOLUMNS ( _t, "@r", [Priority Rank] )
+			VAR _a = FILTER ( ALL ( dim_state[state] ), [Variants In Top 10] = [Variants Total] )
+			VAR _n1 = MAXX ( FILTER ( _r, [@r] = 1 ), dim_state[state] )
+			VAR _n2 = MAXX ( FILTER ( _r, [@r] = 2 ), dim_state[state] )
+			VAR _n3 = MAXX ( FILTER ( _r, [@r] = 3 ), dim_state[state] )
+			RETURN _n1 & ", " & _n2 & " and " & _n3 & " rank highest; " & CONCATENATEX ( _a, dim_state[state], ", ", dim_state[state], ASC ) & " stay in the top 10 under all " & [Variants Total] & " index variants."
+		displayFolder: 4 Where to go next
+		lineageTag: a053227a-be2a-4820-866b-4cf9c9d7e51e
+
+	measure 'Card P4 Bars Title' = "Market priority index — top 15 states (" & [Latest Month Label] & ", equal weights)"
+		displayFolder: 4 Where to go next
+		lineageTag: f9f5a844-eaa2-4780-81d0-fd5437da1ab6
+
+	measure 'Card P4 Table Title' = "Top 10 at a glance — household, " & [Latest Month Label] & " (central; payback range low–high)"
+		displayFolder: 4 Where to go next
+		lineageTag: 8e981ad6-48fb-4bb7-a1b9-5178700b460d
+
+	/// Gen kWh HH Now for the state on the current page-2 chart row. 0 on the separator row (kept so the '· · ·' row shows; the format string prints zero as empty).
+	measure 'P2 Gen HH Row' = VAR _s = SELECTEDVALUE ( 'P2 Rows HH'[state] ) RETURN IF ( _s = "", 0, CALCULATE ( [Gen kWh HH Now], dim_state[state] = _s ) )
+		formatString: #,0;-#,0;
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: 526f237a-85c0-4f64-85b1-3e18cb8d9dd8
+
+	/// Solar kWh HH Now for the state on the current page-2 chart row. 0 on the separator row (kept so the '· · ·' row shows; the format string prints zero as empty).
+	measure 'P2 Solar HH Row' = VAR _s = SELECTEDVALUE ( 'P2 Rows HH'[state] ) RETURN IF ( _s = "", 0, CALCULATE ( [Solar kWh HH Now], dim_state[state] = _s ) )
+		formatString: #,0;-#,0;
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: e3afa17c-9069-43d1-adfc-1a1709a0b5d1
+
+	/// Gen kWh BZ Now for the state on the current page-2 chart row. 0 on the separator row (kept so the '· · ·' row shows; the format string prints zero as empty).
+	measure 'P2 Gen BZ Row' = VAR _s = SELECTEDVALUE ( 'P2 Rows BZ'[state] ) RETURN IF ( _s = "", 0, CALCULATE ( [Gen kWh BZ Now], dim_state[state] = _s ) )
+		formatString: #,0;-#,0;
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: 9a8f9507-697f-41de-8b04-9d046f20e021
+
+	/// Solar kWh BZ Now for the state on the current page-2 chart row. 0 on the separator row (kept so the '· · ·' row shows; the format string prints zero as empty).
+	measure 'P2 Solar BZ Row' = VAR _s = SELECTEDVALUE ( 'P2 Rows BZ'[state] ) RETURN IF ( _s = "", 0, CALCULATE ( [Solar kWh BZ Now], dim_state[state] = _s ) )
+		formatString: #,0;-#,0;
+		displayFolder: 2 Generator vs grid vs solar
+		lineageTag: 313dfada-8954-4f0f-8ffd-02f56e3c36e6
+
+	/// Map label value with unit, e.g. '9.6 mo'.
+	measure 'Map P3 Max Label Value' = [Map P3 Max Value] & " mo"
+		displayFolder: 3 Payback
+		lineageTag: 5c78f89d-39da-41ba-a72d-7b58f885bad0
+
+	/// Map label value with unit, e.g. '9.6 mo'.
+	measure 'Map P3 Min Label Value' = [Map P3 Min Value] & " mo"
+		displayFolder: 3 Payback
+		lineageTag: 1615329c-15a9-4d05-a275-97a09ecbd8a7
+
+	/// First line of the page-3 map note (the card does not wrap).
+	measure 'Map P3 Spread Note 1' =
+			VAR _hi = MAXX ( ALL ( dim_state[state] ), [Payback HH Now] )
+			VAR _lo = MINX ( ALL ( dim_state[state] ), [Payback HH Now] )
+			RETURN "States differ by only about " & FORMAT ( ( _hi / _lo - 1 ) * 100, "0" ) & "%; the colour scale is"
+		displayFolder: 3 Payback
+		lineageTag: be36d07e-54d0-4fa2-be9a-14eff527e1a8
+
+	column _
+		isHidden
+		lineageTag: 86426252-beb1-41e6-a7c7-1d7e2e336ab7
+		isNameInferred
+		sourceColumn: [_]
+
+	partition _Measures = calculated
+		mode: import
+		source = ROW("_", BLANK())
+
+	annotation PBI_Id = eda6229b-db88-4b30-8c7c-2db49998ecaf
+

@@ -1,0 +1,128 @@
+table fact_solar_cost
+	lineageTag: 3c5c6f75-ac3b-4f04-8338-64b025e928e6
+
+	column state
+		dataType: string
+		lineageTag: 71d845f8-753b-4d86-8734-7b7220de3fee
+		summarizeBy: none
+		sourceColumn: state
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: string
+		lineageTag: 024e7c60-13b7-4e74-9954-a86a9a23a3e3
+		summarizeBy: none
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column user
+		dataType: string
+		lineageTag: bd2362aa-289a-40f2-a0fa-eb33eb02386e
+		summarizeBy: none
+		sourceColumn: user
+
+		annotation SummarizationSetBy = Automatic
+
+	column case
+		dataType: string
+		lineageTag: 5cf9ec46-608d-4d79-8cdd-272d520944a3
+		summarizeBy: none
+		sourceColumn: case
+
+		annotation SummarizationSetBy = Automatic
+
+	column lcoe_ngn_per_kwh
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: ea20ede8-48ce-4305-bbb0-ff0b4c16ed07
+		summarizeBy: none
+		sourceColumn: lcoe_ngn_per_kwh
+
+		annotation SummarizationSetBy = Automatic
+
+	column ngn_per_day
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 326a595b-2c18-4048-b602-880aac0ff3e1
+		summarizeBy: none
+		sourceColumn: ngn_per_day
+
+		annotation SummarizationSetBy = Automatic
+
+	column ngn_per_month
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: b5d22b0b-d193-4cc7-a93c-7821e9be5e71
+		summarizeBy: none
+		sourceColumn: ngn_per_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column pv_kwp
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: e3419788-0fac-4e5f-9f27-489de3cacfd4
+		summarizeBy: none
+		sourceColumn: pv_kwp
+
+		annotation SummarizationSetBy = Automatic
+
+	column battery_kwh
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 2993a3b1-5483-4cb7-96f0-c33854f7c0a9
+		summarizeBy: none
+		sourceColumn: battery_kwh
+
+		annotation SummarizationSetBy = Automatic
+
+	column inverter_ngn
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: cac00456-3765-4bc7-b939-96b56abfc081
+		summarizeBy: none
+		sourceColumn: inverter_ngn
+
+		annotation SummarizationSetBy = Automatic
+
+	column capex_ngn
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 159be6d3-3b1a-4efe-8899-f8a0c224f57a
+		summarizeBy: none
+		sourceColumn: capex_ngn
+
+		annotation SummarizationSetBy = Automatic
+
+	column pvout_worst_month
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 9e26cd33-0c34-43b0-a6de-846d9dfc9777
+		summarizeBy: none
+		sourceColumn: pvout_worst_month
+
+		annotation SummarizationSetBy = Automatic
+
+	column fx_ratio_to_benchmark
+		dataType: double
+		formatString: #,##0.00
+		lineageTag: 73623f78-2168-496f-adf5-822e870fadcc
+		summarizeBy: none
+		sourceColumn: fx_ratio_to_benchmark
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_solar_cost = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "fact_solar_cost.csv"), [Delimiter=",", Columns=13, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers", {{"state", type text}, {"month", type text}, {"user", type text}, {"case", type text}, {"lcoe_ngn_per_kwh", type number}, {"ngn_per_day", type number}, {"ngn_per_month", type number}, {"pv_kwp", type number}, {"battery_kwh", type number}, {"inverter_ngn", type number}, {"capex_ngn", type number}, {"pvout_worst_month", type number}, {"fx_ratio_to_benchmark", type number}}, "en-US")
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

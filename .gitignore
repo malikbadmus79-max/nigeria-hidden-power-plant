@@ -41,3 +41,9 @@ data/raw/*
 !data/raw/.gitkeep
 docs/sources/*
 !docs/sources/README.md
+
+# Power BI PBIP local caches and settings
+**/.pbi/cache.abf
+**/.pbi/localSettings.json
+powerbi/pbir_staging/
+powerbi/schemas/

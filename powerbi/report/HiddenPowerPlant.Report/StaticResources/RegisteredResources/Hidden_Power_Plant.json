@@ -1,0 +1,175 @@
+{
+  "name": "Hidden Power Plant",
+  "dataColors": [
+    "#F59E0B",
+    "#475569",
+    "#0D9488",
+    "#DC2626",
+    "#0F1B2D",
+    "#B45309",
+    "#94A3B8",
+    "#FDE68A"
+  ],
+  "foreground": "#0F1B2D",
+  "foregroundNeutralSecondary": "#4B5563",
+  "foregroundNeutralTertiary": "#6B7280",
+  "background": "#FFFFFF",
+  "backgroundLight": "#F6F7F9",
+  "backgroundNeutral": "#E5E7EB",
+  "tableAccent": "#F59E0B",
+  "good": "#0D9488",
+  "neutral": "#475569",
+  "bad": "#DC2626",
+  "maximum": "#B45309",
+  "center": "#F59E0B",
+  "minimum": "#FEF3C7",
+  "textClasses": {
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 28,
+      "color": "#0F1B2D"
+    },
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 11,
+      "color": "#0F1B2D"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 10,
+      "color": "#0F1B2D"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 9,
+      "color": "#4B5563"
+    },
+    "largeTitle": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 16,
+      "color": "#0F1B2D"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#E5E7EB"
+              }
+            },
+            "radius": 8
+          }
+        ],
+        "dropShadow": [
+          {
+            "show": false
+          }
+        ],
+        "title": [
+          {
+            "fontFamily": "Segoe UI Semibold",
+            "fontSize": 11,
+            "fontColor": {
+              "solid": {
+                "color": "#0F1B2D"
+              }
+            }
+          }
+        ],
+        "categoryAxis": [
+          {
+            "fontFamily": "Segoe UI",
+            "fontSize": 9,
+            "labelColor": {
+              "solid": {
+                "color": "#4B5563"
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": "#E5E7EB"
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "fontFamily": "Segoe UI",
+            "fontSize": 9,
+            "labelColor": {
+              "solid": {
+                "color": "#4B5563"
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": "#E5E7EB"
+              }
+            }
+          }
+        ],
+        "labels": [
+          {
+            "fontFamily": "Segoe UI",
+            "fontSize": 9,
+            "color": {
+              "solid": {
+                "color": "#0F1B2D"
+              }
+            }
+          }
+        ],
+        "legend": [
+          {
+            "fontFamily": "Segoe UI",
+            "fontSize": 9,
+            "labelColor": {
+              "solid": {
+                "color": "#4B5563"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F6F7F9"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F6F7F9"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    }
+  }
+}

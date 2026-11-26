@@ -1,0 +1,26 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DataFolder", "dim_state", "dim_month", "fact_generator_cost", "fact_grid_tariff", "fact_solar_cost", "fact_payback", "fact_crossover", "fact_priority_index"]
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","DevMode"]
+
+ref table dim_state
+ref table dim_month
+ref table fact_generator_cost
+ref table fact_grid_tariff
+ref table fact_solar_cost
+ref table fact_payback
+ref table fact_crossover
+ref table fact_priority_index
+ref table _Measures
+ref table 'P2 Rows HH'
+ref table 'P2 Rows BZ'
+
+ref cultureInfo en-US
+
